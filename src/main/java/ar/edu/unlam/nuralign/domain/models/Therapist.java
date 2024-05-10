@@ -8,19 +8,7 @@ import java.util.Objects;
 
 @Setter
 @Getter
-public class Therapist{
-
-    private Long id;
-
-    private String name;
-
-    private String lastName;
-
-    private String email;
-
-    private String phoneNumber;
-
-    private String password;
+public class Therapist extends User{
 
     private Integer documentNumber;
 
@@ -28,20 +16,12 @@ public class Therapist{
 
     private String registeredFlag;
 
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
-
     public Therapist() {}
 
     public Therapist(Long id, String name, String lastName, String email, String phoneNumber, String password,
-                     Integer documentNumber, String medicalLicense, String registeredFlag) {
-        this.id = id;
-        this.name = name;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
+                     Integer documentNumber, String medicalLicense, String registeredFlag, LocalDateTime createdAt,
+                        LocalDateTime updatedAt) {
+        super(id, name, lastName, email, password, phoneNumber, createdAt, updatedAt);
         this.documentNumber = documentNumber;
         this.medicalLicense = medicalLicense;
         this.registeredFlag = registeredFlag;

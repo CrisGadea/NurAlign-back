@@ -10,5 +10,5 @@ public interface TherapistRepositoryPort {
     Optional<Therapist> update(Therapist therapist, Long id);
     Optional<Therapist> findById(Long id);
     List<Therapist> findAll();
-    void deleteById(Long id);
+    Boolean deleteById(Long id);
 }

@@ -5,8 +5,10 @@ import ar.edu.unlam.nuralign.domain.models.Therapist;
 import ar.edu.unlam.nuralign.infrastructure.entities.TherapistEntity;
 import ar.edu.unlam.nuralign.infrastructure.mappers.TherapistMapper;
 import ar.edu.unlam.nuralign.infrastructure.repositories.JpaTherapistRepository;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,8 +24,10 @@ public class JpaTherapistRepositoryAdapter implements TherapistRepositoryPort {
     @Override
     public Therapist save(Therapist therapist) {
         TherapistEntity therapistEntity = TherapistMapper.mapToEntity(therapist);
-        TherapistEntity savedTherapistEntity = jpaTherapistRepository.save(therapistEntity);
-        return TherapistMapper.mapToDomain(savedTherapistEntity);
+        therapistEntity.setCreatedAt(LocalDateTime.now());
+        therapistEntity.setUpdatedAt(LocalDateTime.now());
+        therapistEntity.setPassword(this.hashPassword(therapist.getPassword()));
+        return TherapistMapper.mapToDomain(jpaTherapistRepository.save(therapistEntity));
     }
 
     @Override
@@ -53,11 +57,20 @@ public class JpaTherapistRepositoryAdapter implements TherapistRepositoryPort {
     }
 
     @Override
-    public void deleteById(Long id) {
-        if (jpaTherapistRepository.existsById(id)) {
-            jpaTherapistRepository.deleteById(id);
-        } else {
-            throw new IllegalArgumentException("Therapist with id " + id + " does not exist");
-        }
+    public Boolean deleteById(Long id) {
+        jpaTherapistRepository.deleteById(id);
+        return jpaTherapistRepository.findById(id).isEmpty();
+    }
+
+    private boolean checkPassword(String password, String hashedPassword) {
+        BCrypt.Verifyer verifyer = BCrypt.verifyer();
+        BCrypt.Result result = verifyer.verify(password.toCharArray(), hashedPassword);
+        return result.verified;
+    }
+
+    private String hashPassword(String password) {
+        BCrypt.Hasher crypt = BCrypt.withDefaults();
+        String passwordHashed = crypt.hashToString(12, password.toCharArray());
+        return this.checkPassword(password, passwordHashed) ? passwordHashed : null;
     }
 }

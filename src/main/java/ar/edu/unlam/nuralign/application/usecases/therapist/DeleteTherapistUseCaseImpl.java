@@ -14,6 +14,6 @@ public class DeleteTherapistUseCaseImpl implements DeleteTherapistUseCase {
     @Override
     public boolean deleteTherapist(Long id) {
         repository.deleteById(id);
-        return false;
+        return repository.findById(id).isEmpty();
     }
 }
