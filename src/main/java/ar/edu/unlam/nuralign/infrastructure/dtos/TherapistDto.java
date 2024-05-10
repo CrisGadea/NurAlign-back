@@ -1,10 +1,14 @@
 package ar.edu.unlam.nuralign.infrastructure.dtos;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class TherapistDto {
 
     private String name;
@@ -21,16 +25,4 @@ public class TherapistDto {
 
     private String registeredFlag;
 
-    public TherapistDto() {}
-
-    public TherapistDto( String name, String lastName, String email, String phoneNumber,
-                     Integer documentNumber, String medicalLicense, String registeredFlag ) {
-        this.name = name;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.documentNumber = documentNumber;
-        this.medicalLicense = medicalLicense;
-        this.registeredFlag = registeredFlag;
-    }
 }
