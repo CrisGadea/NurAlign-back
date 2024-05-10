@@ -57,9 +57,9 @@ public class JpaTherapistRepositoryAdapter implements TherapistRepositoryPort {
     }
 
     @Override
-    public Boolean deleteById(Long id) {
+    public void deleteById(Long id) {
         jpaTherapistRepository.deleteById(id);
-        return jpaTherapistRepository.findById(id).isEmpty();
+        jpaTherapistRepository.findById(id);
     }
 
     private boolean checkPassword(String password, String hashedPassword) {
