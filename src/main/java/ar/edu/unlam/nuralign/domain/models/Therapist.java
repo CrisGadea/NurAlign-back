@@ -1,6 +1,5 @@
 package ar.edu.unlam.nuralign.domain.models;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 

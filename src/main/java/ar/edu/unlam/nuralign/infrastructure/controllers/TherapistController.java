@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import ar.edu.unlam.nuralign.application.services.TherapistService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/therapists")

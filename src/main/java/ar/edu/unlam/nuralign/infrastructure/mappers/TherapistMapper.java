@@ -2,7 +2,6 @@ package ar.edu.unlam.nuralign.infrastructure.mappers;
 
 import ar.edu.unlam.nuralign.domain.models.Therapist;
 import ar.edu.unlam.nuralign.infrastructure.entities.TherapistEntity;
-import lombok.experimental.UtilityClass;
 
 public class TherapistMapper {
 
