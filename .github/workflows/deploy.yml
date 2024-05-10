@@ -26,7 +26,7 @@ jobs:
       - name: Deploy to VPS
         run: |
           # Comandos para detener la aplicación actual, si es necesario
-          #sshpass -p "${{ secrets.VPS_SSH_PASSWORD }}" scp -o StrictHostKeyChecking=no  /home/runner/work/NurAlign-back/target/nuralign-0.0.1-SNAPSHOT.jar root@0.0.0.0:/root/NurAlign-back/nuralign-0.0.1-SNAPSHOT.jar
+          #sshpass -p "${{ secrets.VPS_SSH_PASSWORD }}" scp -o StrictHostKeyChecking=no  /home/runner/work/NurAlign-back/target/nuralign-0.0.1-SNAPSHOT.jar root@77.37.69.38:/root/NurAlign-back/nuralign-0.0.1-SNAPSHOT.jar
           # Comandos para iniciar la nueva versión de la aplicación
           # Reiniciar servicio
-          #sshpass -p "${{ secrets.VPS_SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no root@0.0.0.0 'systemctl restart nuralign'
+          #sshpass -p "${{ secrets.VPS_SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no root@77.37.69.38 'systemctl restart nuralign'

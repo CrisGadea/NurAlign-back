@@ -24,6 +24,7 @@ public class JpaTherapistRepositoryAdapter implements TherapistRepositoryPort {
     @Override
     public Therapist save(Therapist therapist) {
         TherapistEntity therapistEntity = TherapistMapper.mapToEntity(therapist);
+        therapistEntity.setRegisteredFlag(true);
         therapistEntity.setCreatedAt(LocalDateTime.now());
         therapistEntity.setUpdatedAt(LocalDateTime.now());
         therapistEntity.setPassword(this.hashPassword(therapist.getPassword()));

@@ -22,14 +22,14 @@ public class TherapistEntity {
     private String phoneNumber;
     private String medicalLicense;
     private Integer documentNumber;
-    private String registeredFlag;
+    private Boolean registeredFlag;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
     public TherapistEntity() {}
 
     public TherapistEntity(Long id, String name, String lastName, String email,  String phoneNumber, String password,
-                           Integer documentNumber, String medicalLicense, String registeredFlag) {
+                           Integer documentNumber, String medicalLicense, Boolean registeredFlag) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
