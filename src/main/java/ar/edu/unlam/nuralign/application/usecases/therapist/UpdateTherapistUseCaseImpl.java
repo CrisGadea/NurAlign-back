@@ -1,6 +1,6 @@
 package ar.edu.unlam.nuralign.application.usecases.therapist;
 
-import ar.edu.unlam.nuralign.application.ports.in.UpdateTherapistUseCase;
+import ar.edu.unlam.nuralign.application.ports.in.therapist.UpdateTherapistUseCase;
 import ar.edu.unlam.nuralign.application.ports.out.TherapistRepositoryPort;
 import ar.edu.unlam.nuralign.domain.models.Therapist;
 

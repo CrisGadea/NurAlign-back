@@ -31,16 +31,12 @@ public class Therapist extends User{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
         Therapist therapist = (Therapist) o;
-        return Objects.equals(id, therapist.id);
+        return Objects.equals(getDocumentNumber(), therapist.getDocumentNumber());
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + Objects.hashCode(id);
-        return result;
+        return Objects.hashCode(getDocumentNumber());
     }
 }

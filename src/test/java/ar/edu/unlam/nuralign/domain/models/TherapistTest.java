@@ -27,10 +27,10 @@ public class TherapistTest {
     @DisplayName("Should validate therapist equality based on therapistId")
     public void shouldValidateTherapistEqualityBasedOnTherapistId() {
         Therapist therapist1 = new Therapist();
-        therapist1.setId(1L);
+        therapist1.setDocumentNumber(1);
 
         Therapist therapist2 = new Therapist();
-        therapist2.setId(1L);
+        therapist2.setDocumentNumber(1);
 
         assertEquals(therapist1, therapist2);
     }
@@ -39,10 +39,10 @@ public class TherapistTest {
     @DisplayName("Should validate therapist inequality based on different therapistId")
     public void shouldValidateTherapistInequalityBasedOnDifferentTherapistId() {
         Therapist therapist1 = new Therapist();
-        therapist1.setId(1L);
+        therapist1.setDocumentNumber(1);
 
         Therapist therapist2 = new Therapist();
-        therapist2.setId(2L);
+        therapist2.setDocumentNumber(2);
 
         assertNotEquals(therapist1, therapist2);
     }
@@ -51,7 +51,7 @@ public class TherapistTest {
     @DisplayName("Should validate therapist inequality with null")
     public void shouldValidateTherapistInequalityWithNull() {
         Therapist therapist = new Therapist();
-        therapist.setId(1L);
+        therapist.setDocumentNumber(1);
 
         assertNotEquals(therapist, null);
     }

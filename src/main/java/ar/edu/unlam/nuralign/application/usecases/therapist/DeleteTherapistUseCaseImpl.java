@@ -1,6 +1,6 @@
 package ar.edu.unlam.nuralign.application.usecases.therapist;
 
-import ar.edu.unlam.nuralign.application.ports.in.DeleteTherapistUseCase;
+import ar.edu.unlam.nuralign.application.ports.in.therapist.DeleteTherapistUseCase;
 import ar.edu.unlam.nuralign.application.ports.out.TherapistRepositoryPort;
 
 public class DeleteTherapistUseCaseImpl implements DeleteTherapistUseCase {

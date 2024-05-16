@@ -46,7 +46,7 @@ public class TherapistController {
     }
 
     @DeleteMapping("/{therapistId}")
-    public ResponseEntity<?> deleteTherapist(@PathVariable Long therapistId) {
+    public ResponseEntity<Void> deleteTherapist(@PathVariable Long therapistId) {
         return therapistService.deleteTherapist(therapistId) ? ResponseEntity.ok().build()
                 : ResponseEntity.notFound().build();
     }

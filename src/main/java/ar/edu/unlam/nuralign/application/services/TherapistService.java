@@ -1,10 +1,10 @@
 package ar.edu.unlam.nuralign.application.services;
 
-import ar.edu.unlam.nuralign.application.ports.in.CreateTherapistUseCase;
-import ar.edu.unlam.nuralign.application.ports.in.DeleteTherapistUseCase;
-import ar.edu.unlam.nuralign.application.ports.in.UpdateTherapistUseCase;
-import ar.edu.unlam.nuralign.application.ports.in.FindTherapistUseCase;
-import ar.edu.unlam.nuralign.application.ports.in.FindAllTherapistsUseCase;
+import ar.edu.unlam.nuralign.application.ports.in.therapist.CreateTherapistUseCase;
+import ar.edu.unlam.nuralign.application.ports.in.therapist.DeleteTherapistUseCase;
+import ar.edu.unlam.nuralign.application.ports.in.therapist.UpdateTherapistUseCase;
+import ar.edu.unlam.nuralign.application.ports.in.therapist.FindTherapistUseCase;
+import ar.edu.unlam.nuralign.application.ports.in.therapist.FindAllTherapistsUseCase;
 import ar.edu.unlam.nuralign.domain.models.Therapist;
 
 import java.util.List;

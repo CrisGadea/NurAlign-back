@@ -5,7 +5,7 @@ import ar.edu.unlam.nuralign.domain.models.Therapist;
 import ar.edu.unlam.nuralign.infrastructure.entities.TherapistEntity;
 import ar.edu.unlam.nuralign.infrastructure.mappers.TherapistMapper;
 import ar.edu.unlam.nuralign.infrastructure.repositories.JpaTherapistRepository;
-import at.favre.lib.crypto.bcrypt.BCrypt;
+import ar.edu.unlam.nuralign.infrastructure.utils.CheckPassword;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -17,17 +17,21 @@ public class JpaTherapistRepositoryAdapter implements TherapistRepositoryPort {
 
     private final JpaTherapistRepository jpaTherapistRepository;
 
+    private CheckPassword checkPassword;
+
     public JpaTherapistRepositoryAdapter(JpaTherapistRepository jpaTherapistRepository) {
         this.jpaTherapistRepository = jpaTherapistRepository;
+        this.checkPassword = null;
     }
 
     @Override
     public Therapist save(Therapist therapist) {
+        this.checkPassword = new CheckPassword(therapist.getPassword());
         TherapistEntity therapistEntity = TherapistMapper.mapToEntity(therapist);
         therapistEntity.setRegisteredFlag(true);
         therapistEntity.setCreatedAt(LocalDateTime.now());
         therapistEntity.setUpdatedAt(LocalDateTime.now());
-        therapistEntity.setPassword(this.hashPassword(therapist.getPassword()));
+        therapistEntity.setPassword(this.checkPassword.hashPassword());
         return TherapistMapper.mapToDomain(jpaTherapistRepository.save(therapistEntity));
     }
 
@@ -36,6 +40,7 @@ public class JpaTherapistRepositoryAdapter implements TherapistRepositoryPort {
         if (jpaTherapistRepository.existsById(id)) {
             TherapistEntity therapistEntity = TherapistMapper.mapToEntity(therapist);
             therapistEntity.setId(id);
+            therapistEntity.setUpdatedAt(LocalDateTime.now());
             TherapistEntity updatedTherapistEntity = jpaTherapistRepository.save(therapistEntity);
             return Optional.of(TherapistMapper.mapToDomain(updatedTherapistEntity));
         } else {
@@ -63,15 +68,4 @@ public class JpaTherapistRepositoryAdapter implements TherapistRepositoryPort {
         jpaTherapistRepository.findById(id);
     }
 
-    private boolean checkPassword(String password, String hashedPassword) {
-        BCrypt.Verifyer verifyer = BCrypt.verifyer();
-        BCrypt.Result result = verifyer.verify(password.toCharArray(), hashedPassword);
-        return result.verified;
-    }
-
-    private String hashPassword(String password) {
-        BCrypt.Hasher crypt = BCrypt.withDefaults();
-        String passwordHashed = crypt.hashToString(12, password.toCharArray());
-        return this.checkPassword(password, passwordHashed) ? passwordHashed : null;
-    }
 }
