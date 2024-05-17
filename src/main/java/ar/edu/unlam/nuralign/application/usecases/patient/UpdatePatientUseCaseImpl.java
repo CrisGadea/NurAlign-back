@@ -1,11 +1,8 @@
 package ar.edu.unlam.nuralign.application.usecases.patient;
 
 import ar.edu.unlam.nuralign.application.ports.in.patient.UpdatePatientUseCase;
-import ar.edu.unlam.nuralign.application.ports.in.therapist.UpdateTherapistUseCase;
 import ar.edu.unlam.nuralign.application.ports.out.PatientRepositoryPort;
-import ar.edu.unlam.nuralign.application.ports.out.TherapistRepositoryPort;
 import ar.edu.unlam.nuralign.domain.models.Patient;
-import ar.edu.unlam.nuralign.domain.models.Therapist;
 
 import java.util.Optional;
 

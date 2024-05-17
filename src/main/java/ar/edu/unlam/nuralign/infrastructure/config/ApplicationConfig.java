@@ -1,14 +1,21 @@
 package ar.edu.unlam.nuralign.infrastructure.config;
 
 import ar.edu.unlam.nuralign.application.ports.out.PatientRepositoryPort;
+import ar.edu.unlam.nuralign.application.ports.out.SleepTrakerRepositoryPort;
 import ar.edu.unlam.nuralign.application.ports.out.TherapistRepositoryPort;
 import ar.edu.unlam.nuralign.application.services.PatientService;
+import ar.edu.unlam.nuralign.application.services.SleepTrakerService;
 import ar.edu.unlam.nuralign.application.services.TherapistService;
 import ar.edu.unlam.nuralign.application.usecases.patient.*;
+import ar.edu.unlam.nuralign.application.usecases.sleepTraker.CreateSleepTrakerUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.sleepTraker.FindAllSleepTrakersUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.sleepTraker.FindSleepTrakerUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.therapist.*;
 import ar.edu.unlam.nuralign.infrastructure.adapters.JpaPatientRepositoryAdapter;
+import ar.edu.unlam.nuralign.infrastructure.adapters.JpaSleepTrakerRepositoryAdapter;
 import ar.edu.unlam.nuralign.infrastructure.adapters.JpaTherapistRepositoryAdapter;
 import ar.edu.unlam.nuralign.infrastructure.repositories.JpaPatientRepository;
+import ar.edu.unlam.nuralign.infrastructure.repositories.JpaSleepTrakerRepository;
 import ar.edu.unlam.nuralign.infrastructure.repositories.JpaTherapistRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,7 +43,15 @@ public class ApplicationConfig {
                 new DeletePatientUseCaseImpl(patientRepositoryPort),
                 new UpdatePatientUseCaseImpl(patientRepositoryPort)
         );
+    }
 
+    @Bean
+    public SleepTrakerService sleepTrakerService(SleepTrakerRepositoryPort sleepTrakerRepositoryPort) {
+        return new SleepTrakerService(
+                new CreateSleepTrakerUseCaseImpl(sleepTrakerRepositoryPort),
+                new FindSleepTrakerUseCaseImpl(sleepTrakerRepositoryPort),
+                new FindAllSleepTrakersUseCaseImpl(sleepTrakerRepositoryPort)
+        );
     }
 
     @Bean
@@ -50,6 +65,11 @@ public class ApplicationConfig {
     }
 
     @Bean
+    public SleepTrakerRepositoryPort sleepTrakerRepositoryPort(JpaSleepTrakerRepositoryAdapter jpaSleepTrakerRepositoryAdapter) {
+        return jpaSleepTrakerRepositoryAdapter;
+    }
+
+    @Bean
     public JpaTherapistRepositoryAdapter jpaTherapistRepositoryAdapter(JpaTherapistRepository adapter) {
         return new JpaTherapistRepositoryAdapter(adapter);
     }
@@ -57,6 +77,11 @@ public class ApplicationConfig {
     @Bean
     public JpaPatientRepositoryAdapter jpaPatientRepositoryAdapter(JpaPatientRepository adapter) {
         return new JpaPatientRepositoryAdapter(adapter);
+    }
+
+    @Bean
+    public JpaSleepTrakerRepositoryAdapter jpaSleepTrakerRepositoryAdapter(JpaSleepTrakerRepository adapter) {
+        return new JpaSleepTrakerRepositoryAdapter(adapter);
     }
 
 
