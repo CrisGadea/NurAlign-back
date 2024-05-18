@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 public class SleepTrakerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="sleep_tracker_id")
     private Long id;
     @Column(name = "patient_id")
     private Long patientId;
