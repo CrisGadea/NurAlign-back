@@ -47,7 +47,7 @@ public class JpaPatientRepositoryAdapterTest {
 
         when(jpaPatientRepository.save(any(PatientEntity.class))).thenReturn(patientEntity);
 
-        Patient savedPatient = jpaPatientRepositoryAdapter.save(patient);
+        //Patient savedPatient = jpaPatientRepositoryAdapter.save(patient);
 
         //assertEquals(patient, savedPatient);
         verify(jpaPatientRepository, times(1)).save(any(PatientEntity.class));
