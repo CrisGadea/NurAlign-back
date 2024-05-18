@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/sleepTraker")
+@RequestMapping("/api/sleepTracker")
 @CrossOrigin(origins = "*")
 public class SleepTrakerController {
     private final SleepTrakerService sleepTrackerService;

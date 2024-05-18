@@ -17,7 +17,7 @@ public class SleepTrakerEntity {
     @Column(name = "patient_id")
     private Long patientId;
     @Column(name = "effective_date")
-    private LocalDateTime effectiveDate;
+    private String effectiveDate;
     @Column(name = "sleep_hours")
     private Integer sleepHours;
     @Column(name = "bed_time")
