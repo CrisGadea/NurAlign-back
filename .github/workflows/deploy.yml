@@ -39,7 +39,3 @@ jobs:
           # Comandos para iniciar la nueva versión de la aplicación
           # Reiniciar servicio
           ssh -o StrictHostKeyChecking=no root@77.37.69.38 'systemctl restart nuralign'
-      
-      - name: Ejecutar proyecto
-        run: |
-          ssh -o StrictHostKeyChecking=no root@77.37.69.38 'java -jar /root/NurAlign-back/nuralign-0.0.1-SNAPSHOT.jar'
