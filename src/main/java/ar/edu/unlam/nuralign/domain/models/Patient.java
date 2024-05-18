@@ -25,22 +25,17 @@ public class Patient extends User {
 
     private Boolean registeredFlag;
 
-    private List<SleepTracker> sleepTrackers;
-
-    public Patient() {
-        this.sleepTrackers = new ArrayList<>();
-    }
+    public Patient() {}
 
     public Patient(Long id, String name, String lastName, String email, String phoneNumber, String password,
                    Boolean registeredFlag, LocalDateTime createdAt, LocalDateTime updatedAt) {
         super(id, name, lastName, email, password, phoneNumber, createdAt, updatedAt);
         this.registeredFlag = registeredFlag;
-        this.sleepTrackers = new ArrayList<>();
     }
 
     public Patient(Long id, String name, String lastName, String email, String phoneNumber, String password,
                    Boolean registeredFlag, Sex sex, LocalDate birthdate, String nickname, String generalNotifications,
-                   String companionNotifications, LocalDateTime createdAt, LocalDateTime updatedAt, List<SleepTracker> sleepTrackers) {
+                   String companionNotifications, LocalDateTime createdAt, LocalDateTime updatedAt) {
         super(id, name, lastName, email, password, phoneNumber, createdAt, updatedAt);
         this.birthdate = birthdate;
         this.registeredFlag = registeredFlag;
@@ -48,6 +43,5 @@ public class Patient extends User {
         this.generalNotifications = generalNotifications;
         this.nickname = nickname;
         this.sex = sex;
-        this.sleepTrackers = sleepTrackers;
     }
 }

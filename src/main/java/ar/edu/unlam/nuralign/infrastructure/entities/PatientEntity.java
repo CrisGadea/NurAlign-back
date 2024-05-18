@@ -43,19 +43,18 @@ public class PatientEntity {
     private List<SleepTrakerEntity> sleepTrackers;
 
     public PatientEntity( String name, String lastName, String email, String phoneNumber, String password,
-                         LocalDate birthdate, List<SleepTrakerEntity> sleepTrackers) {
+                         LocalDate birthdate) {
 
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
-        this.sleepTrackers = sleepTrackers;
         this.birthdate = birthdate;
     }
 
     public PatientEntity(String name, String lastName, String email, String phoneNumber, String password,
-                         List<SleepTrakerEntity> sleepTrackers, Boolean registeredFlag, Sex sex, LocalDate birthdate,
+                         Boolean registeredFlag, Sex sex, LocalDate birthdate,
                          String nickname, String generalNotifications, String companionNotifications) {
         this.name = name;
         this.lastName = lastName;
@@ -68,6 +67,5 @@ public class PatientEntity {
         this.nickname = nickname;
         this.generalNotifications = generalNotifications;
         this.companionNotifications = companionNotifications;
-        this.sleepTrackers = sleepTrackers;
     }
 }

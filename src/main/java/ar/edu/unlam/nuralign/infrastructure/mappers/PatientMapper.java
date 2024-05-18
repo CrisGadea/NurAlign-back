@@ -15,11 +15,6 @@ public class PatientMapper {
                     patient.getEmail(),
                     patient.getPhoneNumber(),
                     patient.getPassword(),
-                    patient.getSleepTrackers() != null ?
-                    patient.getSleepTrackers().stream()
-                            .map(SleepTrakerMapper::toEntity)
-                            .collect(Collectors.toList())
-                            : new ArrayList<>(),
                     patient.getRegisteredFlag(),
                     patient.getSex(),
                     patient.getBirthdate(),
@@ -44,12 +39,7 @@ public class PatientMapper {
                     patientEntity.getGeneralNotifications(),
                     patientEntity.getCompanionNotifications(),
                     patientEntity.getCreatedAt(),
-                    patientEntity.getUpdatedAt(),
-                    patientEntity.getSleepTrackers() != null ?
-                    patientEntity.getSleepTrackers().stream()
-                            .map(SleepTrakerMapper::toDomain)
-                            .collect(Collectors.toList())
-                            : new ArrayList<>()
+                    patientEntity.getUpdatedAt()
             );
         }
 }
