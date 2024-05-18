@@ -10,15 +10,22 @@ public class PatientMapper {
 
         public static PatientEntity mapToEntity(Patient patient) {
             return new PatientEntity(
-                    patient.getId(),
                     patient.getName(),
                     patient.getLastName(),
                     patient.getEmail(),
                     patient.getPhoneNumber(),
                     patient.getPassword(),
-                    patient.getSleepTrackers() != null ? patient.getSleepTrackers().stream()
+                    patient.getSleepTrackers() != null ?
+                    patient.getSleepTrackers().stream()
                             .map(SleepTrakerMapper::toEntity)
-                            .collect(Collectors.toList()) : new ArrayList<>()
+                            .collect(Collectors.toList())
+                            : new ArrayList<>(),
+                    patient.getRegisteredFlag(),
+                    patient.getSex(),
+                    patient.getBirthdate(),
+                    patient.getNickname(),
+                    patient.getGeneralNotifications(),
+                    patient.getCompanionNotifications()
                     );
         }
 
@@ -31,8 +38,18 @@ public class PatientMapper {
                     patientEntity.getPhoneNumber(),
                     patientEntity.getPassword(),
                     patientEntity.getRegisteredFlag(),
+                    patientEntity.getSex(),
+                    patientEntity.getBirthdate(),
+                    patientEntity.getNickname(),
+                    patientEntity.getGeneralNotifications(),
+                    patientEntity.getCompanionNotifications(),
                     patientEntity.getCreatedAt(),
-                    patientEntity.getUpdatedAt()
+                    patientEntity.getUpdatedAt(),
+                    patientEntity.getSleepTrackers() != null ?
+                    patientEntity.getSleepTrackers().stream()
+                            .map(SleepTrakerMapper::toDomain)
+                            .collect(Collectors.toList())
+                            : new ArrayList<>()
             );
         }
 }
