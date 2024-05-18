@@ -7,6 +7,7 @@ import ar.edu.unlam.nuralign.infrastructure.mappers.SleepTrakerMapper;
 import ar.edu.unlam.nuralign.infrastructure.repositories.JpaSleepTrakerRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -33,9 +34,13 @@ public class JpaSleepTrakerRepositoryAdapter implements SleepTrakerRepositoryPor
 
     @Override
     public List<SleepTracker> findAll() {
-        return repository.findAll()
-                .stream()
+        List<SleepTrakerEntity> entities = repository.findAll();
+        if (entities == null) {
+            return Collections.emptyList(); // Devuelve una lista vacía si findAll() devuelve null
+        }
+        return entities.stream()
                 .map(SleepTrakerMapper::toDomain)
                 .collect(Collectors.toList());
     }
+
 }
