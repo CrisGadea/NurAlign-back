@@ -7,6 +7,7 @@ import ar.edu.unlam.nuralign.infrastructure.mappers.SleepTrakerMapper;
 import ar.edu.unlam.nuralign.infrastructure.repositories.JpaSleepTrakerRepository;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -22,6 +23,7 @@ public class JpaSleepTrakerRepositoryAdapter implements SleepTrakerRepositoryPor
     @Override
     public SleepTracker save(SleepTracker sleepTracker) {
         SleepTrakerEntity sleepTrackerEntity = SleepTrakerMapper.toEntity(sleepTracker);
+        sleepTrackerEntity.setEffectiveDate(LocalDateTime.now());
         return SleepTrakerMapper.toDomain(repository.save(sleepTrackerEntity));
     }
 

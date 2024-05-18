@@ -17,20 +17,17 @@ public class JpaPatientRepositoryAdapter implements PatientRepositoryPort {
 
     private final JpaPatientRepository repository;
 
-    private CheckPassword checkPassword;
-
     public JpaPatientRepositoryAdapter(JpaPatientRepository repository) {
         this.repository = repository;
-        this.checkPassword = null;
     }
 
     @Override
     public Patient save(Patient patient) {
-        this.checkPassword = new CheckPassword(patient.getPassword());
         PatientEntity patientEntity = PatientMapper.mapToEntity(patient);
         patientEntity.setRegisteredFlag(true);
         patientEntity.setCreatedAt(LocalDateTime.now());
         patientEntity.setUpdatedAt(LocalDateTime.now());
+        CheckPassword checkPassword = new CheckPassword(patient.getPassword());
         patientEntity.setPassword(checkPassword.hashPassword());
         return PatientMapper.mapToDomain(repository.save(patientEntity));
     }
@@ -55,8 +52,7 @@ public class JpaPatientRepositoryAdapter implements PatientRepositoryPort {
 
     @Override
     public List<Patient> findAll() {
-        return repository.findAll()
-                .stream()
+        return repository.findAll().stream()
                 .map(PatientMapper::mapToDomain)
                 .toList();
     }

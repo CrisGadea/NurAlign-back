@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 public class SleepTracker {
     private Long patientId;
-    private LocalDateTime effectiveDate;
+    private String effectiveDate;
     private Integer sleepHours;
     private Integer bedTime;
     private String negativeThoughtsFlag;
