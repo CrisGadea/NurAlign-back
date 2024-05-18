@@ -3,7 +3,9 @@ package ar.edu.unlam.nuralign.infrastructure.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Setter
@@ -18,7 +20,8 @@ public class SleepTrakerEntity {
     @Column(name = "patient_id")
     private Long patientId;
     @Column(name = "effective_date")
-    private String effectiveDate;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate effectiveDate;
     @Column(name = "sleep_hours")
     private Integer sleepHours;
     @Column(name = "bed_time")

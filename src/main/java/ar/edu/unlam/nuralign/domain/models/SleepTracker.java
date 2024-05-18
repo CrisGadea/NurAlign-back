@@ -4,12 +4,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Setter
 @Getter
 @Builder
 public class SleepTracker {
     private Long patientId;
-    private String effectiveDate;
+    private LocalDate effectiveDate;
     private Integer sleepHours;
     private Integer bedTime;
     private String negativeThoughtsFlag;
