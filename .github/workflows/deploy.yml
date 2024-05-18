@@ -25,7 +25,7 @@ jobs:
         run: ls -R /home/runner/work/
 
       - name: Verificar contenido del directorio
-        run: ls /home/runner/work/NurAlign-back/target/
+        run: ls /home/runner/work/NurAlign-back/NurAlign-back/target/
 
       - name: Add SSH key
         uses: webfactory/ssh-agent@v0.5.3
@@ -35,7 +35,7 @@ jobs:
       - name: Deploy to VPS
         run: |
           # Comandos para detener la aplicación actual, si es necesario
-          scp -o StrictHostKeyChecking=no /home/runner/work/NurAlign-back/target/nuralign-0.0.1-SNAPSHOT.jar root@77.37.69.38:/root/NurAlign-back/nuralign-0.0.1-SNAPSHOT.jar
+          scp -o StrictHostKeyChecking=no /home/runner/work/NurAlign-back/NurAlign-back/target/nuralign-0.0.1-SNAPSHOT.jar root@77.37.69.38:/root/NurAlign-back/nuralign-0.0.1-SNAPSHOT.jar
           # Comandos para iniciar la nueva versión de la aplicación
           # Reiniciar servicio
           ssh -o StrictHostKeyChecking=no root@77.37.69.38 'systemctl restart nuralign'
