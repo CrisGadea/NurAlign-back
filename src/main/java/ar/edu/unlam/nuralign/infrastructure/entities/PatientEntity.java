@@ -27,7 +27,6 @@ public class PatientEntity {
     private String email;
     @Column(name = "patient_password")
     private String password;
-    private String phoneNumber;
     private String nickname;
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthdate;
@@ -42,24 +41,22 @@ public class PatientEntity {
     @OneToMany(mappedBy = "patientId", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SleepTrakerEntity> sleepTrackers;
 
-    public PatientEntity( String name, String lastName, String email, String phoneNumber, String password,
+    public PatientEntity( String name, String lastName, String email, String password,
                          LocalDate birthdate) {
 
         this.name = name;
         this.lastName = lastName;
         this.email = email;
-        this.phoneNumber = phoneNumber;
         this.password = password;
         this.birthdate = birthdate;
     }
 
-    public PatientEntity(String name, String lastName, String email, String phoneNumber, String password,
+    public PatientEntity(String name, String lastName, String email, String password,
                          Boolean registeredFlag, Sex sex, LocalDate birthdate,
                          String nickname, String generalNotifications, String companionNotifications) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
-        this.phoneNumber = phoneNumber;
         this.password = password;
         this.registeredFlag = registeredFlag;
         this.sex = sex;

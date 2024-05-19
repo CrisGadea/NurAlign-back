@@ -6,8 +6,6 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Setter
 @Getter
@@ -27,16 +25,16 @@ public class Patient extends User {
 
     public Patient() {}
 
-    public Patient(Long id, String name, String lastName, String email, String phoneNumber, String password,
+    public Patient(Long id, String name, String lastName, String email, String password,
                    Boolean registeredFlag, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        super(id, name, lastName, email, password, phoneNumber, createdAt, updatedAt);
+        super(id, name, lastName, email, password, createdAt, updatedAt);
         this.registeredFlag = registeredFlag;
     }
 
-    public Patient(Long id, String name, String lastName, String email, String phoneNumber, String password,
+    public Patient(Long id, String name, String lastName, String email, String password,
                    Boolean registeredFlag, Sex sex, LocalDate birthdate, String nickname, String generalNotifications,
                    String companionNotifications, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        super(id, name, lastName, email, password, phoneNumber, createdAt, updatedAt);
+        super(id, name, lastName, email, password, createdAt, updatedAt);
         this.birthdate = birthdate;
         this.registeredFlag = registeredFlag;
         this.companionNotifications = companionNotifications;

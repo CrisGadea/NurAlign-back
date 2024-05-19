@@ -17,7 +17,6 @@ public class User {
     protected String lastName;
     protected String email;
     protected String password;
-    protected String phoneNumber;
     protected LocalDateTime createdAt;
     protected LocalDateTime updatedAt;
 }
