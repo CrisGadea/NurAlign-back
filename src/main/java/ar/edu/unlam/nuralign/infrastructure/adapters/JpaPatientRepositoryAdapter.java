@@ -29,6 +29,8 @@ public class JpaPatientRepositoryAdapter implements PatientRepositoryPort {
         patientEntity.setRegisteredFlag(true);
         patientEntity.setCreatedAt(LocalDateTime.now());
         patientEntity.setUpdatedAt(LocalDateTime.now());
+        patientEntity.setCompanionNotifications("Y");
+        patientEntity.setGeneralNotifications("Y");
         CheckPassword checkPassword = new CheckPassword(patient.getPassword());
         patientEntity.setPassword(checkPassword.hashPassword());
         return PatientMapper.mapToDomain(repository.save(patientEntity));

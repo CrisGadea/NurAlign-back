@@ -11,12 +11,9 @@ public class PatientMapper {
                     patient.getLastName(),
                     patient.getEmail(),
                     patient.getPassword(),
-                    patient.getRegisteredFlag(),
                     patient.getSex(),
                     patient.getBirthdate(),
-                    patient.getNickname(),
-                    patient.getGeneralNotifications(),
-                    patient.getCompanionNotifications()
+                    patient.getNickname()
                     );
         }
 

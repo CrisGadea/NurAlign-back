@@ -52,17 +52,13 @@ public class PatientEntity {
     }
 
     public PatientEntity(String name, String lastName, String email, String password,
-                         Boolean registeredFlag, Sex sex, LocalDate birthdate,
-                         String nickname, String generalNotifications, String companionNotifications) {
+                         Sex sex, LocalDate birthdate, String nickname) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.registeredFlag = registeredFlag;
         this.sex = sex;
         this.birthdate = birthdate;
         this.nickname = nickname;
-        this.generalNotifications = generalNotifications;
-        this.companionNotifications = companionNotifications;
     }
 }
