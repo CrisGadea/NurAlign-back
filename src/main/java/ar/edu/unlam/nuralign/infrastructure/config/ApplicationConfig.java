@@ -1,22 +1,20 @@
 package ar.edu.unlam.nuralign.infrastructure.config;
 
-import ar.edu.unlam.nuralign.application.ports.out.PatientRepositoryPort;
-import ar.edu.unlam.nuralign.application.ports.out.SleepTrakerRepositoryPort;
-import ar.edu.unlam.nuralign.application.ports.out.TherapistRepositoryPort;
-import ar.edu.unlam.nuralign.application.services.PatientService;
-import ar.edu.unlam.nuralign.application.services.SleepTrakerService;
-import ar.edu.unlam.nuralign.application.services.TherapistService;
+import ar.edu.unlam.nuralign.application.ports.out.*;
+import ar.edu.unlam.nuralign.application.services.*;
+import ar.edu.unlam.nuralign.application.usecases.medication.CreateMedicationUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.medication.FindAllMedicationsUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.medication.FindMedicationUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.moodTracker.CreateMoodTrackerUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.moodTracker.FindAllMoodTrackersUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.moodTracker.FindMoodTrackerUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.patient.*;
 import ar.edu.unlam.nuralign.application.usecases.therapist.*;
 import ar.edu.unlam.nuralign.application.usecases.sleepTraker.CreateSleepTrakerUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.sleepTraker.FindAllSleepTrakersUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.sleepTraker.FindSleepTrakerUseCaseImpl;
-import ar.edu.unlam.nuralign.infrastructure.adapters.JpaPatientRepositoryAdapter;
-import ar.edu.unlam.nuralign.infrastructure.adapters.JpaSleepTrakerRepositoryAdapter;
-import ar.edu.unlam.nuralign.infrastructure.adapters.JpaTherapistRepositoryAdapter;
-import ar.edu.unlam.nuralign.infrastructure.repositories.JpaPatientRepository;
-import ar.edu.unlam.nuralign.infrastructure.repositories.JpaSleepTrakerRepository;
-import ar.edu.unlam.nuralign.infrastructure.repositories.JpaTherapistRepository;
+import ar.edu.unlam.nuralign.infrastructure.adapters.*;
+import ar.edu.unlam.nuralign.infrastructure.repositories.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -31,6 +29,24 @@ public class ApplicationConfig {
                 new DeleteTherapistUseCaseImpl(therapistRepositoryPort),
                 new FindTherapistUseCaseImpl(therapistRepositoryPort),
                 new FindAllTherapistsUseCaseImpl(therapistRepositoryPort)
+        );
+    }
+
+    @Bean
+    public MoodTrackerService moodTrackerService(MoodTrackerRepositoryPort moodTrackerRepositoryPort) {
+        return new MoodTrackerService(
+                new CreateMoodTrackerUseCaseImpl(moodTrackerRepositoryPort),
+                new FindMoodTrackerUseCaseImpl(moodTrackerRepositoryPort),
+                new FindAllMoodTrackersUseCaseImpl(moodTrackerRepositoryPort)
+        );
+    }
+
+    @Bean
+    public MedicationService medicationService(MedicationRepositoryPort medicationRepositoryPort) {
+        return new MedicationService(
+                new CreateMedicationUseCaseImpl(medicationRepositoryPort),
+                new FindMedicationUseCaseImpl(medicationRepositoryPort),
+                new FindAllMedicationsUseCaseImpl(medicationRepositoryPort)
         );
     }
 
@@ -70,6 +86,16 @@ public class ApplicationConfig {
     }
 
     @Bean
+    public MoodTrackerRepositoryPort moodTrackerRepositoryPort(JpaMoodTrackerRepositoryAdapter jpaMoodTrackerRepositoryAdapter) {
+        return jpaMoodTrackerRepositoryAdapter;
+    }
+
+    @Bean
+    public MedicationRepositoryPort medicationRepositoryPort(JpaMedicationRepositoryAdapter jpaMedicationRepositoryAdapter) {
+        return jpaMedicationRepositoryAdapter;
+    }
+
+    @Bean
     public JpaTherapistRepositoryAdapter jpaTherapistRepositoryAdapter(JpaTherapistRepository adapter) {
         return new JpaTherapistRepositoryAdapter(adapter);
     }
@@ -83,6 +109,18 @@ public class ApplicationConfig {
     public JpaSleepTrakerRepositoryAdapter jpaSleepTrakerRepositoryAdapter(JpaSleepTrakerRepository adapter) {
         return new JpaSleepTrakerRepositoryAdapter(adapter);
     }
+
+    @Bean
+    public JpaMoodTrackerRepositoryAdapter jpaMoodTrackerRepositoryAdapter(JpaMoodTrackerRepository adapter) {
+        return new JpaMoodTrackerRepositoryAdapter(adapter);
+    }
+
+    @Bean
+    public JpaMedicationRepositoryAdapter jpaMedicationRepositoryAdapter(JpaMedicationRepository adapter) {
+        return new JpaMedicationRepositoryAdapter(adapter);
+    }
+
+
 
 
 }
