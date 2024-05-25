@@ -4,11 +4,13 @@ import ar.edu.unlam.nuralign.application.ports.out.*;
 import ar.edu.unlam.nuralign.application.services.*;
 import ar.edu.unlam.nuralign.application.usecases.medication.CreateMedicationUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.medication.FindAllMedicationsUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.medication.FindMedicationsByPatientIdUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.medication.FindMedicationUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.moodTracker.CreateMoodTrackerUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.moodTracker.FindAllMoodTrackersUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.moodTracker.FindMoodTrackerUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.patient.*;
+import ar.edu.unlam.nuralign.application.usecases.sleepTraker.FindAllSleepTrackersByPatientIdImpl;
 import ar.edu.unlam.nuralign.application.usecases.therapist.*;
 import ar.edu.unlam.nuralign.application.usecases.sleepTraker.CreateSleepTrakerUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.sleepTraker.FindAllSleepTrakersUseCaseImpl;
@@ -42,11 +44,12 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public MedicationService medicationService(MedicationRepositoryPort medicationRepositoryPort) {
-        return new MedicationService(
+    public MedicationsService medicationService(MedicationRepositoryPort medicationRepositoryPort) {
+        return new MedicationsService(
                 new CreateMedicationUseCaseImpl(medicationRepositoryPort),
                 new FindMedicationUseCaseImpl(medicationRepositoryPort),
-                new FindAllMedicationsUseCaseImpl(medicationRepositoryPort)
+                new FindAllMedicationsUseCaseImpl(medicationRepositoryPort),
+                new FindMedicationsByPatientIdUseCaseImpl(medicationRepositoryPort)
         );
     }
 
@@ -66,7 +69,8 @@ public class ApplicationConfig {
         return new SleepTrakerService(
                 new CreateSleepTrakerUseCaseImpl(sleepTrakerRepositoryPort),
                 new FindSleepTrakerUseCaseImpl(sleepTrakerRepositoryPort),
-                new FindAllSleepTrakersUseCaseImpl(sleepTrakerRepositoryPort)
+                new FindAllSleepTrakersUseCaseImpl(sleepTrakerRepositoryPort),
+                new FindAllSleepTrackersByPatientIdImpl(sleepTrakerRepositoryPort)
         );
     }
 

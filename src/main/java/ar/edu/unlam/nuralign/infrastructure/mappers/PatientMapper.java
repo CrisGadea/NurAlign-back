@@ -13,7 +13,8 @@ public class PatientMapper {
                     patient.getPassword(),
                     patient.getSex(),
                     patient.getBirthdate(),
-                    patient.getNickname()
+                    patient.getNickname(),
+                    patient.getDni()
                     );
         }
 
@@ -26,6 +27,7 @@ public class PatientMapper {
                     patientEntity.getPassword(),
                     patientEntity.getRegisteredFlag(),
                     patientEntity.getSex(),
+                    patientEntity.getDni(),
                     patientEntity.getBirthdate(),
                     patientEntity.getNickname(),
                     patientEntity.getGeneralNotifications(),

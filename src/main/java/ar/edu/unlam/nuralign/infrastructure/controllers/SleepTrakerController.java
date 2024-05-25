@@ -34,4 +34,9 @@ public class SleepTrakerController {
     public ResponseEntity<List<SleepTracker>> findAllSleepTrackers() {
         return ResponseEntity.ok(sleepTrackerService.findAllSleepTrakers());
     }
+
+    @GetMapping("/patient/{patientId}")
+    public ResponseEntity<List<SleepTracker>> findAllSleepTrackersByPatient(@PathVariable Long patientId) {
+        return ResponseEntity.ok(sleepTrackerService.findAllSleepTrackersByPatientId(patientId));
+    }
 }

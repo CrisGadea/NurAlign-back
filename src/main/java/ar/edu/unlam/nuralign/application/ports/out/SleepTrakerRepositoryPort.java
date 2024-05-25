@@ -9,4 +9,5 @@ public interface SleepTrakerRepositoryPort {
     SleepTracker save(SleepTracker sleepTracker);
     Optional<SleepTracker> findById(Long id);
     List<SleepTracker> findAll();
+    List<SleepTracker> findAllByPatientId(Long patientId);
 }

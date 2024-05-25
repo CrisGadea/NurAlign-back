@@ -17,6 +17,8 @@ public class Patient extends User {
 
     private String nickname;
 
+    private String dni;
+
     private String generalNotifications;
 
     private String companionNotifications;
@@ -26,13 +28,14 @@ public class Patient extends User {
     public Patient() {}
 
     public Patient(Long id, String name, String lastName, String email, String password,
-                   Boolean registeredFlag, LocalDateTime createdAt, LocalDateTime updatedAt) {
+                   String dni, Boolean registeredFlag, LocalDateTime createdAt, LocalDateTime updatedAt) {
         super(id, name, lastName, email, password, createdAt, updatedAt);
         this.registeredFlag = registeredFlag;
+        this.dni = dni;
     }
 
     public Patient(Long id, String name, String lastName, String email, String password,
-                   Boolean registeredFlag, Sex sex, LocalDate birthdate, String nickname, String generalNotifications,
+                   Boolean registeredFlag, Sex sex, String dni, LocalDate birthdate, String nickname, String generalNotifications,
                    String companionNotifications, LocalDateTime createdAt, LocalDateTime updatedAt) {
         super(id, name, lastName, email, password, createdAt, updatedAt);
         this.birthdate = birthdate;
@@ -40,6 +43,7 @@ public class Patient extends User {
         this.companionNotifications = companionNotifications;
         this.generalNotifications = generalNotifications;
         this.nickname = nickname;
+        this.dni = dni;
         this.sex = sex;
     }
 }

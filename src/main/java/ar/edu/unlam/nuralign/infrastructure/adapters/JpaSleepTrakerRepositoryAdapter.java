@@ -43,4 +43,15 @@ public class JpaSleepTrakerRepositoryAdapter implements SleepTrakerRepositoryPor
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<SleepTracker> findAllByPatientId(Long patientId) {
+        List<SleepTrakerEntity> entities = repository.findAllByPatientId(patientId);
+        if (entities == null) {
+            return Collections.emptyList(); // Devuelve una lista vacía si findAllByPatientId() devuelve null
+        }
+        return entities.stream()
+                .map(SleepTrakerMapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
 }
