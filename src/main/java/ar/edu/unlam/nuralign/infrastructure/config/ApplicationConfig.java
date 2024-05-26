@@ -4,12 +4,12 @@ import ar.edu.unlam.nuralign.application.ports.out.PatientRepositoryPort;
 import ar.edu.unlam.nuralign.application.ports.out.SleepTrakerRepositoryPort;
 import ar.edu.unlam.nuralign.application.ports.out.TherapistRepositoryPort;
 import ar.edu.unlam.nuralign.application.services.PatientService;
-import ar.edu.unlam.nuralign.application.services.SleepTrakerService;
+import ar.edu.unlam.nuralign.application.services.SleepTrackerService;
 import ar.edu.unlam.nuralign.application.services.TherapistService;
 import ar.edu.unlam.nuralign.application.usecases.patient.*;
-import ar.edu.unlam.nuralign.application.usecases.sleepTraker.CreateSleepTrakerUseCaseImpl;
-import ar.edu.unlam.nuralign.application.usecases.sleepTraker.FindAllSleepTrakersUseCaseImpl;
-import ar.edu.unlam.nuralign.application.usecases.sleepTraker.FindSleepTrakerUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.sleepTracker.CreateSleepTrackerUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.sleepTracker.FindAllSleepTrackersUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.sleepTracker.FindSleepTrackerUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.therapist.*;
 import ar.edu.unlam.nuralign.infrastructure.adapters.JpaPatientRepositoryAdapter;
 import ar.edu.unlam.nuralign.infrastructure.adapters.JpaSleepTrakerRepositoryAdapter;
@@ -46,11 +46,11 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public SleepTrakerService sleepTrakerService(SleepTrakerRepositoryPort sleepTrakerRepositoryPort) {
-        return new SleepTrakerService(
-                new CreateSleepTrakerUseCaseImpl(sleepTrakerRepositoryPort),
-                new FindSleepTrakerUseCaseImpl(sleepTrakerRepositoryPort),
-                new FindAllSleepTrakersUseCaseImpl(sleepTrakerRepositoryPort)
+    public SleepTrackerService sleepTrakerService(SleepTrakerRepositoryPort sleepTrakerRepositoryPort) {
+        return new SleepTrackerService(
+                new CreateSleepTrackerUseCaseImpl(sleepTrakerRepositoryPort),
+                new FindSleepTrackerUseCaseImpl(sleepTrakerRepositoryPort),
+                new FindAllSleepTrackersUseCaseImpl(sleepTrakerRepositoryPort)
         );
     }
 

@@ -1,6 +1,6 @@
 package ar.edu.unlam.nuralign.infrastructure.controllers;
 
-import ar.edu.unlam.nuralign.application.services.SleepTrakerService;
+import ar.edu.unlam.nuralign.application.services.SleepTrackerService;
 import ar.edu.unlam.nuralign.domain.models.SleepTracker;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +12,9 @@ import java.util.List;
 @RequestMapping("/api/sleepTracker")
 @CrossOrigin(origins = "*")
 public class SleepTrakerController {
-    private final SleepTrakerService sleepTrackerService;
+    private final SleepTrackerService sleepTrackerService;
 
-    public SleepTrakerController(SleepTrakerService sleepTrackerService) {
+    public SleepTrakerController(SleepTrackerService sleepTrackerService) {
         this.sleepTrackerService = sleepTrackerService;
     }
 
