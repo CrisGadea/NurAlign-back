@@ -10,11 +10,11 @@ import ar.edu.unlam.nuralign.application.usecases.moodTracker.CreateMoodTrackerU
 import ar.edu.unlam.nuralign.application.usecases.moodTracker.FindAllMoodTrackersUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.moodTracker.FindMoodTrackerUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.patient.*;
-import ar.edu.unlam.nuralign.application.usecases.sleepTraker.FindAllSleepTrackersByPatientIdImpl;
+import ar.edu.unlam.nuralign.application.usecases.sleepTracker.FindAllSleepTrackersByPatientIdImpl;
 import ar.edu.unlam.nuralign.application.usecases.therapist.*;
-import ar.edu.unlam.nuralign.application.usecases.sleepTraker.CreateSleepTrakerUseCaseImpl;
-import ar.edu.unlam.nuralign.application.usecases.sleepTraker.FindAllSleepTrakersUseCaseImpl;
-import ar.edu.unlam.nuralign.application.usecases.sleepTraker.FindSleepTrakerUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.sleepTracker.CreateSleepTrackerUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.sleepTracker.FindAllSleepTrackersUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.sleepTracker.FindSleepTrackerUseCaseImpl;
 import ar.edu.unlam.nuralign.infrastructure.adapters.*;
 import ar.edu.unlam.nuralign.infrastructure.repositories.*;
 import org.springframework.context.annotation.Bean;
@@ -65,12 +65,12 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public SleepTrakerService sleepTrakerService(SleepTrakerRepositoryPort sleepTrakerRepositoryPort) {
-        return new SleepTrakerService(
-                new CreateSleepTrakerUseCaseImpl(sleepTrakerRepositoryPort),
-                new FindSleepTrakerUseCaseImpl(sleepTrakerRepositoryPort),
-                new FindAllSleepTrakersUseCaseImpl(sleepTrakerRepositoryPort),
-                new FindAllSleepTrackersByPatientIdImpl(sleepTrakerRepositoryPort)
+    public SleepTrackerService sleepTrackerService(SleepTrackerRepositoryPort sleepTrackerRepositoryPort) {
+        return new SleepTrackerService(
+                new CreateSleepTrackerUseCaseImpl(sleepTrackerRepositoryPort),
+                new FindSleepTrackerUseCaseImpl(sleepTrackerRepositoryPort),
+                new FindAllSleepTrackersUseCaseImpl(sleepTrackerRepositoryPort),
+                new FindAllSleepTrackersByPatientIdImpl(sleepTrackerRepositoryPort)
         );
     }
 
@@ -85,8 +85,8 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public SleepTrakerRepositoryPort sleepTrakerRepositoryPort(JpaSleepTrakerRepositoryAdapter jpaSleepTrakerRepositoryAdapter) {
-        return jpaSleepTrakerRepositoryAdapter;
+    public SleepTrackerRepositoryPort sleepTrackerRepositoryPort(JpaSleepTrackerRepositoryAdapter jpaSleepTrackerRepositoryAdapter) {
+        return jpaSleepTrackerRepositoryAdapter;
     }
 
     @Bean
@@ -110,8 +110,8 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public JpaSleepTrakerRepositoryAdapter jpaSleepTrakerRepositoryAdapter(JpaSleepTrakerRepository adapter) {
-        return new JpaSleepTrakerRepositoryAdapter(adapter);
+    public JpaSleepTrackerRepositoryAdapter jpaSleepTrackerRepositoryAdapter(JpaSleepTrackerRepository adapter) {
+        return new JpaSleepTrackerRepositoryAdapter(adapter);
     }
 
     @Bean

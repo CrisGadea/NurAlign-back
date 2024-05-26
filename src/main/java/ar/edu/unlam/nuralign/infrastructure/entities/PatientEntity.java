@@ -40,7 +40,7 @@ public class PatientEntity {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     @OneToMany(mappedBy = "patientId", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<SleepTrakerEntity> sleepTrackers;
+    private List<SleepTrackerEntity> sleepTrackers;
 
     @OneToMany(mappedBy = "patientId", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MedicationEntity> medications;

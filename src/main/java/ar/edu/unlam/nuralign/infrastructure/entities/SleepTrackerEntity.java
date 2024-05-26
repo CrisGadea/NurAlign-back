@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Getter
 @Entity
 @Table(name = "sleep_tracker")
-public class SleepTrakerEntity {
+public class SleepTrackerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="sleep_tracker_id")

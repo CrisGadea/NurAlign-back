@@ -1,10 +1,10 @@
 package ar.edu.unlam.nuralign.infrastructure.adapters;
 
-import ar.edu.unlam.nuralign.application.ports.out.SleepTrakerRepositoryPort;
+import ar.edu.unlam.nuralign.application.ports.out.SleepTrackerRepositoryPort;
 import ar.edu.unlam.nuralign.domain.models.SleepTracker;
-import ar.edu.unlam.nuralign.infrastructure.entities.SleepTrakerEntity;
-import ar.edu.unlam.nuralign.infrastructure.mappers.SleepTrakerMapper;
-import ar.edu.unlam.nuralign.infrastructure.repositories.JpaSleepTrakerRepository;
+import ar.edu.unlam.nuralign.infrastructure.entities.SleepTrackerEntity;
+import ar.edu.unlam.nuralign.infrastructure.mappers.SleepTrackerMapper;
+import ar.edu.unlam.nuralign.infrastructure.repositories.JpaSleepTrackerRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
@@ -13,44 +13,44 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
-public class JpaSleepTrakerRepositoryAdapter implements SleepTrakerRepositoryPort {
-    private final JpaSleepTrakerRepository repository;
+public class JpaSleepTrackerRepositoryAdapter implements SleepTrackerRepositoryPort {
+    private final JpaSleepTrackerRepository repository;
 
-    public JpaSleepTrakerRepositoryAdapter(JpaSleepTrakerRepository repository) {
+    public JpaSleepTrackerRepositoryAdapter(JpaSleepTrackerRepository repository) {
         this.repository = repository;
     }
 
     @Override
     public SleepTracker save(SleepTracker sleepTracker) {
-        SleepTrakerEntity sleepTrackerEntity = SleepTrakerMapper.toEntity(sleepTracker);
-        return SleepTrakerMapper.toDomain(repository.save(sleepTrackerEntity));
+        SleepTrackerEntity sleepTrackerEntity = SleepTrackerMapper.toEntity(sleepTracker);
+        return SleepTrackerMapper.toDomain(repository.save(sleepTrackerEntity));
     }
 
     @Override
     public Optional<SleepTracker> findById(Long id) {
         return repository.findById(id)
-                .map(SleepTrakerMapper::toDomain);
+                .map(SleepTrackerMapper::toDomain);
     }
 
     @Override
     public List<SleepTracker> findAll() {
-        List<SleepTrakerEntity> entities = repository.findAll();
+        List<SleepTrackerEntity> entities = repository.findAll();
         if (entities == null) {
             return Collections.emptyList(); // Devuelve una lista vacía si findAll() devuelve null
         }
         return entities.stream()
-                .map(SleepTrakerMapper::toDomain)
+                .map(SleepTrackerMapper::toDomain)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<SleepTracker> findAllByPatientId(Long patientId) {
-        List<SleepTrakerEntity> entities = repository.findAllByPatientId(patientId);
+        List<SleepTrackerEntity> entities = repository.findAllByPatientId(patientId);
         if (entities == null) {
             return Collections.emptyList(); // Devuelve una lista vacía si findAllByPatientId() devuelve null
         }
         return entities.stream()
-                .map(SleepTrakerMapper::toDomain)
+                .map(SleepTrackerMapper::toDomain)
                 .collect(Collectors.toList());
     }
 
