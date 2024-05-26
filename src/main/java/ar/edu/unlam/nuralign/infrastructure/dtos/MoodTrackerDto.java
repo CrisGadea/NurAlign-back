@@ -1,4 +1,4 @@
-package ar.edu.unlam.nuralign.domain.models;
+package ar.edu.unlam.nuralign.infrastructure.dtos;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -6,17 +6,17 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Setter
 @Getter
+@Setter
 @Builder
-public class MoodTracker {
+public class MoodTrackerDto {
     private Long id;
     private Long patientId;
     private LocalDate effectiveDate;
     private Integer highestValue;
     private Integer lowestValue;
-    private Integer irritableValue;
     private Integer anxiousValue;
+    private Integer irritableValue;
     private String highestNotes;
     private String lowestNotes;
     private String irritableNotes;

@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface JpaTherapistRepository extends JpaRepository<TherapistEntity, Long>{
+    TherapistEntity findByEmail(String email);
+    TherapistEntity findByDocumentNumber(Integer dni);
 }

@@ -27,8 +27,8 @@ public class PatientEntity {
     private String email;
     @Column(name = "patient_password")
     private String password;
-    private String phoneNumber;
     private String nickname;
+    private String dni;
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthdate;
     private Sex sex;
@@ -40,32 +40,20 @@ public class PatientEntity {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     @OneToMany(mappedBy = "patientId", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<SleepTrakerEntity> sleepTrackers;
+    private List<SleepTrackerEntity> sleepTrackers;
 
-    public PatientEntity( String name, String lastName, String email, String phoneNumber, String password,
-                         LocalDate birthdate) {
+    @OneToMany(mappedBy = "patientId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MedicationEntity> medications;
 
+    public PatientEntity(String name, String lastName, String email, String password,
+                         Sex sex, LocalDate birthdate, String nickname, String dni) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
-        this.phoneNumber = phoneNumber;
         this.password = password;
-        this.birthdate = birthdate;
-    }
-
-    public PatientEntity(String name, String lastName, String email, String phoneNumber, String password,
-                         Boolean registeredFlag, Sex sex, LocalDate birthdate,
-                         String nickname, String generalNotifications, String companionNotifications) {
-        this.name = name;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.password = password;
-        this.registeredFlag = registeredFlag;
         this.sex = sex;
         this.birthdate = birthdate;
         this.nickname = nickname;
-        this.generalNotifications = generalNotifications;
-        this.companionNotifications = companionNotifications;
+        this.dni = dni;
     }
 }

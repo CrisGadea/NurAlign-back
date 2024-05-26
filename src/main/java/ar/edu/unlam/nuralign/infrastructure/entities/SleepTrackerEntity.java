@@ -6,13 +6,12 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Setter
 @Getter
 @Entity
 @Table(name = "sleep_tracker")
-public class SleepTrakerEntity {
+public class SleepTrackerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="sleep_tracker_id")

@@ -1,11 +1,11 @@
 package ar.edu.unlam.nuralign.infrastructure.mappers;
 
 import ar.edu.unlam.nuralign.domain.models.SleepTracker;
-import ar.edu.unlam.nuralign.infrastructure.entities.SleepTrakerEntity;
+import ar.edu.unlam.nuralign.infrastructure.entities.SleepTrackerEntity;
 
-public class SleepTrakerMapper {
+public class SleepTrackerMapper {
 
-    public static SleepTracker toDomain(SleepTrakerEntity entity) {
+    public static SleepTracker toDomain(SleepTrackerEntity entity) {
         return SleepTracker.builder()
                 .patientId(entity.getPatientId())
                 .sleepHours(entity.getSleepHours())
@@ -18,8 +18,8 @@ public class SleepTrakerMapper {
                 .build();
     }
 
-    public static SleepTrakerEntity toEntity(SleepTracker domain) {
-        SleepTrakerEntity entity = new SleepTrakerEntity();
+    public static SleepTrackerEntity toEntity(SleepTracker domain) {
+        SleepTrackerEntity entity = new SleepTrackerEntity();
         entity.setPatientId(domain.getPatientId());
         entity.setSleepHours(domain.getSleepHours());
         entity.setBedTime(domain.getBedTime());

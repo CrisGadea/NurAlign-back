@@ -10,6 +10,8 @@ import java.util.Objects;
 @Getter
 public class Therapist extends User{
 
+    protected String phoneNumber;
+
     private Integer documentNumber;
 
     private String medicalLicense;
@@ -21,10 +23,11 @@ public class Therapist extends User{
     public Therapist(Long id, String name, String lastName, String email, String phoneNumber, String password,
                      Integer documentNumber, String medicalLicense, Boolean registeredFlag, LocalDateTime createdAt,
                         LocalDateTime updatedAt) {
-        super(id, name, lastName, email, password, phoneNumber, createdAt, updatedAt);
+        super(id, name, lastName, email, password, createdAt, updatedAt);
         this.documentNumber = documentNumber;
         this.medicalLicense = medicalLicense;
         this.registeredFlag = registeredFlag;
+        this.phoneNumber = phoneNumber;
     }
 
     @Override

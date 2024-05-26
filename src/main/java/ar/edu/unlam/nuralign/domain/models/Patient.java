@@ -6,8 +6,6 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Setter
 @Getter
@@ -19,6 +17,8 @@ public class Patient extends User {
 
     private String nickname;
 
+    private String dni;
+
     private String generalNotifications;
 
     private String companionNotifications;
@@ -27,21 +27,23 @@ public class Patient extends User {
 
     public Patient() {}
 
-    public Patient(Long id, String name, String lastName, String email, String phoneNumber, String password,
-                   Boolean registeredFlag, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        super(id, name, lastName, email, password, phoneNumber, createdAt, updatedAt);
+    public Patient(Long id, String name, String lastName, String email, String password,
+                   String dni, Boolean registeredFlag, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        super(id, name, lastName, email, password, createdAt, updatedAt);
         this.registeredFlag = registeredFlag;
+        this.dni = dni;
     }
 
-    public Patient(Long id, String name, String lastName, String email, String phoneNumber, String password,
-                   Boolean registeredFlag, Sex sex, LocalDate birthdate, String nickname, String generalNotifications,
+    public Patient(Long id, String name, String lastName, String email, String password,
+                   Boolean registeredFlag, Sex sex, String dni, LocalDate birthdate, String nickname, String generalNotifications,
                    String companionNotifications, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        super(id, name, lastName, email, password, phoneNumber, createdAt, updatedAt);
+        super(id, name, lastName, email, password, createdAt, updatedAt);
         this.birthdate = birthdate;
         this.registeredFlag = registeredFlag;
         this.companionNotifications = companionNotifications;
         this.generalNotifications = generalNotifications;
         this.nickname = nickname;
+        this.dni = dni;
         this.sex = sex;
     }
 }

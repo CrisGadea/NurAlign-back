@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SleepTrakerDto {
+public class SleepTrackerDto {
     private Long patientId;
     private LocalDateTime effectiveDate;
     private Integer sleepHours;

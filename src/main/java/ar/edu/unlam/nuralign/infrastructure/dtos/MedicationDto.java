@@ -1,13 +1,13 @@
-package ar.edu.unlam.nuralign.domain.models;
+package ar.edu.unlam.nuralign.infrastructure.dtos;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
 @Builder
-public class Medication {
+@Getter
+@Setter
+public class MedicationDto {
     private Long id;
     private Long patientId;
     private String name;

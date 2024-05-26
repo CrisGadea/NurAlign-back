@@ -5,5 +5,5 @@ import ar.edu.unlam.nuralign.domain.models.SleepTracker;
 import java.util.Optional;
 
 public interface FindSleepTrackerUseCase {
-    Optional<SleepTracker> findSleepTraker(Long id);
+    Optional<SleepTracker> findSleepTracker(Long id);
 }
