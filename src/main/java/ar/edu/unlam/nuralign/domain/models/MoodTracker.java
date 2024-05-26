@@ -13,12 +13,12 @@ public class MoodTracker {
     private Long id;
     private Long patientId;
     private LocalDate effectiveDate;
-    private String highestValue;
-    private String lowestValue;
+    private Integer highestValue;
+    private Integer lowestValue;
+    private Integer irritableValue;
+    private Integer anxiousValue;
     private String highestNotes;
     private String lowestNotes;
-    private String irritableValue;
     private String irritableNotes;
-    private String anxiousValue;
     private String anxiousNotes;
 }
