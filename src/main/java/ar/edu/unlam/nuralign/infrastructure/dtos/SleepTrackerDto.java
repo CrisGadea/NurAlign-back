@@ -1,21 +1,20 @@
 package ar.edu.unlam.nuralign.infrastructure.dtos;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class SleepTrackerDto {
     private Long patientId;
-    private LocalDateTime effectiveDate;
+    private LocalDate effectiveDate;
     private Integer sleepHours;
-    private Integer bedTime;
+    private String bedTime;
     private String negativeThoughtsFlag;
     private String anxiousFlag;
     private String sleepStraightFlag;
