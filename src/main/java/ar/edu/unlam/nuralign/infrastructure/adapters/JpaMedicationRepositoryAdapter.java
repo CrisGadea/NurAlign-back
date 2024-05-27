@@ -35,4 +35,11 @@ public class JpaMedicationRepositoryAdapter implements MedicationRepositoryPort 
                 .map(MedicationMapper::toModel)
                 .orElse(null);
     }
+
+    @Override
+    public List<Medication> findAllByPatientId(Long patientId) {
+        return repository.findAllByPatientId(patientId).stream()
+                .map(MedicationMapper::toModel)
+                .toList();
+    }
 }

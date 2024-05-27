@@ -8,4 +8,5 @@ public interface MedicationRepositoryPort {
     Medication save(Medication medication);
     List<Medication> findAll();
     Medication findById(Long id);
+    List<Medication> findAllByPatientId(Long patientId);
 }

@@ -2,22 +2,28 @@ package ar.edu.unlam.nuralign.application.services;
 
 import ar.edu.unlam.nuralign.application.ports.in.medication.CreateMedicationUseCase;
 import ar.edu.unlam.nuralign.application.ports.in.medication.FindAllMedicationsUseCase;
+import ar.edu.unlam.nuralign.application.ports.in.medication.FindMedicationsByPatientIdUseCase;
 import ar.edu.unlam.nuralign.application.ports.in.medication.FindMedicationUseCase;
 import ar.edu.unlam.nuralign.domain.models.Medication;
 
 import java.util.List;
 
-public class MedicationService implements CreateMedicationUseCase, FindMedicationUseCase, FindAllMedicationsUseCase {
+public class MedicationsService implements CreateMedicationUseCase, FindMedicationUseCase, FindAllMedicationsUseCase,
+        FindMedicationsByPatientIdUseCase {
 
     private final CreateMedicationUseCase createMedicationUseCase;
     private final FindMedicationUseCase findMedicationUseCase;
     private final FindAllMedicationsUseCase findAllMedicationsUseCase;
+    private final FindMedicationsByPatientIdUseCase findMedicationsByPatientIdUseCase;
 
-    public MedicationService(CreateMedicationUseCase createMedicationUseCase, FindMedicationUseCase findMedicationUseCase,
-                             FindAllMedicationsUseCase findAllMedicationsUseCase) {
+    public MedicationsService(CreateMedicationUseCase createMedicationUseCase,
+                              FindMedicationUseCase findMedicationUseCase,
+                              FindAllMedicationsUseCase findAllMedicationsUseCase,
+                              FindMedicationsByPatientIdUseCase findMedicationsByPatientIdUseCase) {
         this.createMedicationUseCase = createMedicationUseCase;
         this.findMedicationUseCase = findMedicationUseCase;
         this.findAllMedicationsUseCase = findAllMedicationsUseCase;
+        this.findMedicationsByPatientIdUseCase = findMedicationsByPatientIdUseCase;
     }
 
     @Override
@@ -28,6 +34,11 @@ public class MedicationService implements CreateMedicationUseCase, FindMedicatio
     @Override
     public Medication findMedication(Long id) {
         return findMedicationUseCase.findMedication(id);
+    }
+
+    @Override
+    public List<Medication> findMedicationsByPatientId(Long patientId) {
+        return findMedicationsByPatientIdUseCase.findMedicationsByPatientId(patientId);
     }
 
     @Override

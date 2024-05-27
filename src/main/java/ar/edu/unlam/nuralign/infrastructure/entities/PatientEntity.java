@@ -28,6 +28,7 @@ public class PatientEntity {
     @Column(name = "patient_password")
     private String password;
     private String nickname;
+    private String dni;
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthdate;
     private Sex sex;
@@ -39,20 +40,13 @@ public class PatientEntity {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     @OneToMany(mappedBy = "patientId", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<SleepTrakerEntity> sleepTrackers;
+    private List<SleepTrackerEntity> sleepTrackers;
 
-    public PatientEntity( String name, String lastName, String email, String password,
-                         LocalDate birthdate) {
-
-        this.name = name;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.birthdate = birthdate;
-    }
+    @OneToMany(mappedBy = "patientId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MedicationEntity> medications;
 
     public PatientEntity(String name, String lastName, String email, String password,
-                         Sex sex, LocalDate birthdate, String nickname) {
+                         Sex sex, LocalDate birthdate, String nickname, String dni) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
@@ -60,5 +54,6 @@ public class PatientEntity {
         this.sex = sex;
         this.birthdate = birthdate;
         this.nickname = nickname;
+        this.dni = dni;
     }
 }

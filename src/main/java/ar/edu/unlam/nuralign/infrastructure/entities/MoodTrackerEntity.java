@@ -22,19 +22,19 @@ public class MoodTrackerEntity {
     @Column(name = "anxious_notes")
     private String anxiousNotes;
     @Column(name = "anxious_value")
-    private String anxiousValue;
+    private Integer anxiousValue;
     @Column(name = "highest_notes")
     private String highestNotes;
     @Column(name = "highest_value")
-    private String highestValue;
+    private Integer highestValue;
     @Column(name = "lowest_notes")
     private String lowestNotes;
     @Column(name = "lowest_value")
-    private String lowestValue;
+    private Integer lowestValue;
     @Column(name = "irritable_notes")
     private String irritableNotes;
     @Column(name = "irritable_value")
-    private String irritableValue;
+    private Integer irritableValue;
     @Column(name = "effective_date")
     private LocalDate effectiveDate;
 }

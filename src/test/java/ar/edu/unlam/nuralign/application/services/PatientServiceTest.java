@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class PatientServiceTest {
@@ -89,7 +90,7 @@ public class PatientServiceTest {
 
         boolean result = patientService.deletePatient(1L);
 
-        assertEquals(true, result);
+        assertTrue(result);
         verify(deletePatientUseCase, times(1)).deletePatient(1L);
     }
 }
