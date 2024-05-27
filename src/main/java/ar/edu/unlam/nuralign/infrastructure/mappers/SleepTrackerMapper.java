@@ -1,6 +1,7 @@
 package ar.edu.unlam.nuralign.infrastructure.mappers;
 
 import ar.edu.unlam.nuralign.domain.models.SleepTracker;
+import ar.edu.unlam.nuralign.infrastructure.dtos.SleepTrackerDto;
 import ar.edu.unlam.nuralign.infrastructure.entities.SleepTrackerEntity;
 
 public class SleepTrackerMapper {
@@ -29,5 +30,31 @@ public class SleepTrackerMapper {
         entity.setSleepStraightFlag(domain.getSleepStraightFlag());
         entity.setSleepNotes(domain.getSleepNotes());
         return entity;
+    }
+
+    public static SleepTrackerDto toDto(SleepTracker domain) {
+        return SleepTrackerDto.builder()
+                .patientId(domain.getPatientId())
+                .effectiveDate(domain.getEffectiveDate())
+                .sleepHours(domain.getSleepHours())
+                .bedTime(String.valueOf(domain.getBedTime()))
+                .negativeThoughtsFlag(domain.getNegativeThoughtsFlag())
+                .anxiousFlag(domain.getAnxiousFlag())
+                .sleepStraightFlag(domain.getSleepStraightFlag())
+                .sleepNotes(domain.getSleepNotes())
+                .build();
+    }
+
+    public static SleepTracker toDomain(SleepTrackerDto dto) {
+        return SleepTracker.builder()
+                .patientId(dto.getPatientId())
+                .effectiveDate(dto.getEffectiveDate())
+                .sleepHours(dto.getSleepHours())
+                .bedTime(Integer.parseInt(dto.getBedTime()))
+                .negativeThoughtsFlag(dto.getNegativeThoughtsFlag())
+                .anxiousFlag(dto.getAnxiousFlag())
+                .sleepStraightFlag(dto.getSleepStraightFlag())
+                .sleepNotes(dto.getSleepNotes())
+                .build();
     }
 }
