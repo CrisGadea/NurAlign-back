@@ -13,7 +13,7 @@ public class TherapySessionDto {
 
         private Long patientId;
 
-        private String therapistId;
+        private Long therapistId;
 
         private String effectiveDate;
 
