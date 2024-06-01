@@ -39,12 +39,12 @@ private final FindAllTherapySessionByTherapistIdUseCase findTherapySessionByTher
     }
 
     @Override
-    public List<TherapySession> FindAllTherapySessionByPatientId(Long id) {
-        return List.of();
+    public List<TherapySession> FindAllTherapySessionByPatientId(Long patientId) {
+        return findTherapySessionByPatientIdUseCase.FindAllTherapySessionByPatientId(patientId);
     }
 
     @Override
     public List<TherapySession> FindAllTherapySessionByTherapistId(Long id) {
-        return List.of();
+        return findTherapySessionByTherapistIdUseCase.FindAllTherapySessionByTherapistId(id);
     }
 }

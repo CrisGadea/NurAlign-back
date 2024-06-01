@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/TherapySession")
 @CrossOrigin (origins = "*")
@@ -28,5 +30,20 @@ public TherapySessionController(TherapySessionService therapySessionService) {
             body(TherapySessionMapper.toDto(therapySessionService.createTherapySession(TherapySessionMapper.toModel(therapySessionDto)))
             );
 }
+
+@GetMapping("/{patient_id}")
+    public ResponseEntity<List<TherapySession>> getAllTherapySessionByPatientId(@PathVariable Long patient_id)
+    {
+return ResponseEntity.ok(therapySessionService.FindAllTherapySessionByPatientId(patient_id));
+
+    }
+
+
+    @GetMapping("/therapist/{therapist}")
+    public ResponseEntity<List<TherapySession>> getAllTherapySessionByTherapistId(@PathVariable Long therapist)
+    {
+        return ResponseEntity.ok(therapySessionService.FindAllTherapySessionByTherapistId(therapist));
+
+    }
 
 }
