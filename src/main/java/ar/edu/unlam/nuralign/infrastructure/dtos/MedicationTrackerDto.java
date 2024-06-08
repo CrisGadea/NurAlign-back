@@ -1,13 +1,13 @@
-package ar.edu.unlam.nuralign.domain.models;
+package ar.edu.unlam.nuralign.infrastructure.dtos;
 
 import lombok.*;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class MedicationTracker {
+public class MedicationTrackerDto {
     private Long id;
     private Long patientId;
     private String effectiveDate;

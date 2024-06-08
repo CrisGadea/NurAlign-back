@@ -1,5 +1,4 @@
 package ar.edu.unlam.nuralign.infrastructure.entities;
-import ar.edu.unlam.nuralign.infrastructure.enums.Confirmation;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,10 +29,5 @@ import lombok.*;
         private String postSessionNotes;
         @Column(name="sessionFeel")
         private String sessionFeel;
-        // se creo la carpeta enum para meterlo aca
-        @Enumerated(EnumType.STRING)
-        @Column(name = "confirmation")
-        private Confirmation confirmation;
-
 
     }
