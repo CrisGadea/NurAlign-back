@@ -2,6 +2,8 @@ package ar.edu.unlam.nuralign.domain.models;
 
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -10,6 +12,6 @@ import lombok.*;
 public class MedicationTracker {
     private Long id;
     private Long patientId;
-    private String effectiveDate;
+    private LocalDate effectiveDate;
     private Boolean takenFlag;
 }
