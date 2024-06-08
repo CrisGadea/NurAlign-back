@@ -1,7 +1,6 @@
 package ar.edu.unlam.nuralign.infrastructure.controllers;
 
 import ar.edu.unlam.nuralign.application.services.SleepTrackerService;
-import ar.edu.unlam.nuralign.domain.models.SleepTracker;
 import ar.edu.unlam.nuralign.infrastructure.dtos.SleepTrackerDto;
 import ar.edu.unlam.nuralign.infrastructure.mappers.SleepTrackerMapper;
 import org.springframework.http.HttpStatus;

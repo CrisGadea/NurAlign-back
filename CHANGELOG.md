@@ -1,6 +1,14 @@
 # NurAlign Changelog
 
 
+## [3.0.0] - 2024-06-08
+### Added
+- New features for Trackers of web application.
+- APP Version.
+### Changed
+- Change version of "changelog" and "pom.xml".
+
+
 ## [2.0.0] - 2024-06-07
 ### Added
 - New features for Therapist Logic of web application.
