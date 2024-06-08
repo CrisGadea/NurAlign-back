@@ -18,6 +18,9 @@ import ar.edu.unlam.nuralign.application.usecases.sleepTracker.FindSleepTrackerU
 import ar.edu.unlam.nuralign.application.usecases.therapySession.CreateTherapySessionUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.therapySession.FindAllTherapySessionByPatientIdUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.therapySession.FindAllTherapySessionByTherapistIdUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.turnTherapist.CreateTurnTherapistImpl;
+import ar.edu.unlam.nuralign.application.usecases.turnTherapist.DeleteTurnTherapistImpl;
+import ar.edu.unlam.nuralign.application.usecases.turnTherapist.FindAllByTherapistTurnTherapistImpl;
 import ar.edu.unlam.nuralign.infrastructure.adapters.*;
 import ar.edu.unlam.nuralign.infrastructure.repositories.*;
 import org.springframework.context.annotation.Bean;
@@ -100,6 +103,34 @@ public JpaTherapySessionAdapter therapySessionAdapter(JpaTherapySessionRepositor
 {
     return new JpaTherapySessionAdapter(adapter);
 }
+
+@Bean
+public TurnTherapistService turnTherapistService(TurnTherapistReposirotyPort turnTherapistReposirotyPort)
+{
+    return new TurnTherapistService(
+            new CreateTurnTherapistImpl(turnTherapistReposirotyPort),
+            new FindAllByTherapistTurnTherapistImpl(turnTherapistReposirotyPort),
+            new DeleteTurnTherapistImpl(turnTherapistReposirotyPort)
+
+    );
+
+}
+
+@Bean
+public TurnTherapistReposirotyPort turnTherapistReposirotyPort(JpaTurnTherapistRepositoryAdapter jpaTurnTherapistRepositoryAdapter)
+{
+    return jpaTurnTherapistRepositoryAdapter;
+}
+@Bean
+public JpaTurnTherapistRepositoryAdapter turnTherapistRepositoryAdapter(JpaTurnTherapistRepository adapter)
+{
+    return new JpaTurnTherapistRepositoryAdapter(adapter);
+
+}
+
+
+
+
 
     @Bean
     public TherapistRepositoryPort therapistRepositoryPort(JpaTherapistRepositoryAdapter jpaTherapistRepositoryAdapter) {
