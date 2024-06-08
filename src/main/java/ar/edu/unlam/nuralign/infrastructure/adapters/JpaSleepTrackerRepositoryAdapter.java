@@ -7,6 +7,7 @@ import ar.edu.unlam.nuralign.infrastructure.mappers.SleepTrackerMapper;
 import ar.edu.unlam.nuralign.infrastructure.repositories.JpaSleepTrackerRepository;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +49,17 @@ public class JpaSleepTrackerRepositoryAdapter implements SleepTrackerRepositoryP
         List<SleepTrackerEntity> entities = repository.findAllByPatientId(patientId);
         if (entities == null) {
             return Collections.emptyList(); // Devuelve una lista vacía si findAllByPatientId() devuelve null
+        }
+        return entities.stream()
+                .map(SleepTrackerMapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<SleepTracker> findAllSleepTrackersByPatientIdAndEffectiveDate(Long patientId, String effectiveDate) {
+        List<SleepTrackerEntity> entities = repository.findAllByPatientIdAndEffectiveDate(patientId, LocalDate.parse(effectiveDate));
+        if (entities == null) {
+            return Collections.emptyList(); // Devuelve una lista vacía si findAllByPatientIdAndEffectiveDate() devuelve null
         }
         return entities.stream()
                 .map(SleepTrackerMapper::toDomain)

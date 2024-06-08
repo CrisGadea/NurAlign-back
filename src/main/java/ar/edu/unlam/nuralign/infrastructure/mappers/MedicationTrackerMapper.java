@@ -4,12 +4,14 @@ import ar.edu.unlam.nuralign.domain.models.MedicationTracker;
 import ar.edu.unlam.nuralign.infrastructure.dtos.MedicationTrackerDto;
 import ar.edu.unlam.nuralign.infrastructure.entities.MedicationTrackerEntity;
 
+import java.time.LocalDate;
+
 public class MedicationTrackerMapper {
     public static MedicationTrackerDto toDto(MedicationTracker model){
         return MedicationTrackerDto.builder()
                 .id(model.getId())
                 .patientId(model.getPatientId())
-                .effectiveDate(model.getEffectiveDate())
+                .effectiveDate(String.valueOf(model.getEffectiveDate()))
                 .takenFlag(model.getTakenFlag())
                 .build();
     }
@@ -18,7 +20,7 @@ public class MedicationTrackerMapper {
         return MedicationTracker.builder()
                 .id(dto.getId())
                 .patientId(dto.getPatientId())
-                .effectiveDate(dto.getEffectiveDate())
+                .effectiveDate(LocalDate.parse(dto.getEffectiveDate()))
                 .takenFlag(dto.getTakenFlag())
                 .build();
     }
@@ -34,7 +36,6 @@ public class MedicationTrackerMapper {
 
     public static MedicationTrackerEntity toEntity(MedicationTracker model){
         return MedicationTrackerEntity.builder()
-                .id(model.getId())
                 .patientId(model.getPatientId())
                 .effectiveDate(model.getEffectiveDate())
                 .takenFlag(model.getTakenFlag())
