@@ -6,15 +6,14 @@ import ar.edu.unlam.nuralign.application.usecases.medication.CreateMedicationUse
 import ar.edu.unlam.nuralign.application.usecases.medication.FindAllMedicationsUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.medication.FindMedicationsByPatientIdUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.medication.FindMedicationUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.medicationTracker.*;
 import ar.edu.unlam.nuralign.application.usecases.moodTracker.CreateMoodTrackerUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.moodTracker.FindAllMoodTrackersByPatientIdAndEffectiveDateUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.moodTracker.FindAllMoodTrackersUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.moodTracker.FindMoodTrackerUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.patient.*;
-import ar.edu.unlam.nuralign.application.usecases.sleepTracker.FindAllSleepTrackersByPatientIdImpl;
+import ar.edu.unlam.nuralign.application.usecases.sleepTracker.*;
 import ar.edu.unlam.nuralign.application.usecases.therapist.*;
-import ar.edu.unlam.nuralign.application.usecases.sleepTracker.CreateSleepTrackerUseCaseImpl;
-import ar.edu.unlam.nuralign.application.usecases.sleepTracker.FindAllSleepTrackersUseCaseImpl;
-import ar.edu.unlam.nuralign.application.usecases.sleepTracker.FindSleepTrackerUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.therapySession.CreateTherapySessionUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.therapySession.FindAllTherapySessionByPatientIdUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.therapySession.FindAllTherapySessionByTherapistIdUseCaseImpl;
@@ -42,7 +41,20 @@ public class ApplicationConfig {
         return new MoodTrackerService(
                 new CreateMoodTrackerUseCaseImpl(moodTrackerRepositoryPort),
                 new FindMoodTrackerUseCaseImpl(moodTrackerRepositoryPort),
-                new FindAllMoodTrackersUseCaseImpl(moodTrackerRepositoryPort)
+                new FindAllMoodTrackersUseCaseImpl(moodTrackerRepositoryPort),
+                new FindAllMoodTrackersByPatientIdAndEffectiveDateUseCaseImpl(moodTrackerRepositoryPort)
+        );
+    }
+
+    @Bean
+    public MedicationTrackerService medicationTrackerService(MedicationTrackerRepositoryPort medicationTrackerRepositoryPort) {
+        return new MedicationTrackerService(
+                new FindMedicationTrackerUseCaseImpl(medicationTrackerRepositoryPort),
+                new FindAllMedicationTrackersByEffectiveDateUseCaseImpl(medicationTrackerRepositoryPort),
+                new FindAllMedicationTrackersByPatientIdUseCaseImpl(medicationTrackerRepositoryPort),
+                new FindAllMedicationTrackersUseCaseImpl(medicationTrackerRepositoryPort),
+                new CreateMedicationTrackerUseCaseImpl(medicationTrackerRepositoryPort),
+                new FindAllMedicationTrackerByPatientIdAndEffectiveDateUseCaseImpl(medicationTrackerRepositoryPort)
         );
     }
 
@@ -73,7 +85,8 @@ public class ApplicationConfig {
                 new CreateSleepTrackerUseCaseImpl(sleepTrackerRepositoryPort),
                 new FindSleepTrackerUseCaseImpl(sleepTrackerRepositoryPort),
                 new FindAllSleepTrackersUseCaseImpl(sleepTrackerRepositoryPort),
-                new FindAllSleepTrackersByPatientIdImpl(sleepTrackerRepositoryPort)
+                new FindAllSleepTrackersByPatientIdImpl(sleepTrackerRepositoryPort),
+                new FindAllSleepTrackersByPatientIdAndEffectiveDateImpl(sleepTrackerRepositoryPort)
         );
     }
 
@@ -84,22 +97,21 @@ public class ApplicationConfig {
                 new CreateTherapySessionUseCaseImpl(therapySessionRepositoryPort),
                 new FindAllTherapySessionByPatientIdUseCaseImpl(therapySessionRepositoryPort),
                 new FindAllTherapySessionByTherapistIdUseCaseImpl(therapySessionRepositoryPort)
-
-
         );
 
     }
 
-@Bean
-public TherapySessionRepositoryPort therapySessionRepositoryPort( JpaTherapySessionAdapter jpaTherapySessionAdapter)
-{
-    return jpaTherapySessionAdapter;
-}
-@Bean
-public JpaTherapySessionAdapter therapySessionAdapter(JpaTherapySessionRepository adapter)
-{
-    return new JpaTherapySessionAdapter(adapter);
-}
+    @Bean
+    public TherapySessionRepositoryPort therapySessionRepositoryPort( JpaTherapySessionAdapter jpaTherapySessionAdapter)
+    {
+        return jpaTherapySessionAdapter;
+    }
+    @Bean
+    public JpaTherapySessionAdapter therapySessionAdapter(JpaTherapySessionRepository adapter)
+    {
+        return new JpaTherapySessionAdapter(adapter);
+    }
+
 
     @Bean
     public TherapistRepositoryPort therapistRepositoryPort(JpaTherapistRepositoryAdapter jpaTherapistRepositoryAdapter) {
@@ -127,6 +139,11 @@ public JpaTherapySessionAdapter therapySessionAdapter(JpaTherapySessionRepositor
     }
 
     @Bean
+    public MedicationTrackerRepositoryPort medicationTrackerRepositoryPort(JpaMedicationTrackerRepositoryAdapter jpaMedicationTrackerRepositoryAdapter) {
+        return jpaMedicationTrackerRepositoryAdapter;
+    }
+
+    @Bean
     public JpaTherapistRepositoryAdapter jpaTherapistRepositoryAdapter(JpaTherapistRepository adapter) {
         return new JpaTherapistRepositoryAdapter(adapter);
     }
@@ -151,7 +168,10 @@ public JpaTherapySessionAdapter therapySessionAdapter(JpaTherapySessionRepositor
         return new JpaMedicationRepositoryAdapter(adapter);
     }
 
-
+    @Bean
+    public JpaMedicationTrackerRepositoryAdapter jpaMedicationTrackerRepositoryAdapter(JpaMedicationTrackerRepository adapter) {
+        return new JpaMedicationTrackerRepositoryAdapter(adapter);
+    }
 
 
 }

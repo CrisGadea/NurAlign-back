@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Builder
 @Getter
@@ -17,6 +19,6 @@ public class MedicationTrackerEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long patientId;
-    private String effectiveDate;
+    private LocalDate effectiveDate;
     private Boolean takenFlag;
 }

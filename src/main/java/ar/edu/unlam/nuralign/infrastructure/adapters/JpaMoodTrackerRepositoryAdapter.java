@@ -6,6 +6,7 @@ import ar.edu.unlam.nuralign.infrastructure.mappers.MoodTrackerMapper;
 import ar.edu.unlam.nuralign.infrastructure.repositories.JpaMoodTrackerRepository;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Component
@@ -34,5 +35,19 @@ public class JpaMoodTrackerRepositoryAdapter implements MoodTrackerRepositoryPor
         return repository.findById(id)
                 .map(MoodTrackerMapper::toModel)
                 .orElse(null);
+    }
+
+    @Override
+    public List<MoodTracker> findAllByPatientId(Long patientId) {
+        return repository.findAllByPatientId(patientId).stream()
+                .map(MoodTrackerMapper::toModel)
+                .toList();
+    }
+
+    @Override
+    public List<MoodTracker> findAllByPatientIdAndEffectiveDate(Long patientId, LocalDate effectiveDate) {
+        return repository.findAllByPatientIdAndEffectiveDate(patientId, effectiveDate).stream()
+                .map(MoodTrackerMapper::toModel)
+                .toList();
     }
 }

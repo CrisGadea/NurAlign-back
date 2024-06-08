@@ -1,9 +1,6 @@
 package ar.edu.unlam.nuralign.application.services;
 
-import ar.edu.unlam.nuralign.application.ports.in.sleepTracker.CreateSleepTrackerUseCase;
-import ar.edu.unlam.nuralign.application.ports.in.sleepTracker.FindAllSleepTrackersByPatientUseCase;
-import ar.edu.unlam.nuralign.application.ports.in.sleepTracker.FindAllSleepTrackersUseCase;
-import ar.edu.unlam.nuralign.application.ports.in.sleepTracker.FindSleepTrackerUseCase;
+import ar.edu.unlam.nuralign.application.ports.in.sleepTracker.*;
 import ar.edu.unlam.nuralign.domain.models.SleepTracker;
 
 import java.util.List;
@@ -12,21 +9,26 @@ import java.util.Optional;
 public class SleepTrackerService implements CreateSleepTrackerUseCase,
         FindSleepTrackerUseCase,
         FindAllSleepTrackersUseCase,
-        FindAllSleepTrackersByPatientUseCase {
+        FindAllSleepTrackersByPatientUseCase,
+        FindAllSleepTrackersByPatientIdAndEffectiveDateUseCase {
 
     private final CreateSleepTrackerUseCase createSleepTrackerUseCase;
     private final FindSleepTrackerUseCase findSleepTrackerUseCase;
     private final FindAllSleepTrackersUseCase findAllSleepTrackersUseCase;
     private final FindAllSleepTrackersByPatientUseCase findAllSleepTrackersByPatientUseCase;
+    private final FindAllSleepTrackersByPatientIdAndEffectiveDateUseCase findAllSleepTrackersByPatientIdAndEffectiveDateUseCase;
 
     public SleepTrackerService(CreateSleepTrackerUseCase createSleepTrackerUseCase,
                                FindSleepTrackerUseCase findSleepTrackerUseCase,
                                FindAllSleepTrackersUseCase findAllSleepTrackersUseCase,
-                               FindAllSleepTrackersByPatientUseCase findAllSleepTrackersByPatientUseCase) {
+                               FindAllSleepTrackersByPatientUseCase findAllSleepTrackersByPatientUseCase,
+                               FindAllSleepTrackersByPatientIdAndEffectiveDateUseCase findAllSleepTrackersByPatientIdAndEffectiveDateUseCase) {
         this.createSleepTrackerUseCase = createSleepTrackerUseCase;
         this.findSleepTrackerUseCase = findSleepTrackerUseCase;
         this.findAllSleepTrackersUseCase = findAllSleepTrackersUseCase;
         this.findAllSleepTrackersByPatientUseCase = findAllSleepTrackersByPatientUseCase;
+        this.findAllSleepTrackersByPatientIdAndEffectiveDateUseCase = findAllSleepTrackersByPatientIdAndEffectiveDateUseCase;
+
     }
 
     @Override
@@ -47,6 +49,11 @@ public class SleepTrackerService implements CreateSleepTrackerUseCase,
     @Override
     public List<SleepTracker> findAllSleepTrackersByPatientId(Long patientId) {
         return findAllSleepTrackersByPatientUseCase.findAllSleepTrackersByPatientId(patientId);
+    }
+
+    @Override
+    public List<SleepTracker> findAllSleepTrackersByPatientIdAndEffectiveDate(Long patientId, String effectiveDate) {
+        return findAllSleepTrackersByPatientIdAndEffectiveDateUseCase.findAllSleepTrackersByPatientIdAndEffectiveDate(patientId, effectiveDate);
     }
 
 }

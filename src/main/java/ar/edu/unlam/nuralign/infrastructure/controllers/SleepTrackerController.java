@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/sleepTracker")
@@ -41,9 +42,20 @@ public class SleepTrackerController {
                 .map(SleepTrackerMapper::toDto).toList());
     }
 
-    @GetMapping("/patient/{patientId}")
+    @GetMapping("/patients/{patientId}")
     public ResponseEntity<List<SleepTrackerDto>> findAllSleepTrackersByPatient(@PathVariable Long patientId) {
         return ResponseEntity.ok(sleepTrackerService.findAllSleepTrackersByPatientId(patientId).stream()
                 .map(SleepTrackerMapper::toDto).toList());
+    }
+
+    @GetMapping("/patient/{patientId}")
+    public ResponseEntity<List<SleepTrackerDto>> findAllSleepTrackersByPatientIdAndEffectiveDate(
+            @PathVariable Long patientId,
+            @RequestParam String effectiveDate) {
+        return ResponseEntity.ok(sleepTrackerService.findAllSleepTrackersByPatientIdAndEffectiveDate(
+                patientId, effectiveDate).stream()
+                    .map(SleepTrackerMapper::toDto)
+                    .collect(Collectors.toList())
+                );
     }
 }
