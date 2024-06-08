@@ -10,7 +10,9 @@
 	</parent>
 	<groupId>ar.edu.unlam</groupId>
 	<artifactId>nuralign</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<!-- Change version to RELEASE -->
+	<version>2.0.0-RELEASE</version>
+	<!--<version>0.0.1-SNAPSHOT</version>-->
 	<name>nuralign</name>
 	<description>nuralign</description>
 	<properties>

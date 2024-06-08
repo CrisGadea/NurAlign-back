@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  deploy:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,21 +21,49 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
+      - name: Run tests
+        run: mvn test
+
       - name: Verificar estructura del directorio de trabajo
         run: ls -R /home/runner/work/
 
       - name: Verificar contenido del directorio
         run: ls /home/runner/work/NurAlign-back/NurAlign-back/target/
 
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: '17'
+
+      - name: Build with Maven
+        run: mvn clean install
+
       - name: Add SSH key
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
 
+      - name: Find JAR file
+        id: jar-file
+        run: |
+          JAR_FILE=$(ls /home/runner/work/NurAlign-back/NurAlign-back/target/*.jar | head -n 1)
+          echo "JAR_FILE=$JAR_FILE" >> $GITHUB_ENV
+
       - name: Deploy to VPS
         run: |
-          # Comandos para detener la aplicación actual, si es necesario
-          scp -o StrictHostKeyChecking=no /home/runner/work/NurAlign-back/NurAlign-back/target/nuralign-0.0.1-SNAPSHOT.jar root@77.37.69.38:/root/NurAlign-back/nuralign-0.0.1-SNAPSHOT.jar
-          # Comandos para iniciar la nueva versión de la aplicación
-          # Reiniciar servicio
-          ssh -o StrictHostKeyChecking=no root@77.37.69.38 'systemctl restart nuralign'
+          # Subir el nuevo JAR a la VPS
+          scp -o StrictHostKeyChecking=no ${{ env.JAR_FILE }} root@77.37.69.38:/root/NurAlign-back/
+          # Detener el servicio nuralign
+          ssh -o StrictHostKeyChecking=no root@77.37.69.38 'systemctl stop nuralign'
+          # Actualizar el enlace simbólico para que apunte al nuevo JAR
+          ssh -o StrictHostKeyChecking=no root@77.37.69.38 'ln -sf /root/NurAlign-back/$(basename ${{ env.JAR_FILE }}) /root/NurAlign-back/nuralign-latest.jar'
+          # Reiniciar el servicio para que use el nuevo JAR
+          ssh -o StrictHostKeyChecking=no root@77.37.69.38 'systemctl start nuralign'
