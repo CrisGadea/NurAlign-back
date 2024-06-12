@@ -1,4 +1,8 @@
 # NurAlign Changelog
+## [3.2.1] - 2024-06-11
+### Changed
+- Change version of "changelog" and "pom.xml".
+- Fix Update Medication errors
 
 ## [3.2.0] - 2024-06-11
 ### Added
