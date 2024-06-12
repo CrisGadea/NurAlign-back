@@ -2,10 +2,7 @@ package ar.edu.unlam.nuralign.infrastructure.config;
 
 import ar.edu.unlam.nuralign.application.ports.out.*;
 import ar.edu.unlam.nuralign.application.services.*;
-import ar.edu.unlam.nuralign.application.usecases.medication.CreateMedicationUseCaseImpl;
-import ar.edu.unlam.nuralign.application.usecases.medication.FindAllMedicationsUseCaseImpl;
-import ar.edu.unlam.nuralign.application.usecases.medication.FindMedicationsByPatientIdUseCaseImpl;
-import ar.edu.unlam.nuralign.application.usecases.medication.FindMedicationUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.medication.*;
 import ar.edu.unlam.nuralign.application.usecases.medicationTracker.*;
 import ar.edu.unlam.nuralign.application.usecases.moodTracker.CreateMoodTrackerUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.moodTracker.FindAllMoodTrackersByPatientIdAndEffectiveDateUseCaseImpl;
@@ -67,7 +64,9 @@ public class ApplicationConfig {
                 new CreateMedicationUseCaseImpl(medicationRepositoryPort),
                 new FindMedicationUseCaseImpl(medicationRepositoryPort),
                 new FindAllMedicationsUseCaseImpl(medicationRepositoryPort),
-                new FindMedicationsByPatientIdUseCaseImpl(medicationRepositoryPort)
+                new FindMedicationsByPatientIdUseCaseImpl(medicationRepositoryPort),
+                new UpdateMedicationUseCaseImpl(medicationRepositoryPort),
+                new DeleteMedicationUseCaseImpl(medicationRepositoryPort)
         );
     }
 

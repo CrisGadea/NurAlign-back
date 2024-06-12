@@ -10,7 +10,7 @@ public class MedicationTrackerMapper {
     public static MedicationTrackerDto toDto(MedicationTracker model){
         return MedicationTrackerDto.builder()
                 .id(model.getId())
-                .patientId(model.getPatientId())
+                .patientMedicationId(model.getPatientId())
                 .effectiveDate(String.valueOf(model.getEffectiveDate()))
                 .takenFlag(model.getTakenFlag())
                 .build();
@@ -19,7 +19,7 @@ public class MedicationTrackerMapper {
     public static MedicationTracker toModel(MedicationTrackerDto dto){
         return MedicationTracker.builder()
                 .id(dto.getId())
-                .patientId(dto.getPatientId())
+                .patientId(dto.getPatientMedicationId())
                 .effectiveDate(LocalDate.parse(dto.getEffectiveDate()))
                 .takenFlag(dto.getTakenFlag())
                 .build();

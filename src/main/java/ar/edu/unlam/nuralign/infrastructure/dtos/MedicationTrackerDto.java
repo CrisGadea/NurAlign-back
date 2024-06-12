@@ -9,7 +9,7 @@ import lombok.*;
 @Setter
 public class MedicationTrackerDto {
     private Long id;
-    private Long patientId;
+    private Long patientMedicationId;
     private String effectiveDate;
     private Boolean takenFlag;
 }

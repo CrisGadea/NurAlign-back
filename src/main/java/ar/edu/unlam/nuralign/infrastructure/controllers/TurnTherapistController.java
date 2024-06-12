@@ -18,7 +18,7 @@ import java.util.List;
 
 public class TurnTherapistController {
 
-    private TurnTherapistService turnTherapistService;
+    private final TurnTherapistService turnTherapistService;
     public TurnTherapistController(TurnTherapistService turnTherapistService) {
         this.turnTherapistService = turnTherapistService;
     }
@@ -26,8 +26,6 @@ public class TurnTherapistController {
     @PostMapping
     public ResponseEntity<TurnTherapistDto> create(@RequestBody TurnTherapistDto turnTherapistDto)
     {
-
-
         return ResponseEntity.status(HttpStatus.CREATED).body(TurnTherapistMapper.toDto(turnTherapistService.createTurnTherapist(TurnTherapistMapper.ToModel(turnTherapistDto))));
     }
 
@@ -36,7 +34,6 @@ public class TurnTherapistController {
     @GetMapping("/Therapist/{therapistId}")
     public ResponseEntity<List<TurnTherapist>> getAllByTherapistId(@PathVariable Long therapistId)
     {
-
         return ResponseEntity.ok(turnTherapistService.FindAllByTherapistId(therapistId));
     }
 

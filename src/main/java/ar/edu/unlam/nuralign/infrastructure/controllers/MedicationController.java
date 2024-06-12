@@ -41,4 +41,19 @@ public class MedicationController {
     public ResponseEntity<MedicationDto> createMedication(@RequestBody Medication medication) {
         return ResponseEntity.status(HttpStatus.CREATED).body(MedicationMapper.toDto(medicationService.createMedication(medication)));
     }
+
+    @PatchMapping("/patient/{patientId}")
+    public ResponseEntity<MedicationDto> updateMedication(@RequestBody MedicationDto medication,
+                                                          @PathVariable Long patientId) {
+        return ResponseEntity.ok(MedicationMapper.toDto(medicationService.updateMedication(
+                MedicationMapper.toModel(medication), patientId).get()
+        ));
+    }
+
+    @DeleteMapping("/{medicationId}")
+    public ResponseEntity<Void> deleteMedication(@PathVariable Long medicationId) {
+        medicationService.deleteMedication(medicationId);
+        return ResponseEntity.noContent().build();
+    }
+
 }
