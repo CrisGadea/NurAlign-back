@@ -28,7 +28,7 @@ public class PatientEntity {
     @Column(name = "patient_password")
     private String password;
     private String nickname;
-    private String dni;
+    private Integer dni;
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthdate;
     private Sex sex;
@@ -36,7 +36,7 @@ public class PatientEntity {
     private String generalNotifications;
     @Column(name = "companion_notifications")
     private String companionNotifications;
-    private Boolean registeredFlag;
+    private String registeredFlag;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     @OneToMany(mappedBy = "patientId", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -46,7 +46,7 @@ public class PatientEntity {
     private List<MedicationEntity> medications;
 
     public PatientEntity(String name, String lastName, String email, String password,
-                         Sex sex, LocalDate birthdate, String nickname, String dni) {
+                         Sex sex, LocalDate birthdate, String nickname, Integer dni) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;

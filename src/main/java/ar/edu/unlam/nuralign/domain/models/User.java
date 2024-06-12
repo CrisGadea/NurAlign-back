@@ -17,6 +17,11 @@ public class User {
     protected String lastName;
     protected String email;
     protected String password;
-    protected LocalDateTime createdAt;
-    protected LocalDateTime updatedAt;
+
+    public User(String name, String lastName, String email, String password) {
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
 }
