@@ -1,5 +1,10 @@
 # NurAlign Changelog
 
+## [3.1.2] - 2024-06-11
+### Changed
+- Change version of "changelog" and "pom.xml".
+- Fix data in flag of "medication tracker"
+
 ## [3.1.1] - 2024-06-11
 ### Added
 - New features for Trackers of web application.
