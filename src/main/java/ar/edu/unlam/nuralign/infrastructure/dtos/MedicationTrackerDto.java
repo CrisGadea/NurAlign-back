@@ -11,5 +11,5 @@ public class MedicationTrackerDto {
     private Long id;
     private Long patientMedicationId;
     private String effectiveDate;
-    private Boolean takenFlag;
+    private Character takenFlag;
 }

@@ -13,5 +13,5 @@ public class MedicationTracker {
     private Long id;
     private Long patientId;
     private LocalDate effectiveDate;
-    private Boolean takenFlag;
+    private Character takenFlag;
 }

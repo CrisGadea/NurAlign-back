@@ -21,5 +21,5 @@ public class MedicationTrackerEntity {
     @Column(name = "effective_date")
     private LocalDate effectiveDate;
     @Column(name = "taken_flag")
-    private Boolean takenFlag;
+    private Character takenFlag;
 }
