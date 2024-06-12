@@ -11,33 +11,35 @@ import java.time.LocalDateTime;
 @Getter
 public class Patient extends User {
 
+    private String phone;
+
     private LocalDate birthdate;
 
     private Sex sex;
 
     private String nickname;
 
-    private String dni;
+    private Integer dni;
 
     private String generalNotifications;
 
     private String companionNotifications;
 
-    private Boolean registeredFlag;
+    private String registeredFlag;
 
     public Patient() {}
 
     public Patient(Long id, String name, String lastName, String email, String password,
-                   String dni, Boolean registeredFlag, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        super(id, name, lastName, email, password, createdAt, updatedAt);
+                   Integer dni, String registeredFlag) {
+        super(id, name, lastName, email, password);
         this.registeredFlag = registeredFlag;
         this.dni = dni;
     }
 
     public Patient(Long id, String name, String lastName, String email, String password,
-                   Boolean registeredFlag, Sex sex, String dni, LocalDate birthdate, String nickname, String generalNotifications,
-                   String companionNotifications, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        super(id, name, lastName, email, password, createdAt, updatedAt);
+                   String registeredFlag, Sex sex, Integer dni, LocalDate birthdate, String nickname, String generalNotifications,
+                   String companionNotifications) {
+        super(id, name, lastName, email, password);
         this.birthdate = birthdate;
         this.registeredFlag = registeredFlag;
         this.companionNotifications = companionNotifications;
@@ -46,4 +48,34 @@ public class Patient extends User {
         this.dni = dni;
         this.sex = sex;
     }
+
+    public Patient(String name, String lastName, String email, String password, String phone,
+                   String registeredFlag, Sex sex, Integer dni, LocalDate birthdate, String nickname, String generalNotifications,
+                   String companionNotifications) {
+        super(name, lastName, email, password);
+        this.phone = phone;
+        this.registeredFlag = registeredFlag;
+        this.sex = sex;
+        this.dni = dni;
+        this.birthdate = birthdate;
+        this.nickname = nickname;
+        this.generalNotifications = generalNotifications;
+        this.companionNotifications = companionNotifications;
+    }
+
+//    public Patient(String name, String lastName, String email, String password, String phoneNumber,
+//                   String registeredFlag,
+//                   Sex sex, Integer dni, LocalDate birthdate, String nickname, String generalNotifications,
+//                   String companionNotifications) {
+//        super(name, lastName, email, password);
+//        this.phone = phoneNumber;
+//        this.registeredFlag = registeredFlag;
+//        this.sex = sex;
+//        this.dni = dni;
+//        this.birthdate = birthdate;
+//        this.nickname = nickname;
+//        this.generalNotifications = generalNotifications;
+//        this.companionNotifications = companionNotifications;
+//
+//    }
 }

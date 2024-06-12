@@ -1,5 +1,6 @@
 package ar.edu.unlam.nuralign.infrastructure.config;
 
+import ar.edu.unlam.nuralign.application.ports.in.patientTherapist.AssignPatientToTherapistUseCase;
 import ar.edu.unlam.nuralign.application.ports.out.*;
 import ar.edu.unlam.nuralign.application.services.*;
 import ar.edu.unlam.nuralign.application.usecases.medication.*;
@@ -9,6 +10,9 @@ import ar.edu.unlam.nuralign.application.usecases.moodTracker.FindAllMoodTracker
 import ar.edu.unlam.nuralign.application.usecases.moodTracker.FindAllMoodTrackersUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.moodTracker.FindMoodTrackerUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.patient.*;
+import ar.edu.unlam.nuralign.application.usecases.patientTherapist.AssignPatientToTherapistUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.patientTherapist.DeletePatientTherapistAssignationUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.patientTherapist.FindAllPatientTherapistAssignationsUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.sleepTracker.*;
 import ar.edu.unlam.nuralign.application.usecases.therapist.*;
 import ar.edu.unlam.nuralign.application.usecases.therapySession.CreateTherapySessionUseCaseImpl;
@@ -24,6 +28,15 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ApplicationConfig {
+
+    @Bean
+    public PatientTherapistService patientTherapistService(PatientTherapistRepositoryPort patientTherapistRepositoryPort) {
+        return new PatientTherapistService(
+                new AssignPatientToTherapistUseCaseImpl(patientTherapistRepositoryPort),
+                new FindAllPatientTherapistAssignationsUseCaseImpl(patientTherapistRepositoryPort),
+                new DeletePatientTherapistAssignationUseCaseImpl(patientTherapistRepositoryPort)
+        );
+    }
 
     @Bean
     public TherapistService therapistService(TherapistRepositoryPort therapistRepositoryPort) {
@@ -108,6 +121,12 @@ public class ApplicationConfig {
     {
         return jpaTherapySessionAdapter;
     }
+
+    @Bean
+    public PatientTherapistRepositoryPort patientTherapistRepositoryPort(JpaPatientTherapistRepositoryAdapter jpaPatientTherapistRepositoryAdapter) {
+        return jpaPatientTherapistRepositoryAdapter;
+    }
+
     @Bean
     public JpaTherapySessionAdapter therapySessionAdapter(JpaTherapySessionRepository adapter)
     {
@@ -171,6 +190,11 @@ public JpaTurnTherapistRepositoryAdapter turnTherapistRepositoryAdapter(JpaTurnT
     @Bean
     public MedicationTrackerRepositoryPort medicationTrackerRepositoryPort(JpaMedicationTrackerRepositoryAdapter jpaMedicationTrackerRepositoryAdapter) {
         return jpaMedicationTrackerRepositoryAdapter;
+    }
+
+    @Bean
+    public JpaPatientTherapistRepositoryAdapter jpaPatientTherapistRepositoryAdapter(JpaPatientTherapistRepository adapter) {
+        return new JpaPatientTherapistRepositoryAdapter(adapter);
     }
 
     @Bean

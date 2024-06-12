@@ -39,7 +39,7 @@ public class JpaPatientRepositoryAdapterTest {
         Patient patient = new Patient();
         patient.setPassword("testPassword"); // Set a password for the patient
         PatientEntity patientEntity = PatientMapper.mapToEntity(patient);
-        patientEntity.setRegisteredFlag(true);
+        patientEntity.setRegisteredFlag("Y");
         patientEntity.setCreatedAt(LocalDateTime.now());
         patientEntity.setUpdatedAt(LocalDateTime.now());
         when(checkPassword.hashPassword()).thenReturn("hashedPassword");

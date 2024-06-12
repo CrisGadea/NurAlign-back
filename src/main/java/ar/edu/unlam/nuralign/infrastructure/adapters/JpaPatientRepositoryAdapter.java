@@ -24,7 +24,7 @@ public class JpaPatientRepositoryAdapter implements PatientRepositoryPort {
     @Override
     public Patient save(Patient patient) {
         PatientEntity patientEntity = PatientMapper.mapToEntity(patient);
-        patientEntity.setRegisteredFlag(true);
+        patientEntity.setRegisteredFlag("Y");
         patientEntity.setCreatedAt(LocalDateTime.now());
         patientEntity.setUpdatedAt(LocalDateTime.now());
         patientEntity.setCompanionNotifications("Y");

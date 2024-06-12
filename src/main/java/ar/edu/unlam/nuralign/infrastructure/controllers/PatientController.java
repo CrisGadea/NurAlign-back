@@ -2,6 +2,8 @@ package ar.edu.unlam.nuralign.infrastructure.controllers;
 
 import ar.edu.unlam.nuralign.application.services.PatientService;
 import ar.edu.unlam.nuralign.domain.models.Patient;
+import ar.edu.unlam.nuralign.infrastructure.dtos.PatientDto;
+import ar.edu.unlam.nuralign.infrastructure.mappers.PatientMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,8 +33,8 @@ public class PatientController {
     }
 
     @PostMapping
-    public ResponseEntity<Patient> createPatient(@RequestBody Patient patient) {
-        return ResponseEntity.ok(patientService.createPatient(patient));
+    public ResponseEntity<PatientDto> createPatient(@RequestBody PatientDto patient) {
+        return ResponseEntity.ok(PatientMapper.mapToDto(patientService.createPatient(PatientMapper.mapToDomain(patient))));
     }
 
     @PutMapping("/{patientId}")

@@ -23,7 +23,7 @@ public class Therapist extends User{
     public Therapist(Long id, String name, String lastName, String email, String phoneNumber, String password,
                      Integer documentNumber, String medicalLicense, Boolean registeredFlag, LocalDateTime createdAt,
                         LocalDateTime updatedAt) {
-        super(id, name, lastName, email, password, createdAt, updatedAt);
+        super(id, name, lastName, email, password);
         this.documentNumber = documentNumber;
         this.medicalLicense = medicalLicense;
         this.registeredFlag = registeredFlag;
