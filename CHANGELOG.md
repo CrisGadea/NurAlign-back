@@ -1,5 +1,13 @@
 # NurAlign Changelog
 
+## [3.1.1] - 2024-06-11
+### Added
+- New features for Trackers of web application.
+- New uses cases for Trackers and Medication.
+### Changed
+- Change version of "changelog" and "pom.xml".
+- Updated Use Cases
+
 
 ## [3.0.0] - 2024-06-08
 ### Added
