@@ -47,10 +47,11 @@ public class JpaMedicationRepositoryAdapter implements MedicationRepositoryPort 
 
     @Override
     public Optional<Medication> updateMedication(Medication medication, Long patientId) {
-        MedicationEntity entityForUpdate = repository.findByPatientIdAndName(patientId, medication.getName());
+        MedicationEntity entityForUpdate = repository.findByPatientIdAndMedicationId(patientId, medication.getId());
         if (entityForUpdate != null) {
             if (medication.getGrammage() != null) entityForUpdate.setGrammage(medication.getGrammage());
             if (medication.getFlag() != null) entityForUpdate.setFlag(medication.getFlag());
+            if (medication.getName() != null) entityForUpdate.setName(medication.getName());
             return Optional.ofNullable(MedicationMapper.toModel(repository.save(entityForUpdate)));
         } else {
             return Optional.empty();
