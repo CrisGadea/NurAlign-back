@@ -4,7 +4,8 @@ import ar.edu.unlam.nuralign.application.ports.in.moodTracker.CreateMoodTrackerU
 import ar.edu.unlam.nuralign.application.ports.out.MoodTrackerRepositoryPort;
 import ar.edu.unlam.nuralign.domain.models.MoodTracker;
 import ar.edu.unlam.nuralign.infrastructure.dtos.MoodTrackerDto;
-import ar.edu.unlam.nuralign.infrastructure.mappers.MoodTrackerMapper;
+
+import static ar.edu.unlam.nuralign.infrastructure.mappers.MoodTrackerMapper.toModel;
 
 public class CreateMoodTrackerUseCaseImpl implements CreateMoodTrackerUseCase {
 
@@ -16,7 +17,7 @@ public class CreateMoodTrackerUseCaseImpl implements CreateMoodTrackerUseCase {
 
     @Override
     public MoodTracker createMoodTracker(MoodTrackerDto moodTracker){
-        return moodTrackerRepositoryPort.save(MoodTrackerMapper.toModel(moodTracker));
+        return moodTrackerRepositoryPort.save(toModel(moodTracker));
     }
 
 }

@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.ResponseEntity.*;
+
 @RestController
 @RequestMapping("/api/moodTracker")
 public class MoodTrackerController {
@@ -21,14 +25,14 @@ public class MoodTrackerController {
 
     @GetMapping("/patient/{patientId}")
     public ResponseEntity<MoodTrackerDto> getMoodTrackerDataByPatientId(@PathVariable Long patientId) {
-        return ResponseEntity.ok(MoodTrackerMapper.toDto(moodTrackerService.findMoodTracker(patientId)));
+        return ok(MoodTrackerMapper.toDto(moodTrackerService.findMoodTracker(patientId)));
     }
 
     @GetMapping
     public ResponseEntity<List<MoodTrackerDto>> getMoodTrackerData() {
-        return ResponseEntity.ok(moodTrackerService.findAllMoodTrackers().stream()
+        return ok(moodTrackerService.findAllMoodTrackers().stream()
                     .map(MoodTrackerMapper::toDto)
-                    .collect(Collectors.toList())
+                    .collect(toList())
                 );
     }
 
@@ -36,16 +40,16 @@ public class MoodTrackerController {
     public ResponseEntity<List<MoodTrackerDto>> getMoodTrackerDataByPatientIdAndEffectiveDate(
             @PathVariable Long patientId,
             @RequestParam String effectiveDate) {
-        return ResponseEntity.ok(moodTrackerService.findAllMoodTrackersByPatientIdAndEffectiveDate(
+        return ok(moodTrackerService.findAllMoodTrackersByPatientIdAndEffectiveDate(
                 patientId, effectiveDate).stream()
                     .map(MoodTrackerMapper::toDto)
-                    .collect(Collectors.toList())
+                    .collect(toList())
                 );
     }
 
     @PostMapping
     public ResponseEntity<MoodTrackerDto> createMoodTrackerData(@RequestBody MoodTrackerDto moodTrackerDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(
+        return status(CREATED).body(
                 MoodTrackerMapper.toDto(moodTrackerService.createMoodTracker(moodTrackerDto))
         );
     }

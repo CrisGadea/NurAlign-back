@@ -2,11 +2,13 @@ package ar.edu.unlam.nuralign.infrastructure.adapters;
 
 import ar.edu.unlam.nuralign.application.ports.out.MedicationRepositoryPort;
 import ar.edu.unlam.nuralign.domain.models.Medication;
+import ar.edu.unlam.nuralign.infrastructure.entities.MedicationEntity;
 import ar.edu.unlam.nuralign.infrastructure.mappers.MedicationMapper;
 import ar.edu.unlam.nuralign.infrastructure.repositories.JpaMedicationRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class JpaMedicationRepositoryAdapter implements MedicationRepositoryPort {
@@ -41,5 +43,22 @@ public class JpaMedicationRepositoryAdapter implements MedicationRepositoryPort 
         return repository.findAllByPatientId(patientId).stream()
                 .map(MedicationMapper::toModel)
                 .toList();
+    }
+
+    @Override
+    public Optional<Medication> updateMedication(Medication medication, Long patientId) {
+        MedicationEntity entityForUpdate = repository.findByPatientIdAndName(patientId, medication.getName());
+        if (entityForUpdate != null) {
+            if (medication.getGrammage() != null) entityForUpdate.setGrammage(medication.getGrammage());
+            if (medication.getFlag() != null) entityForUpdate.setFlag(medication.getFlag());
+            return Optional.ofNullable(MedicationMapper.toModel(repository.save(entityForUpdate)));
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    @Override
+    public void deleteMedication(Long id) {
+        repository.deleteById(id);
     }
 }

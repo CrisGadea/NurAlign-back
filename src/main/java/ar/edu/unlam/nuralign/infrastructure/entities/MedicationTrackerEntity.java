@@ -1,9 +1,6 @@
 package ar.edu.unlam.nuralign.infrastructure.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -17,8 +14,12 @@ import java.time.LocalDate;
 public class MedicationTrackerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "medication_tracker_id")
     private Long id;
+    @Column(name = "patient_medication_id")
     private Long patientId;
+    @Column(name = "effective_date")
     private LocalDate effectiveDate;
+    @Column(name = "taken_flag")
     private Boolean takenFlag;
 }
