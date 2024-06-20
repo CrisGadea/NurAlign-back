@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,13 +38,11 @@ public class MoodTrackerController {
     }
 
     @GetMapping("/{patientId}")
-    public ResponseEntity<List<MoodTrackerDto>> getMoodTrackerDataByPatientIdAndEffectiveDate(
+    public ResponseEntity<MoodTrackerDto> getMoodTrackerDataByPatientIdAndEffectiveDate(
             @PathVariable Long patientId,
             @RequestParam String effectiveDate) {
-        return ok(moodTrackerService.findAllMoodTrackersByPatientIdAndEffectiveDate(
-                patientId, effectiveDate).stream()
-                    .map(MoodTrackerMapper::toDto)
-                    .collect(toList())
+        return ok(MoodTrackerMapper.toDto(moodTrackerService.findMoodTrackerByPatientIdAndEffectiveDate(
+                patientId, effectiveDate))
                 );
     }
 
@@ -51,6 +50,18 @@ public class MoodTrackerController {
     public ResponseEntity<MoodTrackerDto> createMoodTrackerData(@RequestBody MoodTrackerDto moodTrackerDto) {
         return status(CREATED).body(
                 MoodTrackerMapper.toDto(moodTrackerService.createMoodTracker(moodTrackerDto))
+        );
+    }
+
+    @PatchMapping("/{patientId}")
+    public ResponseEntity<MoodTrackerDto> updateMoodTrackerData(
+            @PathVariable Long patientId,
+            @RequestBody MoodTrackerDto moodTrackerDto,
+            @RequestParam LocalDate effectiveDate) {
+        return ok(MoodTrackerMapper.toDto(
+                moodTrackerService.updateMoodTracker(
+                        MoodTrackerMapper.toModel(moodTrackerDto), patientId, effectiveDate)
+                )
         );
     }
 }
