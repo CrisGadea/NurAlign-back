@@ -1,6 +1,6 @@
 package ar.edu.unlam.nuralign.infrastructure.controllers;
 
-import ar.edu.unlam.nuralign.application.services.MedicationTrackerService;
+import ar.edu.unlam.nuralign.application.services.MedicationTrackersService;
 import ar.edu.unlam.nuralign.infrastructure.dtos.MedicationTrackerDto;
 import ar.edu.unlam.nuralign.infrastructure.mappers.MedicationTrackerMapper;
 import org.springframework.http.HttpStatus;
@@ -14,15 +14,16 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/medicationTracker")
 public class MedicationTrackerController {
-    private final MedicationTrackerService medicationTrackerService;
+    private final MedicationTrackersService medicationTrackerService;
 
-    public MedicationTrackerController(MedicationTrackerService medicationTrackerService) {
+    public MedicationTrackerController(MedicationTrackersService medicationTrackerService) {
         this.medicationTrackerService = medicationTrackerService;
     }
 
     @GetMapping("/patient/{patientId}")
-    public ResponseEntity<MedicationTrackerDto> getMedicationTrackerDataByPatientId(@PathVariable Long patientId) {
-        return ResponseEntity.ok(MedicationTrackerMapper.toDto(medicationTrackerService.findMedicationTracker(patientId)));
+    public ResponseEntity<List<MedicationTrackerDto>> getMedicationTrackersDataByPatientId(@PathVariable Long patientId) {
+        return ResponseEntity.ok(medicationTrackerService.findAllMedicationTrackersByPatientId(patientId).stream()
+                .map(MedicationTrackerMapper::toDto).toList());
     }
 
     @GetMapping
@@ -34,13 +35,11 @@ public class MedicationTrackerController {
     }
 
     @GetMapping("/{patientId}")
-    public ResponseEntity<List<MedicationTrackerDto>> getMedicationTrackerDataByPatientIdAndEffectiveDate(
+    public ResponseEntity<MedicationTrackerDto> getMedicationTrackerDataByPatientIdAndEffectiveDate(
             @PathVariable Long patientId,
             @RequestParam String effectiveDate) {
-        return ResponseEntity.ok(medicationTrackerService.findAllMedicationTrackerByPatientIdAndEffectiveDate(
-                patientId, LocalDate.parse(effectiveDate)).stream()
-                    .map(MedicationTrackerMapper::toDto)
-                    .collect(Collectors.toList())
+        return ResponseEntity.ok(MedicationTrackerMapper.toDto(medicationTrackerService.findMedicationTrackerByPatientIdAndEffectiveDate(
+                patientId, LocalDate.parse(effectiveDate)))
                 );
     }
 

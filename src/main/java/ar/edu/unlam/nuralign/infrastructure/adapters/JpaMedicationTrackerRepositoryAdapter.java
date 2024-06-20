@@ -38,26 +38,19 @@ public class JpaMedicationTrackerRepositoryAdapter implements MedicationTrackerR
 
     @Override
     public List<MedicationTracker> findAllByPatientId(Long patientId) {
-        return jpaMedicationTrackerRepository.findAllByPatientId(patientId)
-                .stream()
+        return jpaMedicationTrackerRepository.findAllByPatientId(patientId).stream()
                 .map(MedicationTrackerMapper::toModel)
                 .toList();
     }
 
     @Override
-    public List<MedicationTracker> findAllByEffectiveDate(LocalDate effectiveDate) {
-        return jpaMedicationTrackerRepository.findAllByEffectiveDate(effectiveDate)
-                .stream()
-                .map(MedicationTrackerMapper::toModel)
-                .toList();
+    public MedicationTracker findByEffectiveDate(LocalDate effectiveDate) {
+        return MedicationTrackerMapper.toModel(jpaMedicationTrackerRepository.findByEffectiveDate(effectiveDate));
     }
 
     @Override
-    public List<MedicationTracker> findAllByPatientIdAndEffectiveDate(Long patientId, LocalDate effectiveDate) {
-        return jpaMedicationTrackerRepository.findAllByPatientIdAndEffectiveDate(patientId, effectiveDate)
-                .stream()
-                .map(MedicationTrackerMapper::toModel)
-                .toList();
+    public MedicationTracker findByPatientIdAndEffectiveDate(Long patientId, LocalDate effectiveDate) {
+        return MedicationTrackerMapper.toModel(jpaMedicationTrackerRepository.findByPatientIdAndEffectiveDate(patientId, effectiveDate));
     }
 
 }

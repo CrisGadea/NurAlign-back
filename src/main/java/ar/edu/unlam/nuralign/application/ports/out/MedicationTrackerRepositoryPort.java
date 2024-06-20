@@ -10,6 +10,6 @@ public interface MedicationTrackerRepositoryPort {
     List<MedicationTracker> findAll();
     MedicationTracker findById(Long id);
     List<MedicationTracker> findAllByPatientId(Long patientId);
-    List<MedicationTracker> findAllByEffectiveDate(LocalDate effectiveDate);
-    List<MedicationTracker> findAllByPatientIdAndEffectiveDate(Long patientId, LocalDate effectiveDate);
+    MedicationTracker findByEffectiveDate(LocalDate effectiveDate);
+    MedicationTracker findByPatientIdAndEffectiveDate(Long patientId, LocalDate effectiveDate);
 }
