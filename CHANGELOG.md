@@ -1,5 +1,10 @@
 # NurAlign Changelog
 
+## [3.3.1] - 2024-06-20
+### Changed
+- Change version of "changelog" and "pom.xml".
+- Fix Update Sleep Tracker errors
+
 ## [3.3.0] - 2024-06-20
 ### Changed
 - Change version of "changelog" and "pom.xml".
