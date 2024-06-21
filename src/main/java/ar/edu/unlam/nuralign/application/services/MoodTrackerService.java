@@ -1,29 +1,32 @@
 package ar.edu.unlam.nuralign.application.services;
 
-import ar.edu.unlam.nuralign.application.ports.in.moodTracker.CreateMoodTrackerUseCase;
-import ar.edu.unlam.nuralign.application.ports.in.moodTracker.FindAllMoodTrackersByPatientIdAndEffectiveDateUseCase;
-import ar.edu.unlam.nuralign.application.ports.in.moodTracker.FindAllMoodTrackersUseCase;
-import ar.edu.unlam.nuralign.application.ports.in.moodTracker.FindMoodTrackerUseCase;
+import ar.edu.unlam.nuralign.application.ports.in.moodTracker.*;
 import ar.edu.unlam.nuralign.domain.models.MoodTracker;
 import ar.edu.unlam.nuralign.infrastructure.dtos.MoodTrackerDto;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public class MoodTrackerService implements CreateMoodTrackerUseCase, FindMoodTrackerUseCase, FindAllMoodTrackersUseCase,
-    FindAllMoodTrackersByPatientIdAndEffectiveDateUseCase {
+        FindMoodTrackerByPatientIdAndEffectiveDateUseCase, UpdateMoodTrackerUseCase {
 
         private final CreateMoodTrackerUseCase createMoodTrackerUseCase;
         private final FindMoodTrackerUseCase findMoodTrackerUseCase;
         private final FindAllMoodTrackersUseCase findAllMoodTrackersUseCase;
-        private final FindAllMoodTrackersByPatientIdAndEffectiveDateUseCase findAllByPatientIdAndEffectiveDateUseCase;
+        private final FindMoodTrackerByPatientIdAndEffectiveDateUseCase findAllByPatientIdAndEffectiveDateUseCase;
+        private final UpdateMoodTrackerUseCase updateMoodTrackerUseCase;
 
-        public MoodTrackerService(CreateMoodTrackerUseCase createMoodTrackerUseCase, FindMoodTrackerUseCase findMoodTrackerUseCase,
-                                FindAllMoodTrackersUseCase findAllMoodTrackersUseCase, FindAllMoodTrackersByPatientIdAndEffectiveDateUseCase findAllByPatientIdAndEffectiveDateUseCase) {
+        public MoodTrackerService(CreateMoodTrackerUseCase createMoodTrackerUseCase,
+                                  FindMoodTrackerUseCase findMoodTrackerUseCase,
+                                  FindAllMoodTrackersUseCase findAllMoodTrackersUseCase,
+                                  FindMoodTrackerByPatientIdAndEffectiveDateUseCase findAllByPatientIdAndEffectiveDateUseCase,
+                                  UpdateMoodTrackerUseCase updateMoodTrackerUseCase) {
             this.createMoodTrackerUseCase = createMoodTrackerUseCase;
             this.findMoodTrackerUseCase = findMoodTrackerUseCase;
             this.findAllMoodTrackersUseCase = findAllMoodTrackersUseCase;
             this.findAllByPatientIdAndEffectiveDateUseCase = findAllByPatientIdAndEffectiveDateUseCase;
-
+            this.updateMoodTrackerUseCase = updateMoodTrackerUseCase;
         }
 
         @Override
@@ -42,7 +45,12 @@ public class MoodTrackerService implements CreateMoodTrackerUseCase, FindMoodTra
         }
 
         @Override
-        public List<MoodTracker> findAllMoodTrackersByPatientIdAndEffectiveDate(Long patientId, String effectiveDate) {
-            return findAllByPatientIdAndEffectiveDateUseCase.findAllMoodTrackersByPatientIdAndEffectiveDate(patientId, effectiveDate);
+        public MoodTracker findMoodTrackerByPatientIdAndEffectiveDate(Long patientId, String effectiveDate) {
+            return findAllByPatientIdAndEffectiveDateUseCase.findMoodTrackerByPatientIdAndEffectiveDate(patientId, effectiveDate);
+        }
+
+        @Override
+        public Optional<MoodTracker> updateMoodTracker(MoodTracker moodTracker, Long patientId, LocalDate effectiveDate) {
+            return updateMoodTrackerUseCase.updateMoodTracker(moodTracker, patientId, effectiveDate);
         }
 }

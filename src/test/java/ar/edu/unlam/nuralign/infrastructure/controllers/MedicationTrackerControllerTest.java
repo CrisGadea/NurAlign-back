@@ -1,23 +1,7 @@
 package ar.edu.unlam.nuralign.infrastructure.controllers;
 
-import ar.edu.unlam.nuralign.application.services.MedicationTrackerService;
-import ar.edu.unlam.nuralign.infrastructure.dtos.MedicationTrackerDto;
-import ar.edu.unlam.nuralign.infrastructure.mappers.MedicationTrackerMapper;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.http.ResponseEntity;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 public class MedicationTrackerControllerTest {
 

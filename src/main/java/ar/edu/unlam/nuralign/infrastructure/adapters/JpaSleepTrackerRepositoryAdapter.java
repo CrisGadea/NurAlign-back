@@ -47,23 +47,51 @@ public class JpaSleepTrackerRepositoryAdapter implements SleepTrackerRepositoryP
     @Override
     public List<SleepTracker> findAllByPatientId(Long patientId) {
         List<SleepTrackerEntity> entities = repository.findAllByPatientId(patientId);
-        if (entities == null) {
-            return Collections.emptyList(); // Devuelve una lista vacía si findAllByPatientId() devuelve null
-        }
-        return entities.stream()
+        return entities == null ? Collections.emptyList(): entities.stream()
                 .map(SleepTrackerMapper::toDomain)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<SleepTracker> findAllSleepTrackersByPatientIdAndEffectiveDate(Long patientId, String effectiveDate) {
-        List<SleepTrackerEntity> entities = repository.findAllByPatientIdAndEffectiveDate(patientId, LocalDate.parse(effectiveDate));
-        if (entities == null) {
-            return Collections.emptyList(); // Devuelve una lista vacía si findAllByPatientIdAndEffectiveDate() devuelve null
+    public SleepTracker findSleepTrackerByPatientIdAndEffectiveDate(Long patientId, String effectiveDate) {
+        return SleepTrackerMapper.toDomain(repository.findByPatientIdAndEffectiveDate(patientId, LocalDate.parse(effectiveDate)));
+    }
+
+    @Override
+    public Optional<SleepTracker> update(SleepTracker sleepTracker, Long patientId, String effectiveDate) {
+        SleepTrackerEntity sleepTrackerEntity = repository.findByPatientIdAndEffectiveDate(patientId, LocalDate.parse(effectiveDate));
+        if (sleepTrackerEntity == null) {
+            return Optional.empty();
         }
-        return entities.stream()
-                .map(SleepTrackerMapper::toDomain)
-                .collect(Collectors.toList());
+        if (sleepTracker.getSleepHours() != null) {
+            sleepTrackerEntity.setSleepHours(sleepTracker.getSleepHours());
+        }
+
+        if (sleepTracker.getSleepNotes() != null) {
+            sleepTrackerEntity.setSleepNotes(sleepTracker.getSleepNotes());
+        }
+
+        if(sleepTracker.getAnxiousFlag() != null) {
+            sleepTrackerEntity.setAnxiousFlag(sleepTracker.getAnxiousFlag());
+        }
+
+        if(sleepTracker.getBedTime() != null) {
+            sleepTrackerEntity.setBedTime(sleepTracker.getBedTime());
+        }
+
+        if(sleepTracker.getSleepStraightFlag() != null) {
+            sleepTrackerEntity.setSleepStraightFlag(sleepTracker.getSleepStraightFlag());
+        }
+
+        if(sleepTracker.getEffectiveDate() != null) {
+            sleepTrackerEntity.setEffectiveDate(sleepTracker.getEffectiveDate());
+        }
+
+        if (sleepTracker.getNegativeThoughtsFlag() != null) {
+            sleepTrackerEntity.setNegativeThoughtsFlag(sleepTracker.getNegativeThoughtsFlag());
+        }
+
+        return Optional.ofNullable(SleepTrackerMapper.toDomain(repository.save(sleepTrackerEntity)));
     }
 
 }

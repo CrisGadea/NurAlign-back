@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "medication_tracker")
 public class MedicationTrackerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -4,12 +4,14 @@ import ar.edu.unlam.nuralign.domain.models.MedicationTracker;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface MedicationTrackerRepositoryPort {
     MedicationTracker save(MedicationTracker medication);
     List<MedicationTracker> findAll();
     MedicationTracker findById(Long id);
     List<MedicationTracker> findAllByPatientId(Long patientId);
-    List<MedicationTracker> findAllByEffectiveDate(LocalDate effectiveDate);
-    List<MedicationTracker> findAllByPatientIdAndEffectiveDate(Long patientId, LocalDate effectiveDate);
+    MedicationTracker findByEffectiveDate(LocalDate effectiveDate);
+    MedicationTracker findByPatientIdAndEffectiveDate(Long patientId, LocalDate effectiveDate);
+    Optional<MedicationTracker> update(MedicationTracker medication, Long patientId, LocalDate effectiveDate);
 }

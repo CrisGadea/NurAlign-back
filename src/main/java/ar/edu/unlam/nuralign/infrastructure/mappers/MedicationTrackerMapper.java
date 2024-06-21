@@ -20,7 +20,7 @@ public class MedicationTrackerMapper {
         return MedicationTracker.builder()
                 .id(dto.getId())
                 .patientId(dto.getPatientMedicationId())
-                .effectiveDate(LocalDate.parse(dto.getEffectiveDate()))
+                .effectiveDate(dto.getEffectiveDate() != null ? LocalDate.parse(dto.getEffectiveDate()) : null)
                 .takenFlag(dto.getTakenFlag())
                 .build();
     }

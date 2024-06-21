@@ -10,24 +10,28 @@ public class SleepTrackerService implements CreateSleepTrackerUseCase,
         FindSleepTrackerUseCase,
         FindAllSleepTrackersUseCase,
         FindAllSleepTrackersByPatientUseCase,
-        FindAllSleepTrackersByPatientIdAndEffectiveDateUseCase {
+        FindSleepTrackerByPatientIdAndEffectiveDateUseCase,
+        UpdateSleepTrackerUseCase {
 
     private final CreateSleepTrackerUseCase createSleepTrackerUseCase;
     private final FindSleepTrackerUseCase findSleepTrackerUseCase;
     private final FindAllSleepTrackersUseCase findAllSleepTrackersUseCase;
     private final FindAllSleepTrackersByPatientUseCase findAllSleepTrackersByPatientUseCase;
-    private final FindAllSleepTrackersByPatientIdAndEffectiveDateUseCase findAllSleepTrackersByPatientIdAndEffectiveDateUseCase;
+    private final FindSleepTrackerByPatientIdAndEffectiveDateUseCase findSleepTrackerByPatientIdAndEffectiveDateUseCase;
+    private final UpdateSleepTrackerUseCase updateSleepTrackerUseCase;
 
     public SleepTrackerService(CreateSleepTrackerUseCase createSleepTrackerUseCase,
                                FindSleepTrackerUseCase findSleepTrackerUseCase,
                                FindAllSleepTrackersUseCase findAllSleepTrackersUseCase,
                                FindAllSleepTrackersByPatientUseCase findAllSleepTrackersByPatientUseCase,
-                               FindAllSleepTrackersByPatientIdAndEffectiveDateUseCase findAllSleepTrackersByPatientIdAndEffectiveDateUseCase) {
+                               FindSleepTrackerByPatientIdAndEffectiveDateUseCase findSleepTrackerByPatientIdAndEffectiveDateUseCase,
+                               UpdateSleepTrackerUseCase updateSleepTrackerUseCase) {
         this.createSleepTrackerUseCase = createSleepTrackerUseCase;
         this.findSleepTrackerUseCase = findSleepTrackerUseCase;
         this.findAllSleepTrackersUseCase = findAllSleepTrackersUseCase;
         this.findAllSleepTrackersByPatientUseCase = findAllSleepTrackersByPatientUseCase;
-        this.findAllSleepTrackersByPatientIdAndEffectiveDateUseCase = findAllSleepTrackersByPatientIdAndEffectiveDateUseCase;
+        this.findSleepTrackerByPatientIdAndEffectiveDateUseCase = findSleepTrackerByPatientIdAndEffectiveDateUseCase;
+        this.updateSleepTrackerUseCase = updateSleepTrackerUseCase;
 
     }
 
@@ -52,8 +56,13 @@ public class SleepTrackerService implements CreateSleepTrackerUseCase,
     }
 
     @Override
-    public List<SleepTracker> findAllSleepTrackersByPatientIdAndEffectiveDate(Long patientId, String effectiveDate) {
-        return findAllSleepTrackersByPatientIdAndEffectiveDateUseCase.findAllSleepTrackersByPatientIdAndEffectiveDate(patientId, effectiveDate);
+    public SleepTracker findSleepTrackerByPatientIdAndEffectiveDate(Long patientId, String effectiveDate) {
+        return findSleepTrackerByPatientIdAndEffectiveDateUseCase.findSleepTrackerByPatientIdAndEffectiveDate(patientId, effectiveDate);
+    }
+
+    @Override
+    public Optional<SleepTracker> updateSleepTracker(SleepTracker sleepTracker, Long patientId, String effectiveDate) {
+        return updateSleepTrackerUseCase.updateSleepTracker(sleepTracker, patientId, effectiveDate);
     }
 
 }

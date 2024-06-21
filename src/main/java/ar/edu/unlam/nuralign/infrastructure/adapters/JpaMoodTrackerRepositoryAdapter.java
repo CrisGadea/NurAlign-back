@@ -2,12 +2,14 @@ package ar.edu.unlam.nuralign.infrastructure.adapters;
 
 import ar.edu.unlam.nuralign.application.ports.out.MoodTrackerRepositoryPort;
 import ar.edu.unlam.nuralign.domain.models.MoodTracker;
+import ar.edu.unlam.nuralign.infrastructure.entities.MoodTrackerEntity;
 import ar.edu.unlam.nuralign.infrastructure.mappers.MoodTrackerMapper;
 import ar.edu.unlam.nuralign.infrastructure.repositories.JpaMoodTrackerRepository;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class JpaMoodTrackerRepositoryAdapter implements MoodTrackerRepositoryPort {
@@ -45,9 +47,21 @@ public class JpaMoodTrackerRepositoryAdapter implements MoodTrackerRepositoryPor
     }
 
     @Override
-    public List<MoodTracker> findAllByPatientIdAndEffectiveDate(Long patientId, LocalDate effectiveDate) {
-        return repository.findAllByPatientIdAndEffectiveDate(patientId, effectiveDate).stream()
-                .map(MoodTrackerMapper::toModel)
-                .toList();
+    public MoodTracker findByPatientIdAndEffectiveDate(Long patientId, LocalDate effectiveDate) {
+        return MoodTrackerMapper.toModel(repository.findByPatientIdAndEffectiveDate(patientId, effectiveDate));
+    }
+
+    @Override
+    public Optional<MoodTracker> update(MoodTracker moodTracker, Long patientId, LocalDate effectiveDate) {
+        MoodTrackerEntity entityToSave = repository.findByPatientIdAndEffectiveDate(patientId, effectiveDate);
+        if (moodTracker.getAnxiousNotes() != null) entityToSave.setAnxiousNotes(moodTracker.getAnxiousNotes());
+        if (moodTracker.getAnxiousValue() != null) entityToSave.setAnxiousValue(moodTracker.getAnxiousValue());
+        if (moodTracker.getEffectiveDate() != null) entityToSave.setEffectiveDate(moodTracker.getEffectiveDate());
+        if (moodTracker.getHighestNotes() != null) entityToSave.setHighestNotes(moodTracker.getHighestNotes());
+        if (moodTracker.getHighestValue() != null) entityToSave.setHighestValue(moodTracker.getHighestValue());
+        if (moodTracker.getLowestNotes() != null) entityToSave.setLowestNotes(moodTracker.getLowestNotes());
+        if (moodTracker.getLowestValue() != null) entityToSave.setLowestValue(moodTracker.getLowestValue());
+
+        return Optional.of(MoodTrackerMapper.toModel(repository.save(entityToSave)));
     }
 }

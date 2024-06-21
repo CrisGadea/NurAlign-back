@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface JpaSleepTrackerRepository extends JpaRepository<SleepTrackerEntity, Long> {
     List<SleepTrackerEntity> findAllByPatientId(Long patientId);
-    List<SleepTrackerEntity> findAllByPatientIdAndEffectiveDate(Long patientId, LocalDate effectiveDate);
+    SleepTrackerEntity findByPatientIdAndEffectiveDate(Long patientId, LocalDate effectiveDate);
 }

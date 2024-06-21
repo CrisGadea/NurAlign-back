@@ -1,4 +1,20 @@
 # NurAlign Changelog
+
+## [3.3.0] - 2024-06-20
+### Changed
+- Change version of "changelog" and "pom.xml".
+- Fix Update Medication errors
+- Fix Update Tracker errors
+- Fix Update Patient errors
+- Fix Update Therapist errors
+- Changed GET methods in Trackers, Medication, Patient and Therapist
+- Changed POST methods in Trackers, Medication, Patient and Therapist
+- Changed PATCH methods in Trackers, Medication, Patient and Therapist
+
+### Added
+- New features for Patient and Trackers of web application.
+- New uses cases for Trackers and Medication.
+
 ## [3.2.1] - 2024-06-11
 ### Changed
 - Change version of "changelog" and "pom.xml".

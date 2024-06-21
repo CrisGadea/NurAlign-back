@@ -48,13 +48,11 @@ public class SleepTrackerController {
     }
 
     @GetMapping("/patient/{patientId}")
-    public ResponseEntity<List<SleepTrackerDto>> findAllSleepTrackersByPatientIdAndEffectiveDate(
+    public ResponseEntity<SleepTrackerDto> findSleepTrackerByPatientIdAndEffectiveDate(
             @PathVariable Long patientId,
             @RequestParam String effectiveDate) {
-        return ResponseEntity.ok(sleepTrackerService.findAllSleepTrackersByPatientIdAndEffectiveDate(
-                patientId, effectiveDate).stream()
-                    .map(SleepTrackerMapper::toDto)
-                    .collect(Collectors.toList())
+        return ResponseEntity.ok(SleepTrackerMapper.toDto(sleepTrackerService.findSleepTrackerByPatientIdAndEffectiveDate(
+                patientId, effectiveDate))
                 );
     }
 }
