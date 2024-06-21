@@ -50,4 +50,14 @@ public class MedicationTrackerController {
         );
     }
 
+    @PatchMapping("/{patientId}")
+    public ResponseEntity<MedicationTrackerDto> updateMedicationTrackerData(
+            @PathVariable Long patientId,
+            @RequestParam String effectiveDate,
+            @RequestBody MedicationTrackerDto medicationTrackerDto) {
+        return ResponseEntity.ok(MedicationTrackerMapper.toDto(medicationTrackerService.update(
+                MedicationTrackerMapper.toModel(medicationTrackerDto), patientId, effectiveDate).get())
+        );
+    }
+
 }

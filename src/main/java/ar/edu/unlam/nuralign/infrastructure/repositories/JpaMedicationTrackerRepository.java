@@ -10,4 +10,5 @@ public interface JpaMedicationTrackerRepository extends JpaRepository<Medication
     List<MedicationTrackerEntity> findAllByPatientId(Long patientId);
     MedicationTrackerEntity findByEffectiveDate(LocalDate effectiveDate);
     MedicationTrackerEntity findByPatientIdAndEffectiveDate(Long patientId, LocalDate effectiveDate);
+    Boolean existsByPatientIdAndEffectiveDate(Long patientId, LocalDate effectiveDate);
 }

@@ -6,6 +6,7 @@ import ar.edu.unlam.nuralign.infrastructure.dtos.MoodTrackerDto;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public class MoodTrackerService implements CreateMoodTrackerUseCase, FindMoodTrackerUseCase, FindAllMoodTrackersUseCase,
         FindMoodTrackerByPatientIdAndEffectiveDateUseCase, UpdateMoodTrackerUseCase {
@@ -49,7 +50,7 @@ public class MoodTrackerService implements CreateMoodTrackerUseCase, FindMoodTra
         }
 
         @Override
-        public MoodTracker updateMoodTracker(MoodTracker moodTracker, Long patientId, LocalDate effectiveDate) {
+        public Optional<MoodTracker> updateMoodTracker(MoodTracker moodTracker, Long patientId, LocalDate effectiveDate) {
             return updateMoodTrackerUseCase.updateMoodTracker(moodTracker, patientId, effectiveDate);
         }
 }

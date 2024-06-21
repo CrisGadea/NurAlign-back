@@ -2,12 +2,14 @@ package ar.edu.unlam.nuralign.infrastructure.adapters;
 
 import ar.edu.unlam.nuralign.application.ports.out.MedicationTrackerRepositoryPort;
 import ar.edu.unlam.nuralign.domain.models.MedicationTracker;
+import ar.edu.unlam.nuralign.infrastructure.entities.MedicationTrackerEntity;
 import ar.edu.unlam.nuralign.infrastructure.mappers.MedicationTrackerMapper;
 import ar.edu.unlam.nuralign.infrastructure.repositories.JpaMedicationTrackerRepository;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class JpaMedicationTrackerRepositoryAdapter implements MedicationTrackerRepositoryPort {
@@ -51,6 +53,20 @@ public class JpaMedicationTrackerRepositoryAdapter implements MedicationTrackerR
     @Override
     public MedicationTracker findByPatientIdAndEffectiveDate(Long patientId, LocalDate effectiveDate) {
         return MedicationTrackerMapper.toModel(jpaMedicationTrackerRepository.findByPatientIdAndEffectiveDate(patientId, effectiveDate));
+    }
+
+    @Override
+    public Optional<MedicationTracker> update(MedicationTracker medicationTracker, Long patientId, LocalDate effectiveDate) {
+        if (!jpaMedicationTrackerRepository.existsByPatientIdAndEffectiveDate(patientId, effectiveDate)) {
+            return Optional.empty();
+        }
+        MedicationTrackerEntity entityToUpdate = jpaMedicationTrackerRepository.findByPatientIdAndEffectiveDate(
+                patientId, effectiveDate);
+        if (medicationTracker.getTakenFlag() != null) {
+            entityToUpdate.setTakenFlag(medicationTracker.getTakenFlag());
+        }
+
+        return Optional.of(MedicationTrackerMapper.toModel(jpaMedicationTrackerRepository.save(entityToUpdate)));
     }
 
 }

@@ -61,8 +61,8 @@ public class SleepTrackerService implements CreateSleepTrackerUseCase,
     }
 
     @Override
-    public Optional<SleepTracker> updateSleepTracker(SleepTracker sleepTracker, Long patientId) {
-        return updateSleepTrackerUseCase.updateSleepTracker(sleepTracker, patientId);
+    public Optional<SleepTracker> updateSleepTracker(SleepTracker sleepTracker, Long patientId, String effectiveDate) {
+        return updateSleepTrackerUseCase.updateSleepTracker(sleepTracker, patientId, effectiveDate);
     }
 
 }

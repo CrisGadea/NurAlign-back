@@ -60,7 +60,7 @@ public class MoodTrackerController {
             @RequestParam LocalDate effectiveDate) {
         return ok(MoodTrackerMapper.toDto(
                 moodTrackerService.updateMoodTracker(
-                        MoodTrackerMapper.toModel(moodTrackerDto), patientId, effectiveDate)
+                        MoodTrackerMapper.toModel(moodTrackerDto), patientId, effectiveDate).get()
                 )
         );
     }

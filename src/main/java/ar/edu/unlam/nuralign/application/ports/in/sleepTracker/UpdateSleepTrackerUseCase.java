@@ -5,5 +5,5 @@ import ar.edu.unlam.nuralign.domain.models.SleepTracker;
 import java.util.Optional;
 
 public interface UpdateSleepTrackerUseCase {
-    Optional<SleepTracker> updateSleepTracker(SleepTracker sleepTracker, Long patientId);
+    Optional<SleepTracker> updateSleepTracker(SleepTracker sleepTracker, Long patientId, String effectiveDate);
 }

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Setter
 @Getter
@@ -25,6 +26,13 @@ public class TherapistEntity {
     private Boolean registeredFlag;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    @ManyToMany
+    @JoinTable(
+            name = "patient_therapist",
+            joinColumns = @JoinColumn(name = "therapist_id"),
+            inverseJoinColumns = @JoinColumn(name = "patient_id")
+    )
+    private List<PatientEntity> patients;
 
     public TherapistEntity() {}
 

@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface JpaMoodTrackerRepository extends JpaRepository<MoodTrackerEntity, Long>{
     List<MoodTrackerEntity> findAllByPatientId(Long patientId);
-    List<MoodTrackerEntity> findAllByPatientIdAndEffectiveDate(Long patientId, LocalDate effectiveDate);
+   MoodTrackerEntity findByPatientIdAndEffectiveDate(Long patientId, LocalDate effectiveDate);
+
 }

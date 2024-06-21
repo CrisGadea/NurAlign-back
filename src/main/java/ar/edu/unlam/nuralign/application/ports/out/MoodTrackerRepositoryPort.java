@@ -5,6 +5,7 @@ import ar.edu.unlam.nuralign.infrastructure.entities.MoodTrackerEntity;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface MoodTrackerRepositoryPort {
     MoodTracker save(MoodTracker moodTracker);
@@ -12,5 +13,5 @@ public interface MoodTrackerRepositoryPort {
     MoodTracker findById(Long id);
     List<MoodTracker> findAllByPatientId(Long patientId);
     MoodTracker findByPatientIdAndEffectiveDate(Long patientId, LocalDate effectiveDate);
-    MoodTrackerEntity update(MoodTracker moodTracker, Long patientId, LocalDate effectiveDate);
+    Optional<MoodTracker> update(MoodTracker moodTracker, Long patientId, LocalDate effectiveDate);
 }

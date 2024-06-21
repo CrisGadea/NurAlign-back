@@ -11,5 +11,5 @@ public interface SleepTrackerRepositoryPort {
     List<SleepTracker> findAll();
     List<SleepTracker> findAllByPatientId(Long patientId);
     SleepTracker findSleepTrackerByPatientIdAndEffectiveDate(Long patientId, String effectiveDate);
-    Optional<SleepTracker> update(SleepTracker sleepTracker, Long patientId);
+    Optional<SleepTracker> update(SleepTracker sleepTracker, Long patientId, String effectiveDate);
 }

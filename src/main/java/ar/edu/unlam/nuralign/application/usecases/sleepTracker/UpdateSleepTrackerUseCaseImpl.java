@@ -15,7 +15,7 @@ public class UpdateSleepTrackerUseCaseImpl implements UpdateSleepTrackerUseCase 
     }
 
     @Override
-    public Optional<SleepTracker> updateSleepTracker(SleepTracker sleepTracker, Long patientId){
-        return sleepTrackerRepositoryPort.update(sleepTracker, patientId);
+    public Optional<SleepTracker> updateSleepTracker(SleepTracker sleepTracker, Long patientId, String effectiveDate){
+        return sleepTrackerRepositoryPort.update(sleepTracker, patientId, effectiveDate);
     }
 }
