@@ -55,4 +55,15 @@ public class SleepTrackerController {
                 patientId, effectiveDate))
                 );
     }
+
+    @PatchMapping("/{patientId}")
+    public ResponseEntity<SleepTrackerDto> updateSleepTracker(
+            @PathVariable Long patientId,
+            @RequestBody SleepTrackerDto sleepTrackerDto,
+            @RequestParam String effectiveDate) {
+        return ResponseEntity.ok(SleepTrackerMapper.toDto(sleepTrackerService.updateSleepTracker(
+                SleepTrackerMapper.toDomain(sleepTrackerDto), patientId, effectiveDate).get())
+        );
+    }
+
 }
