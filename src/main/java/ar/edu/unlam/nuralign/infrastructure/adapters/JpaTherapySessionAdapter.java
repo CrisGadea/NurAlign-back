@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 public class JpaTherapySessionAdapter implements TherapySessionRepositoryPort {
 
     private JpaTherapySessionRepository repository;
+
     public JpaTherapySessionAdapter( JpaTherapySessionRepository repository ) {
         this.repository = repository;
     }
@@ -53,16 +54,35 @@ public class JpaTherapySessionAdapter implements TherapySessionRepositoryPort {
 
     @Override
     public TherapySession findBySessionId(Long sessionId) {
-    /*    List<TherapySessionEntity> entities =repository.f
-
-        */
-        return null;
+        return TherapySessionMapper.toModel(repository.findById(sessionId).get());
     }
 
     @Override
     public List<TherapySession> findAll() {
-
         List<TherapySessionEntity> entities= repository.findAll();
         return entities.stream().map(TherapySessionMapper::toModel).collect(Collectors.toList());
     }
+
+    @Override
+    public TherapySession update(Long sessionId, TherapySession therapySession) {
+        TherapySessionEntity therapySessionEntity= repository.findById(sessionId).get();
+        if (therapySession.getSessionFeel() != null) {
+            therapySessionEntity.setSessionFeel(therapySession.getSessionFeel());
+        }
+        if (therapySession.getEffectiveDate() != null) {
+            therapySessionEntity.setEffectiveDate(therapySession.getEffectiveDate());
+        }
+        if (therapySession.getPostSessionNotes() != null) {
+            therapySessionEntity.setPostSessionNotes(therapySession.getPostSessionNotes());
+        }
+        if (therapySession.getPreSessionNotes() != null) {
+            therapySessionEntity.setPreSessionNotes(therapySession.getPreSessionNotes());
+        }
+        if (therapySession.getSessionTime() != null) {
+            therapySessionEntity.setSessionTime(therapySession.getSessionTime());
+        }
+
+        return TherapySessionMapper.toModel(repository.save(therapySessionEntity));
+    }
+
 }

@@ -9,9 +9,8 @@ import java.util.List;
 @Repository
 public interface JpaTherapySessionRepository extends JpaRepository<TherapySessionEntity,Long> {
 
- List<TherapySessionEntity> findAllByPatientId(Long patientId);
+    List<TherapySessionEntity> findAllByPatientId(Long patientId);
 
     List<TherapySessionEntity> findAllByTherapistId(Long id);
-
 
 }

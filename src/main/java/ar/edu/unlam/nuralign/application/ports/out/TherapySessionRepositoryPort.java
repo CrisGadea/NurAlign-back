@@ -5,11 +5,10 @@ import ar.edu.unlam.nuralign.domain.models.TherapySession;
 import java.util.List;
 
 public interface TherapySessionRepositoryPort {
-
     TherapySession save(TherapySession therapySession);
-   List<TherapySession> findAllByPatientId(Long patientId);
-   List<TherapySession> findAllByTherapistId(Long therapistId);
+    List<TherapySession> findAllByPatientId(Long patientId);
+    List<TherapySession> findAllByTherapistId(Long therapistId);
     TherapySession findBySessionId(Long sessionId);
     List<TherapySession> findAll();
-
+    TherapySession update(Long sessionId, TherapySession therapySession);
 }

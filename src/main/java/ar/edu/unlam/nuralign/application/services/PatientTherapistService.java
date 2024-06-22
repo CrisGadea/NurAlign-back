@@ -24,8 +24,8 @@ public class PatientTherapistService implements AssignPatientToTherapistUseCase,
     }
 
     @Override
-    public void deletePatientTherapistAssignation(Long id) {
-        deletePatientTherapistAssignationUseCase.deletePatientTherapistAssignation(id);
+    public void deletePatientTherapistAssignation(Long patientId, Long therapistId) {
+        deletePatientTherapistAssignationUseCase.deletePatientTherapistAssignation(patientId, therapistId);
     }
 
     @Override
@@ -34,8 +34,8 @@ public class PatientTherapistService implements AssignPatientToTherapistUseCase,
     }
 
     @Override
-    public List<PatientTherapist> findAllPatientTherapistAssignations() {
-        return findAllPatientTherapistAssignationsUseCase.findAllPatientTherapistAssignations();
+    public List<PatientTherapist> findAllPatientTherapistAssignations(Long patientId) {
+        return findAllPatientTherapistAssignationsUseCase.findAllPatientTherapistAssignations(patientId);
     }
 
 }

@@ -9,11 +9,15 @@ import ar.edu.unlam.nuralign.application.usecases.patient.*;
 //import ar.edu.unlam.nuralign.application.usecases.patientTherapist.AssignPatientToTherapistUseCaseImpl;
 //import ar.edu.unlam.nuralign.application.usecases.patientTherapist.DeletePatientTherapistAssignationUseCaseImpl;
 //import ar.edu.unlam.nuralign.application.usecases.patientTherapist.FindAllPatientTherapistAssignationsUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.patientTherapist.AssignPatientToTherapistUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.patientTherapist.DeletePatientTherapistAssignationUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.patientTherapist.FindAllPatientTherapistAssignationsUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.sleepTracker.*;
 import ar.edu.unlam.nuralign.application.usecases.therapist.*;
 import ar.edu.unlam.nuralign.application.usecases.therapySession.CreateTherapySessionUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.therapySession.FindAllTherapySessionByPatientIdUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.therapySession.FindAllTherapySessionByTherapistIdUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.therapySession.UpdateTherapistSessionUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.turnTherapist.CreateTurnTherapistImpl;
 import ar.edu.unlam.nuralign.application.usecases.turnTherapist.DeleteTurnTherapistImpl;
 import ar.edu.unlam.nuralign.application.usecases.turnTherapist.FindAllByTherapistTurnTherapistImpl;
@@ -25,14 +29,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ApplicationConfig {
 
-//    @Bean
-//    public PatientTherapistService patientTherapistService(PatientTherapistRepositoryPort patientTherapistRepositoryPort) {
-//        return new PatientTherapistService(
-//                new AssignPatientToTherapistUseCaseImpl(patientTherapistRepositoryPort),
-//                new FindAllPatientTherapistAssignationsUseCaseImpl(patientTherapistRepositoryPort),
-//                new DeletePatientTherapistAssignationUseCaseImpl(patientTherapistRepositoryPort)
-//        );
-//    }
+    @Bean
+    public PatientTherapistService patientTherapistService(PatientTherapistRepositoryPort patientTherapistRepositoryPort) {
+        return new PatientTherapistService(
+                new AssignPatientToTherapistUseCaseImpl(patientTherapistRepositoryPort),
+                new FindAllPatientTherapistAssignationsUseCaseImpl(patientTherapistRepositoryPort),
+                new DeletePatientTherapistAssignationUseCaseImpl(patientTherapistRepositoryPort)
+        );
+    }
 
     @Bean
     public TherapistService therapistService(TherapistRepositoryPort therapistRepositoryPort) {
@@ -110,7 +114,8 @@ public class ApplicationConfig {
         return new TherapySessionService(
                 new CreateTherapySessionUseCaseImpl(therapySessionRepositoryPort),
                 new FindAllTherapySessionByPatientIdUseCaseImpl(therapySessionRepositoryPort),
-                new FindAllTherapySessionByTherapistIdUseCaseImpl(therapySessionRepositoryPort)
+                new FindAllTherapySessionByTherapistIdUseCaseImpl(therapySessionRepositoryPort),
+                new UpdateTherapistSessionUseCaseImpl(therapySessionRepositoryPort)
         );
 
     }
@@ -121,10 +126,10 @@ public class ApplicationConfig {
         return jpaTherapySessionAdapter;
     }
 
-//    @Bean
-//    public PatientTherapistRepositoryPort patientTherapistRepositoryPort(JpaPatientTherapistRepositoryAdapter jpaPatientTherapistRepositoryAdapter) {
-//        return jpaPatientTherapistRepositoryAdapter;
-//    }
+    @Bean
+    public PatientTherapistRepositoryPort patientTherapistRepositoryPort(JpaPatientTherapistRepositoryAdapter jpaPatientTherapistRepositoryAdapter) {
+        return jpaPatientTherapistRepositoryAdapter;
+    }
 
     @Bean
     public JpaTherapySessionAdapter therapySessionAdapter(JpaTherapySessionRepository adapter)
@@ -191,10 +196,10 @@ public JpaTurnTherapistRepositoryAdapter turnTherapistRepositoryAdapter(JpaTurnT
         return jpaMedicationTrackerRepositoryAdapter;
     }
 
-//    @Bean
-//    public JpaPatientTherapistRepositoryAdapter jpaPatientTherapistRepositoryAdapter(JpaPatientTherapistRepository adapter) {
-//        return new JpaPatientTherapistRepositoryAdapter(adapter);
-//    }
+    @Bean
+    public JpaPatientTherapistRepositoryAdapter jpaPatientTherapistRepositoryAdapter(JpaPatientTherapistRepository adapter) {
+        return new JpaPatientTherapistRepositoryAdapter(adapter);
+    }
 
     @Bean
     public JpaTherapistRepositoryAdapter jpaTherapistRepositoryAdapter(JpaTherapistRepository adapter) {

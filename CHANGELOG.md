@@ -1,5 +1,14 @@
 # NurAlign Changelog
 
+## [3.4.0] - 2024-06-21
+### Changed
+- Change version of "changelog" and "pom.xml".
+- Fix & Update PatientTherapist and Sessiontherapist errors
+
+### Added
+- New features for PatientTherapist and SessionTherapist of web and Mobile application.
+- New uses cases for PatientTherapist and SessionTherapist.
+
 ## [3.3.1] - 2024-06-20
 ### Changed
 - Change version of "changelog" and "pom.xml".
