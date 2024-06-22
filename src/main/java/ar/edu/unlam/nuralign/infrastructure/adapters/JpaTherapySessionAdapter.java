@@ -7,7 +7,6 @@ import ar.edu.unlam.nuralign.infrastructure.mappers.TherapySessionMapper;
 import ar.edu.unlam.nuralign.infrastructure.repositories.JpaTherapySessionRepository;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,7 +14,7 @@ import java.util.stream.Collectors;
 @Component
 public class JpaTherapySessionAdapter implements TherapySessionRepositoryPort {
 
-    private JpaTherapySessionRepository repository;
+    private final JpaTherapySessionRepository repository;
 
     public JpaTherapySessionAdapter( JpaTherapySessionRepository repository ) {
         this.repository = repository;

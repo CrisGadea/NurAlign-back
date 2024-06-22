@@ -9,7 +9,7 @@ import java.util.List;
 
 public class JpaPatientTherapistRepositoryAdapter implements PatientTherapistRepositoryPort {
 
-    private JpaPatientTherapistRepository repository;
+    private final JpaPatientTherapistRepository repository;
 
     public JpaPatientTherapistRepositoryAdapter(JpaPatientTherapistRepository repository) {
         this.repository = repository;
