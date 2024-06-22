@@ -1,5 +1,9 @@
 # NurAlign Changelog
 
+## [3.4.1] - 2024-06-22
+### Changed
+- Fix & Update TherapySession errors
+
 ## [3.4.0] - 2024-06-21
 ### Changed
 - Change version of "changelog" and "pom.xml".
