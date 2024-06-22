@@ -16,6 +16,6 @@ public class FindMoodTrackerByPatientIdAndEffectiveDateUseCaseImpl implements Fi
 
     @Override
     public MoodTracker findMoodTrackerByPatientIdAndEffectiveDate(Long patientId, String effectiveDate) {
-        return moodTrackerRepository.findByPatientIdAndEffectiveDate(patientId, LocalDate.parse(effectiveDate));
+        return moodTrackerRepository.findByPatientIdAndEffectiveDate(patientId, effectiveDate);
     }
 }

@@ -24,7 +24,7 @@ public class MoodTrackerController {
         this.moodTrackerService = moodTrackerService;
     }
 
-    @GetMapping("/patient/{patientId}")
+    @GetMapping("/patientId/{patientId}")
     public ResponseEntity<MoodTrackerDto> getMoodTrackerDataByPatientId(@PathVariable Long patientId) {
         return ok(MoodTrackerMapper.toDto(moodTrackerService.findMoodTracker(patientId)));
     }
@@ -37,7 +37,7 @@ public class MoodTrackerController {
                 );
     }
 
-    @GetMapping("/{patientId}")
+    @GetMapping("/patient/{patientId}")
     public ResponseEntity<MoodTrackerDto> getMoodTrackerDataByPatientIdAndEffectiveDate(
             @PathVariable Long patientId,
             @RequestParam String effectiveDate) {
@@ -57,7 +57,7 @@ public class MoodTrackerController {
     public ResponseEntity<MoodTrackerDto> updateMoodTrackerData(
             @PathVariable Long patientId,
             @RequestBody MoodTrackerDto moodTrackerDto,
-            @RequestParam LocalDate effectiveDate) {
+            @RequestParam String effectiveDate) {
         return ok(MoodTrackerMapper.toDto(
                 moodTrackerService.updateMoodTracker(
                         MoodTrackerMapper.toModel(moodTrackerDto), patientId, effectiveDate).get()

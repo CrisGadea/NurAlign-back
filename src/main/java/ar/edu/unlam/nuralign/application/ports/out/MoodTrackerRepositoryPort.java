@@ -12,6 +12,6 @@ public interface MoodTrackerRepositoryPort {
     List<MoodTracker> findAll();
     MoodTracker findById(Long id);
     List<MoodTracker> findAllByPatientId(Long patientId);
-    MoodTracker findByPatientIdAndEffectiveDate(Long patientId, LocalDate effectiveDate);
-    Optional<MoodTracker> update(MoodTracker moodTracker, Long patientId, LocalDate effectiveDate);
+    MoodTracker findByPatientIdAndEffectiveDate(Long patientId, String effectiveDate);
+    Optional<MoodTracker> update(MoodTracker moodTracker, Long patientId, String effectiveDate);
 }

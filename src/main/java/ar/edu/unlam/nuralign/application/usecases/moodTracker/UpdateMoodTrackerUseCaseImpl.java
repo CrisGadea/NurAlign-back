@@ -17,7 +17,7 @@ public class UpdateMoodTrackerUseCaseImpl implements UpdateMoodTrackerUseCase {
     }
 
     @Override
-    public Optional<MoodTracker> updateMoodTracker(MoodTracker moodTracker, Long patientId, LocalDate effectiveDate){
+    public Optional<MoodTracker> updateMoodTracker(MoodTracker moodTracker, Long patientId, String effectiveDate){
         return moodTrackerRepositoryPort.update(moodTracker, patientId, effectiveDate);
     }
 
