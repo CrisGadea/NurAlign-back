@@ -5,5 +5,5 @@ import ar.edu.unlam.nuralign.domain.models.PatientTherapist;
 import java.util.List;
 
 public interface FindAllPatientTherapistAssignationsUseCase {
-    List<PatientTherapist> findAllPatientTherapistAssignations();
+    List<PatientTherapist> findAllPatientTherapistAssignations(Long patientId);
 }

@@ -15,35 +15,40 @@ import java.util.List;
 @RequestMapping("/api/TherapySession")
 @CrossOrigin (origins = "*")
 public class TherapySessionController {
-private final TherapySessionService therapySessionService;
 
-public TherapySessionController(TherapySessionService therapySessionService) {
-    this.therapySessionService = therapySessionService;
-}
+    private final TherapySessionService therapySessionService;
 
+    public TherapySessionController(TherapySessionService therapySessionService) {
+        this.therapySessionService = therapySessionService;
+    }
 
-
-@PostMapping
-    public ResponseEntity<TherapySessionDto> createTherapySession(@RequestBody TherapySessionDto therapySessionDto)
-{
-    return ResponseEntity.status(HttpStatus.CREATED).
-            body(TherapySessionMapper.toDto(therapySessionService.createTherapySession(TherapySessionMapper.toModel(therapySessionDto)))
-            );
-}
-
-@GetMapping("/{patient_id}")
-    public ResponseEntity<List<TherapySession>> getAllTherapySessionByPatientId(@PathVariable Long patient_id)
+    @PostMapping
+        public ResponseEntity<TherapySessionDto> createTherapySession(@RequestBody TherapySessionDto therapySessionDto)
     {
-return ResponseEntity.ok(therapySessionService.FindAllTherapySessionByPatientId(patient_id));
+        return ResponseEntity.status(HttpStatus.CREATED).
+                body(TherapySessionMapper.toDto(therapySessionService.createTherapySession(TherapySessionMapper.toModel(therapySessionDto)))
+                );
+    }
+
+    @GetMapping("/{patient_id}")
+        public ResponseEntity<List<TherapySession>> getAllTherapySessionByPatientId(@PathVariable Long patient_id)
+        {
+    return ResponseEntity.ok(therapySessionService.FindAllTherapySessionByPatientId(patient_id));
+
+        }
+
+
+    @GetMapping("/therapist/{therapistId}")
+    public ResponseEntity<List<TherapySession>> getAllTherapySessionByTherapistId(@PathVariable Long therapistId)
+    {
+        return ResponseEntity.ok(therapySessionService.FindAllTherapySessionByTherapistId(therapistId));
 
     }
 
-
-    @GetMapping("/therapist/{therapist}")
-    public ResponseEntity<List<TherapySession>> getAllTherapySessionByTherapistId(@PathVariable Long therapist)
+    @PatchMapping("/{sessionId}")
+    public ResponseEntity<TherapySessionDto> updateTherapySession(@PathVariable Long sessionId, @RequestBody TherapySessionDto therapySessionDto)
     {
-        return ResponseEntity.ok(therapySessionService.FindAllTherapySessionByTherapistId(therapist));
-
+        return ResponseEntity.ok(TherapySessionMapper.toDto(therapySessionService.update(sessionId, TherapySessionMapper.toModel(therapySessionDto))));
     }
 
 }

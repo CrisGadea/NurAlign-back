@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -63,19 +62,4 @@ public class Patient extends User {
         this.companionNotifications = companionNotifications;
     }
 
-//    public Patient(String name, String lastName, String email, String password, String phoneNumber,
-//                   String registeredFlag,
-//                   Sex sex, Integer dni, LocalDate birthdate, String nickname, String generalNotifications,
-//                   String companionNotifications) {
-//        super(name, lastName, email, password);
-//        this.phone = phoneNumber;
-//        this.registeredFlag = registeredFlag;
-//        this.sex = sex;
-//        this.dni = dni;
-//        this.birthdate = birthdate;
-//        this.nickname = nickname;
-//        this.generalNotifications = generalNotifications;
-//        this.companionNotifications = companionNotifications;
-//
-//    }
 }

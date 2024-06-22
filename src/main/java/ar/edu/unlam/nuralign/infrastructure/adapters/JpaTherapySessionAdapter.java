@@ -7,7 +7,6 @@ import ar.edu.unlam.nuralign.infrastructure.mappers.TherapySessionMapper;
 import ar.edu.unlam.nuralign.infrastructure.repositories.JpaTherapySessionRepository;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,7 +14,8 @@ import java.util.stream.Collectors;
 @Component
 public class JpaTherapySessionAdapter implements TherapySessionRepositoryPort {
 
-    private JpaTherapySessionRepository repository;
+    private final JpaTherapySessionRepository repository;
+
     public JpaTherapySessionAdapter( JpaTherapySessionRepository repository ) {
         this.repository = repository;
     }
@@ -53,16 +53,35 @@ public class JpaTherapySessionAdapter implements TherapySessionRepositoryPort {
 
     @Override
     public TherapySession findBySessionId(Long sessionId) {
-    /*    List<TherapySessionEntity> entities =repository.f
-
-        */
-        return null;
+        return TherapySessionMapper.toModel(repository.findById(sessionId).get());
     }
 
     @Override
     public List<TherapySession> findAll() {
-
         List<TherapySessionEntity> entities= repository.findAll();
         return entities.stream().map(TherapySessionMapper::toModel).collect(Collectors.toList());
     }
+
+    @Override
+    public TherapySession update(Long sessionId, TherapySession therapySession) {
+        TherapySessionEntity therapySessionEntity= repository.findById(sessionId).get();
+        if (therapySession.getSessionFeel() != null) {
+            therapySessionEntity.setSessionFeel(therapySession.getSessionFeel());
+        }
+        if (therapySession.getEffectiveDate() != null) {
+            therapySessionEntity.setEffectiveDate(therapySession.getEffectiveDate());
+        }
+        if (therapySession.getPostSessionNotes() != null) {
+            therapySessionEntity.setPostSessionNotes(therapySession.getPostSessionNotes());
+        }
+        if (therapySession.getPreSessionNotes() != null) {
+            therapySessionEntity.setPreSessionNotes(therapySession.getPreSessionNotes());
+        }
+        if (therapySession.getSessionTime() != null) {
+            therapySessionEntity.setSessionTime(therapySession.getSessionTime());
+        }
+
+        return TherapySessionMapper.toModel(repository.save(therapySessionEntity));
+    }
+
 }
