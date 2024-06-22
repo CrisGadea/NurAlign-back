@@ -1,5 +1,9 @@
 # NurAlign Changelog
 
+## [3.4.2] - 2024-06-22
+### Changed
+- Fix & Update MoodTracker Path errors
+
 ## [3.4.1] - 2024-06-22
 ### Changed
 - Fix & Update TherapySession errors

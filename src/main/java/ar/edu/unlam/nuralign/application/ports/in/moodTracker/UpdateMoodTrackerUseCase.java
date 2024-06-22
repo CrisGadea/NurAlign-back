@@ -6,5 +6,5 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 public interface UpdateMoodTrackerUseCase {
-    Optional<MoodTracker> updateMoodTracker(MoodTracker moodTracker, Long patientId, LocalDate effectiveDate);
+    Optional<MoodTracker> updateMoodTracker(MoodTracker moodTracker, Long patientId, String effectiveDate);
 }

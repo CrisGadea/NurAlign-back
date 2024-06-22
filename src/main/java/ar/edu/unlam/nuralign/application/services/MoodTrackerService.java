@@ -50,7 +50,7 @@ public class MoodTrackerService implements CreateMoodTrackerUseCase, FindMoodTra
         }
 
         @Override
-        public Optional<MoodTracker> updateMoodTracker(MoodTracker moodTracker, Long patientId, LocalDate effectiveDate) {
+        public Optional<MoodTracker> updateMoodTracker(MoodTracker moodTracker, Long patientId, String effectiveDate) {
             return updateMoodTrackerUseCase.updateMoodTracker(moodTracker, patientId, effectiveDate);
         }
 }
