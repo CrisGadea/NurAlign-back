@@ -21,8 +21,7 @@ public class Therapist extends User{
     public Therapist() {}
 
     public Therapist(Long id, String name, String lastName, String email, String phoneNumber, String password,
-                     Integer documentNumber, String medicalLicense, Boolean registeredFlag, LocalDateTime createdAt,
-                        LocalDateTime updatedAt) {
+                     Integer documentNumber, String medicalLicense, Boolean registeredFlag) {
         super(id, name, lastName, email, password);
         this.documentNumber = documentNumber;
         this.medicalLicense = medicalLicense;

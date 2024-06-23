@@ -1,5 +1,14 @@
 # NurAlign Changelog
 
+## [3.5.0] - 2024-06-23
+### Changed
+- Change version of "changelog" and "pom.xml".
+- Fix & Update MoodTracker errors
+- Fix Therapist errors
+
+### Added
+- Controller Advise for MoodTracker Endpoint
+
 ## [3.4.2] - 2024-06-22
 ### Changed
 - Fix & Update MoodTracker Path errors

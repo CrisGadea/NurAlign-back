@@ -48,7 +48,8 @@ public class JpaMoodTrackerRepositoryAdapter implements MoodTrackerRepositoryPor
 
     @Override
     public MoodTracker findByPatientIdAndEffectiveDate(Long patientId, String effectiveDate) {
-        return MoodTrackerMapper.toModel(repository.findByPatientIdAndEffectiveDate(patientId, LocalDate.parse(effectiveDate)));
+        MoodTrackerEntity entity = repository.findByPatientIdAndEffectiveDate(patientId, LocalDate.parse(effectiveDate));
+        return MoodTrackerMapper.toModel(entity);
     }
 
     @Override

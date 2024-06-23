@@ -55,6 +55,9 @@ public class MoodTrackerMapper {
     }
 
     public static MoodTracker toModel(MoodTrackerEntity moodTrackerEntity) {
+        if (moodTrackerEntity == null) {
+            return null;
+        }
         return MoodTracker.builder()
                 .id(moodTrackerEntity.getId())
                 .patientId(moodTrackerEntity.getPatientId())

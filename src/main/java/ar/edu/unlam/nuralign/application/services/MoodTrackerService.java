@@ -45,7 +45,7 @@ public class MoodTrackerService implements CreateMoodTrackerUseCase, FindMoodTra
         }
 
         @Override
-        public MoodTracker findMoodTrackerByPatientIdAndEffectiveDate(Long patientId, String effectiveDate) {
+        public Optional<MoodTracker> findMoodTrackerByPatientIdAndEffectiveDate(Long patientId, String effectiveDate) {
             return findAllByPatientIdAndEffectiveDateUseCase.findMoodTrackerByPatientIdAndEffectiveDate(patientId, effectiveDate);
         }
 
