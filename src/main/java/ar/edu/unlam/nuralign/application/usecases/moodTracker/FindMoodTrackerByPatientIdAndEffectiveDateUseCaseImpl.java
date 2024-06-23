@@ -4,8 +4,7 @@ import ar.edu.unlam.nuralign.application.ports.in.moodTracker.FindMoodTrackerByP
 import ar.edu.unlam.nuralign.application.ports.out.MoodTrackerRepositoryPort;
 import ar.edu.unlam.nuralign.domain.models.MoodTracker;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.util.Optional;
 
 public class FindMoodTrackerByPatientIdAndEffectiveDateUseCaseImpl implements FindMoodTrackerByPatientIdAndEffectiveDateUseCase {
     private final MoodTrackerRepositoryPort moodTrackerRepository;
@@ -15,7 +14,7 @@ public class FindMoodTrackerByPatientIdAndEffectiveDateUseCaseImpl implements Fi
     }
 
     @Override
-    public MoodTracker findMoodTrackerByPatientIdAndEffectiveDate(Long patientId, String effectiveDate) {
-        return moodTrackerRepository.findByPatientIdAndEffectiveDate(patientId, effectiveDate);
+    public Optional<MoodTracker> findMoodTrackerByPatientIdAndEffectiveDate(Long patientId, String effectiveDate) {
+        return Optional.ofNullable(moodTrackerRepository.findByPatientIdAndEffectiveDate(patientId, effectiveDate));
     }
 }

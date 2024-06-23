@@ -29,9 +29,7 @@ public class TherapistMapper {
                 therapistEntity.getPassword(),
                 therapistEntity.getDocumentNumber(),
                 therapistEntity.getMedicalLicense(),
-                therapistEntity.getRegisteredFlag(),
-                therapistEntity.getCreatedAt(),
-                therapistEntity.getUpdatedAt()
+                therapistEntity.getRegisteredFlag()
                 );
     }
 
