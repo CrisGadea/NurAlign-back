@@ -39,6 +39,12 @@ jobs:
       MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
 
     steps:
+      - name: Agregar variables de entorno
+        run: |
+          MYSQL_URL=${{ secrets.MYSQL_URL }} >> $GITHUB_ENV
+          MYSQL_USER=${{ secrets.MYSQL_USER }} >> $GITHUB_ENV
+          MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} >> $GITHUB_ENV
+
       - name: Checkout code
         uses: actions/checkout@v2
 

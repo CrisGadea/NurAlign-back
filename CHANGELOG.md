@@ -1,6 +1,12 @@
 # NurAlign Changelog
 
+## [3.5.3] - 2024-06-23
+### Changed
+- Change version of "changelog" and "pom.xml" and "application.properties".
 
+## [3.5.2] - 2024-06-23
+### Changed
+- Change version of "changelog" and "pom.xml" and "application.properties".
 
 ## [3.5.1] - 2024-06-23
 ### Changed
