@@ -6,13 +6,12 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.2.5</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>ar.edu.unlam</groupId>
 	<artifactId>nuralign</artifactId>
-	<!-- Change version to RELEASE -->
-	<version>3.5.0-RELEASE</version>
-	<!--<version>0.0.1-SNAPSHOT</version>-->
+	<!-- Change version of RELEASE -->
+	<version>3.5.1-RELEASE</version>
 	<name>nuralign</name>
 	<description>nuralign</description>
 	<properties>
@@ -72,7 +71,6 @@
 			<version>0.10.2</version>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -89,5 +87,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
