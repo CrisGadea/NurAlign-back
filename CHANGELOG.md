@@ -1,5 +1,14 @@
 # NurAlign Changelog
 
+
+
+## [3.5.1] - 2024-06-23
+### Changed
+- Change version of "changelog" and "pom.xml".
+
+### Added
+- Environment variables for the application vps (MySQL)
+
 ## [3.5.0] - 2024-06-23
 ### Changed
 - Change version of "changelog" and "pom.xml".
