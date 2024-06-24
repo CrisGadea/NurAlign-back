@@ -7,6 +7,7 @@ import ar.edu.unlam.nuralign.application.ports.in.therapySession.UpdateTherapist
 import ar.edu.unlam.nuralign.domain.models.TherapySession;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class TherapySessionService implements CreateTherapySessionUseCase, FindAllTherapySessionByPatientIdUseCase,
@@ -47,7 +48,7 @@ private final UpdateTherapistSessionUseCase updateTherapistSessionUseCase;
     }
 
     @Override
-    public TherapySession update(Long sessionId, TherapySession therapySession) {
-        return updateTherapistSessionUseCase.update(sessionId, therapySession);
+    public TherapySession update(TherapySession therapySession, Long patientId, Long therapistId, LocalDate effectiveDate) {
+        return updateTherapistSessionUseCase.update(therapySession,patientId,therapistId,effectiveDate);
     }
 }

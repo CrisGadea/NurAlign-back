@@ -13,4 +13,8 @@ public interface JpaTherapySessionRepository extends JpaRepository<TherapySessio
 
     List<TherapySessionEntity> findAllByTherapistId(Long id);
 
+    TherapySessionEntity findByTherapistIdAndPatientIdAndEffectiveDate(
+            Long therapistId, Long patientId, String effectiveDate
+    );
+
 }

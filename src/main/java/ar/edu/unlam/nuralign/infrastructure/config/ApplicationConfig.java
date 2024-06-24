@@ -121,9 +121,9 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public TherapySessionRepositoryPort therapySessionRepositoryPort( JpaTherapySessionAdapter jpaTherapySessionAdapter)
+    public TherapySessionRepositoryPort therapySessionRepositoryPort( JpaTherapySessionRepositoryAdapter jpaTherapySessionRepositoryAdapter)
     {
-        return jpaTherapySessionAdapter;
+        return jpaTherapySessionRepositoryAdapter;
     }
 
     @Bean
@@ -132,9 +132,9 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public JpaTherapySessionAdapter therapySessionAdapter(JpaTherapySessionRepository adapter)
+    public JpaTherapySessionRepositoryAdapter therapySessionAdapter(JpaTherapySessionRepository adapter)
     {
-        return new JpaTherapySessionAdapter(adapter);
+        return new JpaTherapySessionRepositoryAdapter(adapter);
     }
 
 
