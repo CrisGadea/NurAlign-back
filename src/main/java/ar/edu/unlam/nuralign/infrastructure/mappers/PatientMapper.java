@@ -55,6 +55,7 @@ public class PatientMapper {
 
         public static PatientDto mapToDto(Patient patient) {
             return new PatientDto(
+                    patient.getId(),
                     patient.getName(),
                     patient.getLastName(),
                     patient.getEmail(),
