@@ -1,5 +1,10 @@
 # NurAlign Changelog
 
+## [3.6.1] - 2024-06-23
+### Changed
+- Change version of "changelog" and "pom.xml" and "application.properties".
+- Fix Update MoodTracker data
+
 ## [3.6.0] - 2024-06-23
 ### Changed
 - Change version of "changelog" and "pom.xml" and "application.properties".
