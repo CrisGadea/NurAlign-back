@@ -62,6 +62,8 @@ public class JpaMoodTrackerRepositoryAdapter implements MoodTrackerRepositoryPor
         if (moodTracker.getHighestValue() != null) entityToSave.setHighestValue(moodTracker.getHighestValue());
         if (moodTracker.getLowestNotes() != null) entityToSave.setLowestNotes(moodTracker.getLowestNotes());
         if (moodTracker.getLowestValue() != null) entityToSave.setLowestValue(moodTracker.getLowestValue());
+        if (moodTracker.getIrritableNotes() != null) entityToSave.setIrritableNotes(moodTracker.getIrritableNotes());
+        if (moodTracker.getIrritableValue() != null) entityToSave.setIrritableValue(moodTracker.getIrritableValue());
 
         return Optional.of(MoodTrackerMapper.toModel(repository.save(entityToSave)));
     }
