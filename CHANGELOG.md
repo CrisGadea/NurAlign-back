@@ -1,5 +1,13 @@
 # NurAlign Changelog
 
+## [3.6.0] - 2024-06-23
+### Changed
+- Change version of "changelog" and "pom.xml" and "application.properties".
+- Fix & Update TherapySession data
+
+### Added
+- New features for TherapySession of web application.
+
 ## [3.5.4] - 2024-06-23
 ### Changed
 - Change version of "changelog" and "pom.xml" and "application.properties".
