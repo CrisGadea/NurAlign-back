@@ -54,31 +54,12 @@ public class MoodTrackerController {
             }
         }  catch (ResourceNotFoundException e) {
             return ResponseEntity.noContent().build();
-            //ApiResponse response = new ApiResponse(e.getMessage(), 204, "accepted");
-            //return ResponseEntity.status(HttpStatus.NO_CONTENT).body(response);
         } catch (Exception e) {
             ApiResponse response = new ApiResponse("Error interno del servidor", 500, "error");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
 
         }
-////        if (tracker.isPresent()) {
-////            return new ResponseEntity<>(MoodTrackerMapper.toDto(tracker.get()), HttpStatus.OK);
-////        } else {
-////            throw new ResourceNotFoundException("El paciente solicitado no tiene ningún tracker completo para esa fecha dada");
-////        }
-//
-//        if (tracker.isPresent()) {
-//            return new ResponseEntity<>(MoodTrackerMapper.toDto(tracker.get()), HttpStatus.OK);
-//        } else {
-//            ApiResponse response = new ApiResponse(
-//                    "El paciente solicitado no tiene ningún tracker completo para esa fecha dada",
-//                    204,
-//                    "accepted");
-//            return ResponseEntity.noContent().build();
-            //return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
-  //      }
-    //}
 
     @PostMapping
     public ResponseEntity<MoodTrackerDto> createMoodTrackerData(@RequestBody MoodTrackerDto moodTrackerDto) {
