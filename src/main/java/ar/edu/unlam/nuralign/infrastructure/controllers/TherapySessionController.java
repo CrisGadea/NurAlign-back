@@ -47,6 +47,15 @@ public class TherapySessionController {
 
     }
 
+    @GetMapping("/patient/{patientId}/therapist/{therapistId}")
+    public ResponseEntity<List<TherapySession>> getAllTherapySessionByPatientIdAndTherapistId(
+            @PathVariable Long patientId,
+            @PathVariable Long therapistId)
+    {
+        return ResponseEntity.ok(therapySessionService.findAllTherapySessionsByPatientIdAndTherapistId(patientId, therapistId));
+    }
+
+
     @PatchMapping("/patient/{patientId}")
     public ResponseEntity<TherapySessionDto> updateTherapySession(
             @PathVariable Long patientId,

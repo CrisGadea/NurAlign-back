@@ -1,5 +1,6 @@
 package ar.edu.unlam.nuralign.infrastructure.config;
 
+import ar.edu.unlam.nuralign.application.ports.in.therapySession.FindAllTherapySessionsByPatientIdAndTherapistIdUseCase;
 import ar.edu.unlam.nuralign.application.ports.out.*;
 import ar.edu.unlam.nuralign.application.services.*;
 import ar.edu.unlam.nuralign.application.usecases.medication.*;
@@ -14,10 +15,7 @@ import ar.edu.unlam.nuralign.application.usecases.patientTherapist.DeletePatient
 import ar.edu.unlam.nuralign.application.usecases.patientTherapist.FindAllPatientTherapistAssignationsUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.sleepTracker.*;
 import ar.edu.unlam.nuralign.application.usecases.therapist.*;
-import ar.edu.unlam.nuralign.application.usecases.therapySession.CreateTherapySessionUseCaseImpl;
-import ar.edu.unlam.nuralign.application.usecases.therapySession.FindAllTherapySessionByPatientIdUseCaseImpl;
-import ar.edu.unlam.nuralign.application.usecases.therapySession.FindAllTherapySessionByTherapistIdUseCaseImpl;
-import ar.edu.unlam.nuralign.application.usecases.therapySession.UpdateTherapistSessionUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.therapySession.*;
 import ar.edu.unlam.nuralign.application.usecases.turnTherapist.CreateTurnTherapistImpl;
 import ar.edu.unlam.nuralign.application.usecases.turnTherapist.DeleteTurnTherapistImpl;
 import ar.edu.unlam.nuralign.application.usecases.turnTherapist.FindAllByTherapistTurnTherapistImpl;
@@ -115,7 +113,8 @@ public class ApplicationConfig {
                 new CreateTherapySessionUseCaseImpl(therapySessionRepositoryPort),
                 new FindAllTherapySessionByPatientIdUseCaseImpl(therapySessionRepositoryPort),
                 new FindAllTherapySessionByTherapistIdUseCaseImpl(therapySessionRepositoryPort),
-                new UpdateTherapistSessionUseCaseImpl(therapySessionRepositoryPort)
+                new UpdateTherapistSessionUseCaseImpl(therapySessionRepositoryPort),
+                new FindAllTherapySessionsByPatientIdAndTherapistIdUseCaseImpl(therapySessionRepositoryPort)
         );
 
     }

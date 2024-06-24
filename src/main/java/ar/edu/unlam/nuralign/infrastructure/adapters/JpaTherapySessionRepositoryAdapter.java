@@ -65,6 +65,12 @@ public class JpaTherapySessionRepositoryAdapter implements TherapySessionReposit
     }
 
     @Override
+    public List<TherapySession> findAllByPatientIdAndTherapistId(Long patientId, Long therapistId) {
+        List<TherapySessionEntity> entities= repository.findAllByPatientIdAndTherapistId(patientId, therapistId);
+        return entities.stream().map(TherapySessionMapper::toModel).collect(Collectors.toList());
+    }
+
+    @Override
     public TherapySession update(TherapySession therapySession, Long patientId, Long therapistId, LocalDate effectiveDate) {
         TherapySessionEntity therapySessionEntity = repository.findByTherapistIdAndPatientIdAndEffectiveDate(
                 patientId, therapistId, String.valueOf(effectiveDate));
