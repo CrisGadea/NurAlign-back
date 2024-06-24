@@ -4,6 +4,8 @@ import ar.edu.unlam.nuralign.application.ports.in.therapySession.UpdateTherapist
 import ar.edu.unlam.nuralign.application.ports.out.TherapySessionRepositoryPort;
 import ar.edu.unlam.nuralign.domain.models.TherapySession;
 
+import java.time.LocalDate;
+
 public class UpdateTherapistSessionUseCaseImpl implements UpdateTherapistSessionUseCase {
     private final TherapySessionRepositoryPort therapySessionRepositoryPort;
 
@@ -12,7 +14,7 @@ public class UpdateTherapistSessionUseCaseImpl implements UpdateTherapistSession
     }
 
     @Override
-    public TherapySession update(Long sessionId, TherapySession therapySession) {
-        return therapySessionRepositoryPort.save(therapySession);
+    public TherapySession update(TherapySession therapySession, Long patientId, Long therapistId, LocalDate effectiveDate) {
+        return therapySessionRepositoryPort.update(therapySession, patientId, therapistId, effectiveDate);
     }
 }

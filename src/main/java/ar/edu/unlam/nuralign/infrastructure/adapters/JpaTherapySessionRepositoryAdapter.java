@@ -7,16 +7,18 @@ import ar.edu.unlam.nuralign.infrastructure.mappers.TherapySessionMapper;
 import ar.edu.unlam.nuralign.infrastructure.repositories.JpaTherapySessionRepository;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
-public class JpaTherapySessionAdapter implements TherapySessionRepositoryPort {
+public class JpaTherapySessionRepositoryAdapter implements TherapySessionRepositoryPort {
 
     private final JpaTherapySessionRepository repository;
 
-    public JpaTherapySessionAdapter( JpaTherapySessionRepository repository ) {
+    public JpaTherapySessionRepositoryAdapter(JpaTherapySessionRepository repository ) {
         this.repository = repository;
     }
 
@@ -63,13 +65,20 @@ public class JpaTherapySessionAdapter implements TherapySessionRepositoryPort {
     }
 
     @Override
-    public TherapySession update(Long sessionId, TherapySession therapySession) {
-        TherapySessionEntity therapySessionEntity= repository.findById(sessionId).get();
+    public List<TherapySession> findAllByPatientIdAndTherapistId(Long patientId, Long therapistId) {
+        List<TherapySessionEntity> entities= repository.findAllByPatientIdAndTherapistId(patientId, therapistId);
+        return entities.stream().map(TherapySessionMapper::toModel).collect(Collectors.toList());
+    }
+
+    @Override
+    public TherapySession update(TherapySession therapySession, Long patientId, Long therapistId, LocalDate effectiveDate) {
+        TherapySessionEntity therapySessionEntity = repository.findByTherapistIdAndPatientIdAndEffectiveDate(
+                patientId, therapistId, String.valueOf(effectiveDate));
         if (therapySession.getSessionFeel() != null) {
             therapySessionEntity.setSessionFeel(therapySession.getSessionFeel());
         }
         if (therapySession.getEffectiveDate() != null) {
-            therapySessionEntity.setEffectiveDate(therapySession.getEffectiveDate());
+            therapySessionEntity.setEffectiveDate(String.valueOf(therapySession.getEffectiveDate()));
         }
         if (therapySession.getPostSessionNotes() != null) {
             therapySessionEntity.setPostSessionNotes(therapySession.getPostSessionNotes());

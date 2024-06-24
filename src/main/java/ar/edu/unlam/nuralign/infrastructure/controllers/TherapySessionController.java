@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -26,14 +27,15 @@ public class TherapySessionController {
         public ResponseEntity<TherapySessionDto> createTherapySession(@RequestBody TherapySessionDto therapySessionDto)
     {
         return ResponseEntity.status(HttpStatus.CREATED).
-                body(TherapySessionMapper.toDto(therapySessionService.createTherapySession(TherapySessionMapper.toModel(therapySessionDto)))
+                body(TherapySessionMapper.toDto(therapySessionService.createTherapySession(
+                        TherapySessionMapper.toModel(therapySessionDto)))
                 );
     }
 
-    @GetMapping("/{patient_id}")
-        public ResponseEntity<List<TherapySession>> getAllTherapySessionByPatientId(@PathVariable Long patient_id)
+    @GetMapping("/patient/{patientId}")
+        public ResponseEntity<List<TherapySession>> getAllTherapySessionByPatientId(@PathVariable Long patientId)
         {
-    return ResponseEntity.ok(therapySessionService.FindAllTherapySessionByPatientId(patient_id));
+    return ResponseEntity.ok(therapySessionService.FindAllTherapySessionByPatientId(patientId));
 
         }
 
@@ -45,10 +47,30 @@ public class TherapySessionController {
 
     }
 
-    @PatchMapping("/{sessionId}")
-    public ResponseEntity<TherapySessionDto> updateTherapySession(@PathVariable Long sessionId, @RequestBody TherapySessionDto therapySessionDto)
+    @GetMapping("/patient/{patientId}/therapist/{therapistId}")
+    public ResponseEntity<List<TherapySession>> getAllTherapySessionByPatientIdAndTherapistId(
+            @PathVariable Long patientId,
+            @PathVariable Long therapistId)
     {
-        return ResponseEntity.ok(TherapySessionMapper.toDto(therapySessionService.update(sessionId, TherapySessionMapper.toModel(therapySessionDto))));
+        return ResponseEntity.ok(therapySessionService.findAllTherapySessionsByPatientIdAndTherapistId(patientId, therapistId));
+    }
+
+
+    @PatchMapping("/patient/{patientId}")
+    public ResponseEntity<TherapySessionDto> updateTherapySession(
+            @PathVariable Long patientId,
+            @RequestBody TherapySessionDto therapySession,
+            @RequestParam Long therapistId,
+            @RequestParam String effectiveDate)
+    {
+        TherapySession session = therapySessionService.update(
+                TherapySessionMapper.toModel(therapySession),
+                patientId,
+                therapistId,
+                LocalDate.parse(effectiveDate)
+        );
+        return session == null ? ResponseEntity.notFound().build() :
+                ResponseEntity.ok(TherapySessionMapper.toDto(session));
     }
 
 }

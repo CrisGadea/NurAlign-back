@@ -2,6 +2,8 @@ package ar.edu.unlam.nuralign.domain.models;
 
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @Builder
@@ -15,7 +17,7 @@ public class TherapySession {
 
     private Long therapistId;
 
-    private String effectiveDate;
+    private LocalDate effectiveDate;
 
     private Integer sessionTime;
 
