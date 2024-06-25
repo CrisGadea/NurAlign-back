@@ -1,5 +1,12 @@
 # NurAlign Changelog
 
+## [3.7.0] - 2024-06-25
+### Changed
+- Change version of "changelog" and "pom.xml".
+
+### Added
+- New features for patientTherapist API.
+
 ## [3.6.2] - 2024-06-25
 ### Changed
 - Change version of "changelog" and "pom.xml" and "application.properties".

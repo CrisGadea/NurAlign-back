@@ -2,9 +2,11 @@ package ar.edu.unlam.nuralign.infrastructure.adapters;
 
 import ar.edu.unlam.nuralign.application.ports.out.TherapistRepositoryPort;
 import ar.edu.unlam.nuralign.domain.models.Therapist;
+import ar.edu.unlam.nuralign.infrastructure.entities.PatientTherapistEntity;
 import ar.edu.unlam.nuralign.infrastructure.entities.TherapistEntity;
 import ar.edu.unlam.nuralign.infrastructure.exceptions.LoginErrorException;
 import ar.edu.unlam.nuralign.infrastructure.mappers.TherapistMapper;
+import ar.edu.unlam.nuralign.infrastructure.repositories.JpaPatientTherapistRepository;
 import ar.edu.unlam.nuralign.infrastructure.repositories.JpaTherapistRepository;
 import ar.edu.unlam.nuralign.infrastructure.utils.CheckPassword;
 import org.springframework.stereotype.Component;
@@ -18,10 +20,14 @@ public class JpaTherapistRepositoryAdapter implements TherapistRepositoryPort {
 
     private final JpaTherapistRepository jpaTherapistRepository;
 
+    private final JpaPatientTherapistRepository jpaPatientTherapistRepository;
+
     private CheckPassword checkPassword;
 
-    public JpaTherapistRepositoryAdapter(JpaTherapistRepository jpaTherapistRepository) {
+    public JpaTherapistRepositoryAdapter(JpaTherapistRepository jpaTherapistRepository,
+                                         JpaPatientTherapistRepository jpaPatientTherapistRepository) {
         this.jpaTherapistRepository = jpaTherapistRepository;
+        this.jpaPatientTherapistRepository = jpaPatientTherapistRepository;
         this.checkPassword = null;
     }
 
@@ -35,7 +41,17 @@ public class JpaTherapistRepositoryAdapter implements TherapistRepositoryPort {
         therapistEntity.setIsSuscribed(false);
         if (therapist.getPassword() != null) therapistEntity.setPassword(this.checkPassword.hashPassword());
         else therapistEntity.setPassword("AJFINWIEGNWIGI5454yhrtdnERH$EH$G");
-        return TherapistMapper.mapToDomain(jpaTherapistRepository.save(therapistEntity));
+        TherapistEntity therapistEntitySaved = jpaTherapistRepository.save(therapistEntity);
+        if (therapist.getPatientId() != null) {
+//            if () {
+//                throw new LoginErrorException("Paciente no registrado");
+//            }
+            PatientTherapistEntity patientTherapistEntity = new PatientTherapistEntity();
+            patientTherapistEntity.setPatientId(therapist.getPatientId());
+            patientTherapistEntity.setTherapistId(therapistEntitySaved.getId());
+            jpaPatientTherapistRepository.save(patientTherapistEntity);
+        }
+        return TherapistMapper.mapToDomain(therapistEntitySaved);
     }
 
     @Override

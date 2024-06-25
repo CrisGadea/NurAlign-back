@@ -11,6 +11,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class TherapistDto {
 
+    private Long id;
+
     private String name;
 
     private String lastName;
@@ -26,5 +28,20 @@ public class TherapistDto {
     private String medicalLicense;
 
     private String registeredFlag;
+
+    private Long patientId;
+
+    public TherapistDto(Long id, String name, String lastName, String email, String password, String phoneNumber,
+                        Integer documentNumber, String medicalLicense, String registeredFlag) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.documentNumber = documentNumber;
+        this.medicalLicense = medicalLicense;
+        this.registeredFlag = registeredFlag;
+    }
 
 }

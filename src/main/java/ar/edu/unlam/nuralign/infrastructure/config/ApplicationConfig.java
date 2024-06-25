@@ -1,15 +1,11 @@
 package ar.edu.unlam.nuralign.infrastructure.config;
 
-import ar.edu.unlam.nuralign.application.ports.in.therapySession.FindAllTherapySessionsByPatientIdAndTherapistIdUseCase;
 import ar.edu.unlam.nuralign.application.ports.out.*;
 import ar.edu.unlam.nuralign.application.services.*;
 import ar.edu.unlam.nuralign.application.usecases.medication.*;
 import ar.edu.unlam.nuralign.application.usecases.medicationTracker.*;
 import ar.edu.unlam.nuralign.application.usecases.moodTracker.*;
 import ar.edu.unlam.nuralign.application.usecases.patient.*;
-//import ar.edu.unlam.nuralign.application.usecases.patientTherapist.AssignPatientToTherapistUseCaseImpl;
-//import ar.edu.unlam.nuralign.application.usecases.patientTherapist.DeletePatientTherapistAssignationUseCaseImpl;
-//import ar.edu.unlam.nuralign.application.usecases.patientTherapist.FindAllPatientTherapistAssignationsUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.patientTherapist.AssignPatientToTherapistUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.patientTherapist.DeletePatientTherapistAssignationUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.patientTherapist.FindAllPatientTherapistAssignationsUseCaseImpl;
@@ -208,8 +204,9 @@ public JpaTurnTherapistRepositoryAdapter turnTherapistRepositoryAdapter(JpaTurnT
     }
 
     @Bean
-    public JpaTherapistRepositoryAdapter jpaTherapistRepositoryAdapter(JpaTherapistRepository adapter) {
-        return new JpaTherapistRepositoryAdapter(adapter);
+    public JpaTherapistRepositoryAdapter jpaTherapistRepositoryAdapter(JpaTherapistRepository adapter,
+                                         JpaPatientTherapistRepository patientTherapistRepository) {
+        return new JpaTherapistRepositoryAdapter(adapter, patientTherapistRepository);
     }
 
     @Bean
