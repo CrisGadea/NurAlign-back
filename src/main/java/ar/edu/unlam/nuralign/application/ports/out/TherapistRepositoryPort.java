@@ -11,4 +11,5 @@ public interface TherapistRepositoryPort {
     Optional<Therapist> findById(Long id);
     List<Therapist> findAll();
     void deleteById(Long id);
+    Therapist login(String email, String password);
 }

@@ -17,6 +17,8 @@ public class TherapistDto {
 
     private String email;
 
+    private String password;
+
     private String phoneNumber;
 
     private Integer documentNumber;
