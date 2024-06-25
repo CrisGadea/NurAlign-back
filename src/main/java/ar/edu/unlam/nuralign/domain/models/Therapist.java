@@ -16,12 +16,12 @@ public class Therapist extends User{
 
     private String medicalLicense;
 
-    private Boolean registeredFlag;
+    private String registeredFlag;
 
     public Therapist() {}
 
     public Therapist(Long id, String name, String lastName, String email, String phoneNumber, String password,
-                     Integer documentNumber, String medicalLicense, Boolean registeredFlag) {
+                     Integer documentNumber, String medicalLicense, String registeredFlag) {
         super(id, name, lastName, email, password);
         this.documentNumber = documentNumber;
         this.medicalLicense = medicalLicense;

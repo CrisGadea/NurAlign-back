@@ -15,12 +15,12 @@ public class TherapistTest {
         therapist.setId(1L);
         therapist.setDocumentNumber(12345678);
         therapist.setMedicalLicense("123456");
-        therapist.setRegisteredFlag(true);
+        therapist.setRegisteredFlag("Y");
 
         assert therapist.getId() == 1L;
         assert therapist.getDocumentNumber() == 12345678;
         assert therapist.getMedicalLicense().equals("123456");
-        assert therapist.getRegisteredFlag().equals(true);
+        assert therapist.getRegisteredFlag().equals("Y");
     }
 
     @Test

@@ -12,7 +12,7 @@ public class CheckPassword {
 
     public CheckPassword() {}
 
-    private boolean checkPassword(String password, String hashedPassword) {
+    public boolean checkPassword(String password, String hashedPassword) {
         BCrypt.Verifyer verifyer = BCrypt.verifyer();
         BCrypt.Result result = verifyer.verify(password.toCharArray(), hashedPassword);
         return result.verified;

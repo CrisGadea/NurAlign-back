@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
-@Table(name = "therapist")
+@Table(name = "therapists")
 public class TherapistEntity {
 
     @Id
@@ -23,7 +23,8 @@ public class TherapistEntity {
     private String phoneNumber;
     private String medicalLicense;
     private Integer documentNumber;
-    private Boolean registeredFlag;
+    private String registeredFlag;
+    private Boolean isSuscribed;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     @ManyToMany
@@ -36,9 +37,8 @@ public class TherapistEntity {
 
     public TherapistEntity() {}
 
-    public TherapistEntity(Long id, String name, String lastName, String email,  String phoneNumber, String password,
-                           Integer documentNumber, String medicalLicense, Boolean registeredFlag) {
-        this.id = id;
+    public TherapistEntity(String name, String lastName, String email,  String phoneNumber, String password,
+                           Integer documentNumber, String medicalLicense, String registeredFlag) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;

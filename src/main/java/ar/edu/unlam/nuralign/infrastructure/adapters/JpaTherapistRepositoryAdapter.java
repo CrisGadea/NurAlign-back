@@ -3,6 +3,7 @@ package ar.edu.unlam.nuralign.infrastructure.adapters;
 import ar.edu.unlam.nuralign.application.ports.out.TherapistRepositoryPort;
 import ar.edu.unlam.nuralign.domain.models.Therapist;
 import ar.edu.unlam.nuralign.infrastructure.entities.TherapistEntity;
+import ar.edu.unlam.nuralign.infrastructure.exceptions.LoginErrorException;
 import ar.edu.unlam.nuralign.infrastructure.mappers.TherapistMapper;
 import ar.edu.unlam.nuralign.infrastructure.repositories.JpaTherapistRepository;
 import ar.edu.unlam.nuralign.infrastructure.utils.CheckPassword;
@@ -28,10 +29,12 @@ public class JpaTherapistRepositoryAdapter implements TherapistRepositoryPort {
     public Therapist save(Therapist therapist) {
         this.checkPassword = new CheckPassword(therapist.getPassword());
         TherapistEntity therapistEntity = TherapistMapper.mapToEntity(therapist);
-        therapistEntity.setRegisteredFlag(true);
+        if (therapist.getRegisteredFlag() == null) therapistEntity.setRegisteredFlag("Y");
         therapistEntity.setCreatedAt(LocalDateTime.now());
         therapistEntity.setUpdatedAt(LocalDateTime.now());
-        therapistEntity.setPassword(this.checkPassword.hashPassword());
+        therapistEntity.setIsSuscribed(false);
+        if (therapist.getPassword() != null) therapistEntity.setPassword(this.checkPassword.hashPassword());
+        else therapistEntity.setPassword("AJFINWIEGNWIGI5454yhrtdnERH$EH$G");
         return TherapistMapper.mapToDomain(jpaTherapistRepository.save(therapistEntity));
     }
 
@@ -66,6 +69,17 @@ public class JpaTherapistRepositoryAdapter implements TherapistRepositoryPort {
     public void deleteById(Long id) {
         jpaTherapistRepository.deleteById(id);
         jpaTherapistRepository.findById(id);
+    }
+
+    @Override
+    public Therapist login(String email, String password) {
+        TherapistEntity therapistEntity = jpaTherapistRepository.findByEmail(email);
+        this.checkPassword = new CheckPassword();
+        if (therapistEntity == null) throw new LoginErrorException("Usuario no registrado");
+        if(this.checkPassword.checkPassword(password, therapistEntity.getPassword()))
+            return TherapistMapper.mapToDomain(therapistEntity);
+        else
+            throw new LoginErrorException("Contraseña incorrecta");
     }
 
 }

@@ -107,6 +107,13 @@ public class ApplicationConfig {
     }
 
     @Bean
+    public LoginTherapistService loginTherapistService(TherapistRepositoryPort therapistRepositoryPort) {
+        return new LoginTherapistService(
+                new LoginTherapistUseCaseImpl(therapistRepositoryPort)
+        );
+    }
+
+    @Bean
     public TherapySessionService therapySessionService(TherapySessionRepositoryPort therapySessionRepositoryPort)
     {
         return new TherapySessionService(
