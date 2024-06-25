@@ -35,6 +35,7 @@ public class TherapistMapper {
 
     public static TherapistDto mapToDto(Therapist therapist) {
         return new TherapistDto(
+                therapist.getId(),
                 therapist.getName(),
                 therapist.getLastName(),
                 therapist.getEmail(),
@@ -56,7 +57,8 @@ public class TherapistMapper {
                 therapistDto.getPassword(),
                 therapistDto.getDocumentNumber(),
                 therapistDto.getMedicalLicense(),
-                therapistDto.getRegisteredFlag()
+                therapistDto.getRegisteredFlag(),
+                therapistDto.getPatientId()
                 );
     }
 

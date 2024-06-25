@@ -208,8 +208,9 @@ public JpaTurnTherapistRepositoryAdapter turnTherapistRepositoryAdapter(JpaTurnT
     }
 
     @Bean
-    public JpaTherapistRepositoryAdapter jpaTherapistRepositoryAdapter(JpaTherapistRepository adapter) {
-        return new JpaTherapistRepositoryAdapter(adapter);
+    public JpaTherapistRepositoryAdapter jpaTherapistRepositoryAdapter(JpaTherapistRepository adapter,
+                                         JpaPatientTherapistRepository patientTherapistRepository) {
+        return new JpaTherapistRepositoryAdapter(adapter, patientTherapistRepository);
     }
 
     @Bean

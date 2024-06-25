@@ -18,6 +18,8 @@ public class Therapist extends User{
 
     private String registeredFlag;
 
+    private Long patientId;
+
     public Therapist() {}
 
     public Therapist(Long id, String name, String lastName, String email, String phoneNumber, String password,
@@ -27,6 +29,16 @@ public class Therapist extends User{
         this.medicalLicense = medicalLicense;
         this.registeredFlag = registeredFlag;
         this.phoneNumber = phoneNumber;
+    }
+
+    public Therapist(Long id, String name, String lastName, String email, String phoneNumber, String password,
+                     Integer documentNumber, String medicalLicense, String registeredFlag, Long patientId) {
+        super(id, name, lastName, email, password);
+        this.documentNumber = documentNumber;
+        this.medicalLicense = medicalLicense;
+        this.registeredFlag = registeredFlag;
+        this.phoneNumber = phoneNumber;
+        this.patientId = patientId;
     }
 
     @Override
