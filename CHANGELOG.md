@@ -1,5 +1,11 @@
 # NurAlign Changelog
 
+## [3.7.1] - 2024-06-26
+### Changed
+- Change version of "changelog" and "pom.xml".
+- Fix Post PatientTherapsit data
+- Fix MedicationTracker data
+
 ## [3.7.0] - 2024-06-25
 ### Changed
 - Change version of "changelog" and "pom.xml".

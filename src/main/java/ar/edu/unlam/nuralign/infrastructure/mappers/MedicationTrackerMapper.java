@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 public class MedicationTrackerMapper {
     public static MedicationTrackerDto toDto(MedicationTracker model){
+        if (model == null) return null;
         return MedicationTrackerDto.builder()
                 .id(model.getId())
                 .patientMedicationId(model.getPatientId())
@@ -17,6 +18,7 @@ public class MedicationTrackerMapper {
     }
 
     public static MedicationTracker toModel(MedicationTrackerDto dto){
+        if (dto == null) return null;
         return MedicationTracker.builder()
                 .id(dto.getId())
                 .patientId(dto.getPatientMedicationId())
@@ -26,6 +28,7 @@ public class MedicationTrackerMapper {
     }
 
     public static MedicationTracker toModel(MedicationTrackerEntity entity){
+        if (entity == null) return null;
         return MedicationTracker.builder()
                 .id(entity.getId())
                 .patientId(entity.getPatientId())
@@ -35,6 +38,7 @@ public class MedicationTrackerMapper {
     }
 
     public static MedicationTrackerEntity toEntity(MedicationTracker model){
+        if (model == null) return null;
         return MedicationTrackerEntity.builder()
                 .patientId(model.getPatientId())
                 .effectiveDate(model.getEffectiveDate())

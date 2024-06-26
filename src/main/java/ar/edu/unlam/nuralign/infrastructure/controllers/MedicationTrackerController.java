@@ -1,6 +1,7 @@
 package ar.edu.unlam.nuralign.infrastructure.controllers;
 
 import ar.edu.unlam.nuralign.application.services.MedicationTrackersService;
+import ar.edu.unlam.nuralign.domain.models.MedicationTracker;
 import ar.edu.unlam.nuralign.infrastructure.dtos.MedicationTrackerDto;
 import ar.edu.unlam.nuralign.infrastructure.mappers.MedicationTrackerMapper;
 import org.springframework.http.HttpStatus;
@@ -38,10 +39,11 @@ public class MedicationTrackerController {
     public ResponseEntity<MedicationTrackerDto> getMedicationTrackerDataByPatientIdAndEffectiveDate(
             @PathVariable Long patientId,
             @RequestParam String effectiveDate) {
-        return ResponseEntity.ok(MedicationTrackerMapper.toDto(medicationTrackerService.findMedicationTrackerByPatientIdAndEffectiveDate(
-                patientId, LocalDate.parse(effectiveDate)))
-                );
-    }
+        MedicationTracker tracker = medicationTrackerService.findMedicationTrackerByPatientIdAndEffectiveDate(
+                patientId, LocalDate.parse(effectiveDate));
+        return tracker == null ?
+            ResponseEntity.notFound().build() : ResponseEntity.ok(MedicationTrackerMapper.toDto(tracker));
+        }
 
     @PostMapping
     public ResponseEntity<MedicationTrackerDto> createMedicationTrackerData(@RequestBody MedicationTrackerDto medicationTrackerDto) {

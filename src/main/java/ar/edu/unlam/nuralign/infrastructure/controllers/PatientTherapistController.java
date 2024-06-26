@@ -1,6 +1,7 @@
 package ar.edu.unlam.nuralign.infrastructure.controllers;
 
 import ar.edu.unlam.nuralign.application.services.PatientTherapistService;
+import ar.edu.unlam.nuralign.domain.models.PatientTherapist;
 import ar.edu.unlam.nuralign.infrastructure.dtos.PatientTherapistDto;
 import ar.edu.unlam.nuralign.infrastructure.mappers.PatientTherapistMapper;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +29,8 @@ public class PatientTherapistController {
 
     @PostMapping
     public ResponseEntity<PatientTherapistDto> create(@RequestBody PatientTherapistDto patientTherapistDto) {
-        return ResponseEntity.ok(PatientTherapistMapper.toDto(patientTherapistService.assignPatientToTherapist(
-                PatientTherapistMapper.toModel(patientTherapistDto))));
+        PatientTherapist newRelationship = patientTherapistService.assignPatientToTherapist(PatientTherapistMapper.toModel(patientTherapistDto));
+        return newRelationship == null ? ResponseEntity.badRequest().build() : ResponseEntity.ok(PatientTherapistMapper.toDto(newRelationship));
     }
 
     @DeleteMapping("/{patientId}")
