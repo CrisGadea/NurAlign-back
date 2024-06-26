@@ -42,7 +42,7 @@ public class MedicationTrackerController {
         MedicationTracker tracker = medicationTrackerService.findMedicationTrackerByPatientIdAndEffectiveDate(
                 patientId, LocalDate.parse(effectiveDate));
         return tracker == null ?
-            ResponseEntity.notFound().build() : ResponseEntity.ok(MedicationTrackerMapper.toDto(tracker));
+            ResponseEntity.ok().build() : ResponseEntity.ok(MedicationTrackerMapper.toDto(tracker));
         }
 
     @PostMapping

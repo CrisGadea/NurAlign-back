@@ -1,5 +1,10 @@
 # NurAlign Changelog
 
+## [3.7.2] - 2024-06-26
+### Changed
+- Change version og "changelog" and "pom.xml".
+- Fix connection problems
+
 ## [3.7.1] - 2024-06-26
 ### Changed
 - Change version of "changelog" and "pom.xml".
