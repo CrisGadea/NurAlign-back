@@ -21,6 +21,7 @@ import static org.springframework.http.ResponseEntity.*;
 
 @RestController
 @RequestMapping("/api/moodTracker")
+@CrossOrigin (origins = "*")
 public class MoodTrackerController {
     private final MoodTrackerService moodTrackerService;
 
@@ -78,5 +79,12 @@ public class MoodTrackerController {
                         MoodTrackerMapper.toModel(moodTrackerDto), patientId, effectiveDate).get()
                 )
         );
+    }
+
+
+    @GetMapping("/patients/{patientId}")
+    public ResponseEntity<List<MoodTrackerDto>> getAllMoodTrackerDataByPatientId(@PathVariable Long patientId)
+    {
+        return  ResponseEntity.ok(moodTrackerService.findAllMoodTrackersByPatientId(patientId).stream().map(MoodTrackerMapper::toDto).toList());
     }
 }
