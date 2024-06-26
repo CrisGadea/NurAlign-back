@@ -42,7 +42,7 @@ public class JpaTherapistRepositoryAdapter implements TherapistRepositoryPort {
         if (therapist.getPassword() != null) therapistEntity.setPassword(this.checkPassword.hashPassword());
         else therapistEntity.setPassword("AJFINWIEGNWIGI5454yhrtdnERH$EH$G");
         TherapistEntity therapistEntitySaved = jpaTherapistRepository.save(therapistEntity);
-        if (therapist.getPatientId() != null) {
+        if (therapist.getRegisteredFlag().equals("N")) {
 //            if () {
 //                throw new LoginErrorException("Paciente no registrado");
 //            }

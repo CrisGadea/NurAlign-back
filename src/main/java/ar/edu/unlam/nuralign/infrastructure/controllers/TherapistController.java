@@ -36,9 +36,13 @@ public class TherapistController {
 
     @PostMapping
     public ResponseEntity<TherapistDto> createTherapist(@RequestBody TherapistDto therapist) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(TherapistMapper.mapToDto(therapistService.createTherapist(
+        Therapist newTherapist = therapistService.createTherapist(
                 TherapistMapper.mapToDomain(therapist)
-        )));
+        );
+        if (newTherapist == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(TherapistMapper.mapToDto(newTherapist));
     }
 
     @GetMapping("/{therapistId}")
