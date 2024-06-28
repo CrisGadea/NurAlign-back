@@ -9,7 +9,7 @@ public interface TherapySessionRepositoryPort {
     TherapySession save(TherapySession therapySession);
     List<TherapySession> findAllByPatientId(Long patientId);
     List<TherapySession> findAllByTherapistId(Long therapistId);
-    TherapySession findBySessionId(Long sessionId);
+    TherapySession findById(Long sessionId);
     List<TherapySession> findAllByPatientIdAndTherapistId(Long patientId, Long therapistId);
     List<TherapySession> findAll();
     TherapySession update(TherapySession therapySession,Long patientId, Long therapistId, LocalDate effectiveDate);

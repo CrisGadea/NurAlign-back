@@ -8,9 +8,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class TherapySessionService implements CreateTherapySessionUseCase, FindAllTherapySessionByPatientIdUseCase,
-        FindAllTherapySessionByTherapistIdUseCase, FindAllTherapySessionsByPatientIdAndTherapistIdUseCase, UpdateTherapistSessionUseCase{
+        FindAllTherapySessionByTherapistIdUseCase, FindAllTherapySessionsByPatientIdAndTherapistIdUseCase,
+        UpdateTherapistSessionUseCase, FindTherapySessionByIdUseCase{
 
 private final CreateTherapySessionUseCase createTherapySessionUseCase;
+private final FindTherapySessionByIdUseCase findTherapySessionByIdUseCase;
 private final FindAllTherapySessionByPatientIdUseCase findTherapySessionByPatientIdUseCase;
 private final FindAllTherapySessionByTherapistIdUseCase findTherapySessionByTherapistIdUseCase;
 private final UpdateTherapistSessionUseCase updateTherapistSessionUseCase;
@@ -19,12 +21,14 @@ private final FindAllTherapySessionsByPatientIdAndTherapistIdUseCase findAllTher
 
 
     public TherapySessionService(CreateTherapySessionUseCase createTherapySessionUseCase,
+                                 FindTherapySessionByIdUseCase findTherapySessionByIdUseCase,
                                  FindAllTherapySessionByPatientIdUseCase findAllTherapySessionByPatientIdUseCase,
                                  FindAllTherapySessionByTherapistIdUseCase findAllTherapySessionByTherapistIdUseCase,
                                  UpdateTherapistSessionUseCase updateTherapistSessionUseCase,
                                  FindAllTherapySessionsByPatientIdAndTherapistIdUseCase findAllTherapySessionsByPatientIdAndTherapistIdUseCase) {
 
         this.createTherapySessionUseCase = createTherapySessionUseCase;
+        this.findTherapySessionByIdUseCase = findTherapySessionByIdUseCase;
         this.findTherapySessionByPatientIdUseCase=findAllTherapySessionByPatientIdUseCase;
         this.findTherapySessionByTherapistIdUseCase=findAllTherapySessionByTherapistIdUseCase;
         this.updateTherapistSessionUseCase=updateTherapistSessionUseCase;
@@ -35,6 +39,11 @@ private final FindAllTherapySessionsByPatientIdAndTherapistIdUseCase findAllTher
     public TherapySession createTherapySession(TherapySession therapySession) {
 
         return createTherapySessionUseCase.createTherapySession(therapySession);
+    }
+
+    @Override
+    public TherapySession FindTherapySessionById(Long Id) {
+        return findTherapySessionByIdUseCase.FindTherapySessionById(Id);
     }
 
     @Override

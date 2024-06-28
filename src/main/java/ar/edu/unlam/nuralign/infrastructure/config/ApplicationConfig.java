@@ -115,6 +115,7 @@ public class ApplicationConfig {
     {
         return new TherapySessionService(
                 new CreateTherapySessionUseCaseImpl(therapySessionRepositoryPort),
+                new FindTherapySessionByIdUseCaseImpl(therapySessionRepositoryPort),
                 new FindAllTherapySessionByPatientIdUseCaseImpl(therapySessionRepositoryPort),
                 new FindAllTherapySessionByTherapistIdUseCaseImpl(therapySessionRepositoryPort),
                 new UpdateTherapistSessionUseCaseImpl(therapySessionRepositoryPort),
