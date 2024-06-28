@@ -50,7 +50,8 @@ public class ApplicationConfig {
                 new FindMoodTrackerUseCaseImpl(moodTrackerRepositoryPort),
                 new FindAllMoodTrackersUseCaseImpl(moodTrackerRepositoryPort),
                 new FindMoodTrackerByPatientIdAndEffectiveDateUseCaseImpl(moodTrackerRepositoryPort),
-                new UpdateMoodTrackerUseCaseImpl(moodTrackerRepositoryPort)
+                new UpdateMoodTrackerUseCaseImpl(moodTrackerRepositoryPort),
+                new FindAllMoodTrackersByPatientIdImpl(moodTrackerRepositoryPort)
         );
     }
 

@@ -1,5 +1,14 @@
 # NurAlign Changelog
 
+## [3.8.0] - 2024-06-28
+### Changed
+- Change version of "changelog" and "pom.xml".
+- Fix data problems in MedicationTracker
+- Fix data problems in Trackers and therapistSession and turnTherapist.
+
+### Added
+- New features for Medication and trackers.
+
 ## [3.7.2] - 2024-06-26
 ### Changed
 - Change version og "changelog" and "pom.xml".

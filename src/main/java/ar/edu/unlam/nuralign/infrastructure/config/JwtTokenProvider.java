@@ -32,13 +32,11 @@ public class JwtTokenProvider {
 
     public String generateToken(Therapist user) {
         return Jwts.builder()
-                .setSubject(user.getEmail())
                 .claim("id", user.getId())
                 .claim("email", user.getEmail())
                 .claim("name", user.getName())
-                //.claim("role", user.getRole())
                 .setIssuedAt(new Date())
-                .setExpiration(Date.from(Instant.now().plus(1, ChronoUnit.DAYS)))
+                .setExpiration(Date.from(Instant.now().plus(1, ChronoUnit.HOURS)))
                 .signWith(Keys.hmacShaKeyFor(SECRET_KEY), SignatureAlgorithm.HS256)
                 .compact();
     }

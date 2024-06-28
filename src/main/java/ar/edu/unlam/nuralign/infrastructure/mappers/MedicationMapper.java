@@ -12,6 +12,7 @@ public class MedicationMapper {
                 .name(medicationDto.getName())
                 .grammage(medicationDto.getGrammage())
                 .flag(medicationDto.getFlag())
+                .enabledFlag(medicationDto.getEnabledFlag())
                 .build();
     }
 
@@ -22,6 +23,7 @@ public class MedicationMapper {
                 .name(medication.getName())
                 .grammage(medication.getGrammage())
                 .flag(medication.getFlag())
+                .enabledFlag(medication.getEnabledFlag())
                 .build();
     }
 
@@ -31,6 +33,7 @@ public class MedicationMapper {
                 .name(medication.getName())
                 .grammage(medication.getGrammage())
                 .flag(medication.getFlag())
+                .enabledFlag(medication.getEnabledFlag())
                 .build();
     }
 
@@ -41,6 +44,7 @@ public class MedicationMapper {
                 .name(medicationEntity.getName())
                 .grammage(medicationEntity.getGrammage())
                 .flag(medicationEntity.getFlag())
+                .enabledFlag(medicationEntity.getEnabledFlag())
                 .build();
     }
 }

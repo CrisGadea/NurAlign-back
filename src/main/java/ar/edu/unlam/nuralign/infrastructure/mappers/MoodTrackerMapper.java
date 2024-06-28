@@ -7,6 +7,9 @@ import ar.edu.unlam.nuralign.infrastructure.entities.MoodTrackerEntity;
 public class MoodTrackerMapper {
 
     public static MoodTracker toModel(MoodTrackerDto moodTrackerDto) {
+        if (moodTrackerDto == null) {
+            return null;
+        }
         return MoodTracker.builder()
                 .id(moodTrackerDto.getId())
                 .patientId(moodTrackerDto.getPatientId())
@@ -23,6 +26,9 @@ public class MoodTrackerMapper {
     }
 
     public static MoodTrackerDto toDto(MoodTracker moodTracker) {
+        if (moodTracker == null) {
+            return null;
+        }
         return MoodTrackerDto.builder()
                 .id(moodTracker.getId())
                 .patientId(moodTracker.getPatientId())
@@ -39,6 +45,9 @@ public class MoodTrackerMapper {
     }
 
     public static MoodTrackerEntity toEntity(MoodTracker moodTracker) {
+        if (moodTracker == null) {
+            return null;
+        }
         return MoodTrackerEntity.builder()
                 .id(moodTracker.getId())
                 .patientId(moodTracker.getPatientId())

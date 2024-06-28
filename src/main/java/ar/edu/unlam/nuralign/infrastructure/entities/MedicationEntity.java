@@ -23,5 +23,7 @@ public class MedicationEntity {
     private Long grammage;
     @Column(name = "optional_flag")
     private Character flag;
+    @Column(name = "enabled_flag")
+    private Character enabledFlag;
 
 }

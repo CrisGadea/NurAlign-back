@@ -21,6 +21,7 @@ import static org.springframework.http.ResponseEntity.*;
 
 @RestController
 @RequestMapping("/api/moodTracker")
+@CrossOrigin (origins = "*")
 public class MoodTrackerController {
     private final MoodTrackerService moodTrackerService;
 
@@ -55,8 +56,9 @@ public class MoodTrackerController {
         }  catch (ResourceNotFoundException e) {
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
-            ApiResponse response = new ApiResponse("Error interno del servidor", 500, "error");
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+            //ApiResponse response = new ApiResponse("Error interno del servidor", 500, "error");
+            //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+            return ResponseEntity.noContent().build();
         }
 
         }
@@ -78,5 +80,12 @@ public class MoodTrackerController {
                         MoodTrackerMapper.toModel(moodTrackerDto), patientId, effectiveDate).get()
                 )
         );
+    }
+
+
+    @GetMapping("/patients/{patientId}")
+    public ResponseEntity<List<MoodTrackerDto>> getAllMoodTrackerDataByPatientId(@PathVariable Long patientId)
+    {
+        return  ResponseEntity.ok(moodTrackerService.findAllMoodTrackersByPatientId(patientId).stream().map(MoodTrackerMapper::toDto).toList());
     }
 }

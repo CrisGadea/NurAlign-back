@@ -13,4 +13,5 @@ public class MedicationDto {
     private String name;
     private Long grammage;
     private Character flag;
+    private Character enabledFlag;
 }
