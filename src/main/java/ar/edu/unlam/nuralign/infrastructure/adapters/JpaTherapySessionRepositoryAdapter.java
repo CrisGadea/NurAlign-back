@@ -52,6 +52,7 @@ public class JpaTherapySessionRepositoryAdapter implements TherapySessionReposit
        return entities.stream().map(TherapySessionMapper::toModel).collect(Collectors.toList());
     }
 
+    @Override
     public TherapySession findById(Long sessionId) {
         return TherapySessionMapper.toModel(repository.findById(sessionId).get());
     }

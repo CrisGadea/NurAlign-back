@@ -1,6 +1,6 @@
 # NurAlign Changelog
 
-## [3.8.2] - 2024-06-28
+## [3.8.3] - 2024-06-28
 ### Changed
 - Change version of "changelog" and "pom.xml".
 - Fix data table in TherapySession
