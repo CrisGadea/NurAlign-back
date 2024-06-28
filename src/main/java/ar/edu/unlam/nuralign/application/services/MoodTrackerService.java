@@ -16,17 +16,19 @@ public class MoodTrackerService implements CreateMoodTrackerUseCase, FindMoodTra
         private final FindAllMoodTrackersUseCase findAllMoodTrackersUseCase;
         private final FindMoodTrackerByPatientIdAndEffectiveDateUseCase findAllByPatientIdAndEffectiveDateUseCase;
         private final UpdateMoodTrackerUseCase updateMoodTrackerUseCase;
+        private final FindAllMoodTrackersByPatientIdUseCase findAllByPatientIdUseCase;
 
         public MoodTrackerService(CreateMoodTrackerUseCase createMoodTrackerUseCase,
                                   FindMoodTrackerUseCase findMoodTrackerUseCase,
                                   FindAllMoodTrackersUseCase findAllMoodTrackersUseCase,
                                   FindMoodTrackerByPatientIdAndEffectiveDateUseCase findAllByPatientIdAndEffectiveDateUseCase,
-                                  UpdateMoodTrackerUseCase updateMoodTrackerUseCase) {
+                                  UpdateMoodTrackerUseCase updateMoodTrackerUseCase, FindAllMoodTrackersByPatientIdUseCase findAllByPatientIdUseCase) {
             this.createMoodTrackerUseCase = createMoodTrackerUseCase;
             this.findMoodTrackerUseCase = findMoodTrackerUseCase;
             this.findAllMoodTrackersUseCase = findAllMoodTrackersUseCase;
             this.findAllByPatientIdAndEffectiveDateUseCase = findAllByPatientIdAndEffectiveDateUseCase;
             this.updateMoodTrackerUseCase = updateMoodTrackerUseCase;
+            this.findAllByPatientIdUseCase = findAllByPatientIdUseCase;
         }
 
         @Override
@@ -38,6 +40,11 @@ public class MoodTrackerService implements CreateMoodTrackerUseCase, FindMoodTra
         public MoodTracker findMoodTracker(Long id) {
             return findMoodTrackerUseCase.findMoodTracker(id);
         }
+        public List<MoodTracker> findAllMoodTrackersByPatientId(Long patientId)
+        {
+
+        return findAllByPatientIdUseCase.findAllMoodTrackersByPatientId(patientId);
+         }
 
         @Override
         public List<MoodTracker> findAllMoodTrackers() {
