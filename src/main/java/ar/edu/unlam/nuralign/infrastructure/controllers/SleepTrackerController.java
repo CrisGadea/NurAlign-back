@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -65,5 +66,15 @@ public class SleepTrackerController {
                 SleepTrackerMapper.toDomain(sleepTrackerDto), patientId, effectiveDate).get())
         );
     }
+    @GetMapping("patients/range/{patientId}")
+    public ResponseEntity<List<SleepTrackerDto>> findAllSleepTrackersByPatientRange(@PathVariable Long patientId,
+                                                                                    @RequestParam String fromDate,
+                                                                                    @RequestParam String toDate)
+    {
+        LocalDate from = LocalDate.parse(fromDate);
+        LocalDate to = LocalDate.parse(toDate);
+        return ResponseEntity.ok(sleepTrackerService.findAllSleepByPatientIdByRangeDate(patientId,from,to).stream().map(SleepTrackerMapper::toDto).toList());
 
+
+    }
 }

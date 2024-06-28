@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -55,5 +56,16 @@ public class MedicationController {
         medicationService.deleteMedication(medicationId);
         return ResponseEntity.noContent().build();
     }
+@GetMapping("/patients/{patientId}")
+    public ResponseEntity<List<MedicationDto>> FindAllMedicationByPatientId(@PathVariable Long patientId,
+                                                                            @RequestParam String fromDate,
+                                                                            @RequestParam String toDate,
+                                                                            @RequestParam String takenFlag)
+{
+    LocalDate from = LocalDate.parse(fromDate);
+    LocalDate to = LocalDate.parse(toDate);
+    Character flag = Character.valueOf(takenFlag.charAt(0));
 
+    return ResponseEntity.ok(medicationService.findAllMedicationByPatientId(patientId,from,to, flag).stream().map(MedicationMapper::toDto).toList());
+}
 }

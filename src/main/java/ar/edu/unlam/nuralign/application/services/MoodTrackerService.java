@@ -17,18 +17,20 @@ public class MoodTrackerService implements CreateMoodTrackerUseCase, FindMoodTra
         private final FindMoodTrackerByPatientIdAndEffectiveDateUseCase findAllByPatientIdAndEffectiveDateUseCase;
         private final UpdateMoodTrackerUseCase updateMoodTrackerUseCase;
         private final FindAllMoodTrackersByPatientIdUseCase findAllByPatientIdUseCase;
+        private final FindAllMoodByPatientIdByRangeDateUseCase findAllMoodByPatientIdByRangeDateUseCase;
 
         public MoodTrackerService(CreateMoodTrackerUseCase createMoodTrackerUseCase,
                                   FindMoodTrackerUseCase findMoodTrackerUseCase,
                                   FindAllMoodTrackersUseCase findAllMoodTrackersUseCase,
                                   FindMoodTrackerByPatientIdAndEffectiveDateUseCase findAllByPatientIdAndEffectiveDateUseCase,
-                                  UpdateMoodTrackerUseCase updateMoodTrackerUseCase, FindAllMoodTrackersByPatientIdUseCase findAllByPatientIdUseCase) {
+                                  UpdateMoodTrackerUseCase updateMoodTrackerUseCase, FindAllMoodTrackersByPatientIdUseCase findAllByPatientIdUseCase, FindAllMoodByPatientIdByRangeDateUseCase findAllMoodByPatientIdByRangeDateUseCase) {
             this.createMoodTrackerUseCase = createMoodTrackerUseCase;
             this.findMoodTrackerUseCase = findMoodTrackerUseCase;
             this.findAllMoodTrackersUseCase = findAllMoodTrackersUseCase;
             this.findAllByPatientIdAndEffectiveDateUseCase = findAllByPatientIdAndEffectiveDateUseCase;
             this.updateMoodTrackerUseCase = updateMoodTrackerUseCase;
             this.findAllByPatientIdUseCase = findAllByPatientIdUseCase;
+            this.findAllMoodByPatientIdByRangeDateUseCase = findAllMoodByPatientIdByRangeDateUseCase;
         }
 
         @Override
@@ -59,5 +61,10 @@ public class MoodTrackerService implements CreateMoodTrackerUseCase, FindMoodTra
         @Override
         public Optional<MoodTracker> updateMoodTracker(MoodTracker moodTracker, Long patientId, String effectiveDate) {
             return updateMoodTrackerUseCase.updateMoodTracker(moodTracker, patientId, effectiveDate);
+        }
+
+        public List<MoodTracker>FindAllMoodByPatientIdByRangeDate(Long patientId, LocalDate fromDate, LocalDate toDate)
+        {
+            return findAllMoodByPatientIdByRangeDateUseCase.FindAllMoodByPatientIdByRangeDate(patientId, fromDate, toDate);
         }
 }

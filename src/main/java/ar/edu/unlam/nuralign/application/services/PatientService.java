@@ -14,15 +14,17 @@ public class PatientService implements CreatePatientUseCase, FindPatientUseCase,
     private final FindAllPatientsUseCase findAllPatientsUseCase;
     private final DeletePatientUseCase deletePatientUseCase;
     private final UpdatePatientUseCase updatePatientUseCase;
+    private final FindAllPatientsByTherapistIdUseCase findAllPatientsByTherapistIdUseCase;
 
     public PatientService(CreatePatientUseCase createPatientUseCase, FindPatientUseCase findPatientUseCase,
                           FindAllPatientsUseCase findAllPatientsUseCase, DeletePatientUseCase deletePatientUseCase,
-                          UpdatePatientUseCase updatePatientUseCase) {
+                          UpdatePatientUseCase updatePatientUseCase, FindAllPatientsByTherapistIdUseCase findAllPatientsByTherapistIdUseCase) {
         this.createPatientUseCase = createPatientUseCase;
         this.findPatientUseCase = findPatientUseCase;
         this.findAllPatientsUseCase = findAllPatientsUseCase;
         this.deletePatientUseCase = deletePatientUseCase;
         this.updatePatientUseCase = updatePatientUseCase;
+        this.findAllPatientsByTherapistIdUseCase = findAllPatientsByTherapistIdUseCase;
     }
 
     @Override
@@ -50,4 +52,11 @@ public class PatientService implements CreatePatientUseCase, FindPatientUseCase,
     public boolean deletePatient(Long id) {
         return deletePatientUseCase.deletePatient(id);
     }
+
+    public List<Patient> findAllPatientsByTherapistId(Long therapistId) {
+
+        return findAllPatientsByTherapistIdUseCase.findAllPatientsByTherapistId(therapistId);
+    }
+
+
 }

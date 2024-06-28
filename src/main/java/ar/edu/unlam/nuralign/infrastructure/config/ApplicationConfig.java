@@ -1,5 +1,7 @@
 package ar.edu.unlam.nuralign.infrastructure.config;
 
+import ar.edu.unlam.nuralign.application.ports.in.medication.FindAllMedicationByPatientIdUseCase;
+import ar.edu.unlam.nuralign.application.ports.in.patient.FindAllPatientsByTherapistIdUseCase;
 import ar.edu.unlam.nuralign.application.ports.out.*;
 import ar.edu.unlam.nuralign.application.services.*;
 import ar.edu.unlam.nuralign.application.usecases.medication.*;
@@ -51,7 +53,8 @@ public class ApplicationConfig {
                 new FindAllMoodTrackersUseCaseImpl(moodTrackerRepositoryPort),
                 new FindMoodTrackerByPatientIdAndEffectiveDateUseCaseImpl(moodTrackerRepositoryPort),
                 new UpdateMoodTrackerUseCaseImpl(moodTrackerRepositoryPort),
-                new FindAllMoodTrackersByPatientIdImpl(moodTrackerRepositoryPort)
+                new FindAllMoodTrackersByPatientIdImpl(moodTrackerRepositoryPort),
+                new FindAllMoodByPatientIdByRangeDateUseCaseImpl(moodTrackerRepositoryPort)
         );
     }
 
@@ -76,7 +79,8 @@ public class ApplicationConfig {
                 new FindAllMedicationsUseCaseImpl(medicationRepositoryPort),
                 new FindMedicationsByPatientIdUseCaseImpl(medicationRepositoryPort),
                 new UpdateMedicationUseCaseImpl(medicationRepositoryPort),
-                new DeleteMedicationUseCaseImpl(medicationRepositoryPort)
+                new DeleteMedicationUseCaseImpl(medicationRepositoryPort),
+                new FindAllMedicationByPatientIdUseCaseImpl(medicationRepositoryPort)
         );
     }
 
@@ -87,7 +91,8 @@ public class ApplicationConfig {
                 new FindPatientUseCaseImpl(patientRepositoryPort),
                 new FindAllPatientsUseCaseImpl(patientRepositoryPort),
                 new DeletePatientUseCaseImpl(patientRepositoryPort),
-                new UpdatePatientUseCaseImpl(patientRepositoryPort)
+                new UpdatePatientUseCaseImpl(patientRepositoryPort),
+                new FindAllPatientsByTherapistIdUseCaseImpl(patientRepositoryPort)
         );
     }
 
@@ -99,7 +104,8 @@ public class ApplicationConfig {
                 new FindAllSleepTrackersUseCaseImpl(sleepTrackerRepositoryPort),
                 new FindAllSleepTrackersByPatientIdImpl(sleepTrackerRepositoryPort),
                 new FindSleepTrackerByPatientIdAndEffectiveDateImpl(sleepTrackerRepositoryPort),
-                new UpdateSleepTrackerUseCaseImpl(sleepTrackerRepositoryPort)
+                new UpdateSleepTrackerUseCaseImpl(sleepTrackerRepositoryPort),
+                new FindAllSleepByPatientIdByRangeDateUseCaseImpl(sleepTrackerRepositoryPort)
         );
     }
 
@@ -118,7 +124,8 @@ public class ApplicationConfig {
                 new FindAllTherapySessionByPatientIdUseCaseImpl(therapySessionRepositoryPort),
                 new FindAllTherapySessionByTherapistIdUseCaseImpl(therapySessionRepositoryPort),
                 new UpdateTherapistSessionUseCaseImpl(therapySessionRepositoryPort),
-                new FindAllTherapySessionsByPatientIdAndTherapistIdUseCaseImpl(therapySessionRepositoryPort)
+                new FindAllTherapySessionsByPatientIdAndTherapistIdUseCaseImpl(therapySessionRepositoryPort),
+                new FindAllTherapyByPatientIdByRangeDateUseCaseImpl(therapySessionRepositoryPort)
         );
 
     }

@@ -11,4 +11,5 @@ public interface PatientRepositoryPort {
     Optional<Patient> findById(Long id);
     List<Patient> findAll();
     void deleteById(Long id);
+    List<Patient> findAllByTherapistId(Long id);
 }

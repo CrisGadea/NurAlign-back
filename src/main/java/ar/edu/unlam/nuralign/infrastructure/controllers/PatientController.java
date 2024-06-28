@@ -50,4 +50,10 @@ public class PatientController {
                 : ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/therapist/{therapistId}")
+    public ResponseEntity<List<PatientDto>>getAllPatientsByTherapistId(@PathVariable Long therapistId)
+    {
+        return ResponseEntity.ok(patientService.findAllPatientsByTherapistId(therapistId).stream().map(PatientMapper::mapToDto).toList());
+    }
+
 }

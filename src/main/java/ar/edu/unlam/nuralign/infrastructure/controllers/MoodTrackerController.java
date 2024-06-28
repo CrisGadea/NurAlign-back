@@ -87,4 +87,15 @@ public class MoodTrackerController {
     {
         return  ResponseEntity.ok(moodTrackerService.findAllMoodTrackersByPatientId(patientId).stream().map(MoodTrackerMapper::toDto).toList());
     }
+
+    @GetMapping("patients/range/{patientId}")
+    public ResponseEntity<List<MoodTrackerDto>> GetAllMoodTrackerByIdAnRange(@PathVariable Long patientId,
+                                                                             @RequestParam String fromDate,
+                                                                             @RequestParam String toDate)
+    {
+        LocalDate from = LocalDate.parse(fromDate);
+        LocalDate to = LocalDate.parse(toDate);
+        return ResponseEntity.ok(moodTrackerService.FindAllMoodByPatientIdByRangeDate(patientId, from, to).stream().map(MoodTrackerMapper::toDto).toList());
+    }
+
 }

@@ -3,6 +3,7 @@ package ar.edu.unlam.nuralign.application.services;
 import ar.edu.unlam.nuralign.application.ports.in.sleepTracker.*;
 import ar.edu.unlam.nuralign.domain.models.SleepTracker;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,13 +20,14 @@ public class SleepTrackerService implements CreateSleepTrackerUseCase,
     private final FindAllSleepTrackersByPatientUseCase findAllSleepTrackersByPatientUseCase;
     private final FindSleepTrackerByPatientIdAndEffectiveDateUseCase findSleepTrackerByPatientIdAndEffectiveDateUseCase;
     private final UpdateSleepTrackerUseCase updateSleepTrackerUseCase;
+    private final FindAllSleepByPatientIdByRangeDateUseCase findAllSleepByPatientIdByRangeDateUseCase;
 
     public SleepTrackerService(CreateSleepTrackerUseCase createSleepTrackerUseCase,
                                FindSleepTrackerUseCase findSleepTrackerUseCase,
                                FindAllSleepTrackersUseCase findAllSleepTrackersUseCase,
                                FindAllSleepTrackersByPatientUseCase findAllSleepTrackersByPatientUseCase,
                                FindSleepTrackerByPatientIdAndEffectiveDateUseCase findSleepTrackerByPatientIdAndEffectiveDateUseCase,
-                               UpdateSleepTrackerUseCase updateSleepTrackerUseCase) {
+                               UpdateSleepTrackerUseCase updateSleepTrackerUseCase, FindAllSleepByPatientIdByRangeDateUseCase findAllSleepByPatientIdByRangeDateUseCase) {
         this.createSleepTrackerUseCase = createSleepTrackerUseCase;
         this.findSleepTrackerUseCase = findSleepTrackerUseCase;
         this.findAllSleepTrackersUseCase = findAllSleepTrackersUseCase;
@@ -33,6 +35,7 @@ public class SleepTrackerService implements CreateSleepTrackerUseCase,
         this.findSleepTrackerByPatientIdAndEffectiveDateUseCase = findSleepTrackerByPatientIdAndEffectiveDateUseCase;
         this.updateSleepTrackerUseCase = updateSleepTrackerUseCase;
 
+        this.findAllSleepByPatientIdByRangeDateUseCase = findAllSleepByPatientIdByRangeDateUseCase;
     }
 
     @Override
@@ -63,6 +66,11 @@ public class SleepTrackerService implements CreateSleepTrackerUseCase,
     @Override
     public Optional<SleepTracker> updateSleepTracker(SleepTracker sleepTracker, Long patientId, String effectiveDate) {
         return updateSleepTrackerUseCase.updateSleepTracker(sleepTracker, patientId, effectiveDate);
+    }
+
+    public List<SleepTracker>findAllSleepByPatientIdByRangeDate(Long patientId, LocalDate fromDate, LocalDate toDate)
+    {
+        return findAllSleepByPatientIdByRangeDateUseCase.findAllSleepByPatientIdByRangeDate(patientId, fromDate, toDate);
     }
 
 }
