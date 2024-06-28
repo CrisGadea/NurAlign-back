@@ -1,14 +1,14 @@
 package ar.edu.unlam.nuralign.domain.models;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Setter
 @Getter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class MoodTracker {
     private Long id;
     private Long patientId;
