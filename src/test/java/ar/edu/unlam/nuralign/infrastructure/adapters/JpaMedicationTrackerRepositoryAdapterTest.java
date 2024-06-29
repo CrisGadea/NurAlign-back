@@ -3,6 +3,7 @@ package ar.edu.unlam.nuralign.infrastructure.adapters;
 import ar.edu.unlam.nuralign.domain.models.MedicationTracker;
 import ar.edu.unlam.nuralign.infrastructure.entities.MedicationTrackerEntity;
 import ar.edu.unlam.nuralign.infrastructure.repositories.JpaMedicationTrackerRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -52,7 +53,7 @@ public class JpaMedicationTrackerRepositoryAdapterTest {
         var result = adapter.findAll();
 
         verify(repository, times(1)).findAll();
-        assertEquals(1, result.size());
+        Assertions.assertEquals(1, result.size());
     }
 
     @DisplayName("Should find medication tracker by id")

@@ -3,6 +3,7 @@ package ar.edu.unlam.nuralign.infrastructure.adapters;
 import ar.edu.unlam.nuralign.domain.models.SleepTracker;
 import ar.edu.unlam.nuralign.infrastructure.entities.SleepTrackerEntity;
 import ar.edu.unlam.nuralign.infrastructure.repositories.JpaSleepTrackerRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -66,7 +67,7 @@ public class JpaSleepTrackerRepositoryAdapterTest {
         var result = adapter.findAll();
 
         verify(repository, times(1)).findAll();
-        assertEquals(1, result.size());
+        Assertions.assertEquals(1, result.size());
     }
 
     @DisplayName("Should find all sleep trackers by patient id")
@@ -79,7 +80,7 @@ public class JpaSleepTrackerRepositoryAdapterTest {
         var result = adapter.findAllByPatientId(patientId);
 
         verify(repository, times(1)).findAllByPatientId(patientId);
-        assertEquals(1, result.size());
+        Assertions.assertEquals(1, result.size());
     }
 
     @DisplayName("Should find sleep tracker by patient id and effective date")
