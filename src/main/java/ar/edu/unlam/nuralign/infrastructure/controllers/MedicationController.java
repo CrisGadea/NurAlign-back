@@ -1,7 +1,6 @@
 package ar.edu.unlam.nuralign.infrastructure.controllers;
 
 import ar.edu.unlam.nuralign.application.services.MedicationsService;
-import ar.edu.unlam.nuralign.domain.models.Medication;
 import ar.edu.unlam.nuralign.infrastructure.dtos.MedicationDto;
 import ar.edu.unlam.nuralign.infrastructure.mappers.MedicationMapper;
 import org.springframework.http.HttpStatus;
@@ -38,8 +37,9 @@ public class MedicationController {
     }
 
     @PostMapping
-    public ResponseEntity<MedicationDto> createMedication(@RequestBody Medication medication) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(MedicationMapper.toDto(medicationService.createMedication(medication)));
+    public ResponseEntity<MedicationDto> createMedication(@RequestBody MedicationDto medication) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(MedicationMapper.toDto(medicationService.createMedication(
+                MedicationMapper.toModel(medication))));
     }
 
     @PatchMapping("/patient/{patientId}")

@@ -46,23 +46,26 @@ public class TherapistController {
     }
 
     @GetMapping("/{therapistId}")
-    public ResponseEntity<Therapist> findTherapist(@PathVariable Long therapistId) {
-        return therapistService.findTherapist(therapistId)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<TherapistDto> findTherapist(@PathVariable Long therapistId) {
+        if (therapistService.findTherapist(therapistId).isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(TherapistMapper.mapToDto(therapistService.findTherapist(therapistId).get()));
     }
 
     @GetMapping
-    public ResponseEntity<List<Therapist>> findAllTherapists() {
-        return ResponseEntity.ok(therapistService.findAllTherapists());
+    public ResponseEntity<List<TherapistDto>> findAllTherapists() {
+        return ResponseEntity.ok(therapistService.findAllTherapists().stream()
+                .map(TherapistMapper::mapToDto)
+                .toList());
     }
 
-    @PutMapping("/{therapistId}")
-    public ResponseEntity<Therapist> updateTherapist(@RequestBody Therapist therapist,
+    @PatchMapping("/{therapistId}")
+    public ResponseEntity<TherapistDto> updateTherapist(@RequestBody TherapistDto therapist,
                                                                @PathVariable Long therapistId) {
-        return therapistService.updateTherapist(therapist, therapistId)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return therapistService.updateTherapist(TherapistMapper.mapToDomain(therapist), therapistId).isPresent() ?
+                ResponseEntity.ok(TherapistMapper.mapToDto(therapistService.updateTherapist(TherapistMapper.mapToDomain(therapist), therapistId).get()))
+                : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{therapistId}")
@@ -73,9 +76,13 @@ public class TherapistController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginData user) {
-        Therapist therapist = loginService.login(user);
-        String token = jwtTokenProvider.generateToken(therapist);
-        return ResponseEntity.ok(LoginResponse.builder().token(token).build());
+        try {
+            Therapist therapist = loginService.login(TherapistMapper.mapToDomain(user));
+            String token = jwtTokenProvider.generateToken(therapist);
+            return ResponseEntity.ok(LoginResponse.builder().token(token).build());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
 }

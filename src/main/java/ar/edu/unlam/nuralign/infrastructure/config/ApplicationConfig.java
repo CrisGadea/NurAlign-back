@@ -10,6 +10,7 @@ import ar.edu.unlam.nuralign.application.usecases.patientTherapist.AssignPatient
 import ar.edu.unlam.nuralign.application.usecases.patientTherapist.DeletePatientTherapistAssignationUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.patientTherapist.FindAllPatientTherapistAssignationsUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.sleepTracker.*;
+import ar.edu.unlam.nuralign.application.usecases.subscription.GenerateSubscriptionUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.therapist.*;
 import ar.edu.unlam.nuralign.application.usecases.therapySession.*;
 import ar.edu.unlam.nuralign.application.usecases.turnTherapist.CreateTurnTherapistImpl;
@@ -122,6 +123,23 @@ public class ApplicationConfig {
                 new FindAllTherapySessionsByPatientIdAndTherapistIdUseCaseImpl(therapySessionRepositoryPort)
         );
 
+    }
+
+    @Bean
+    public SubscriptionService subscriptionService(SubscriptionRepositoryPort subscriptionRepositoryPort) {
+        return new SubscriptionService(
+                new GenerateSubscriptionUseCaseImpl(subscriptionRepositoryPort)
+        );
+    }
+
+    @Bean
+    public SubscriptionRepositoryPort subscriptionRepositoryPort(JpaSubscriptionRepositoryAdapter jpaSubscriptionRepositoryAdapter) {
+        return jpaSubscriptionRepositoryAdapter;
+    }
+
+    @Bean
+    public JpaSubscriptionRepositoryAdapter jpaSubscriptionRepositoryAdapter(JpaSubscriptionRepository adapter) {
+        return new JpaSubscriptionRepositoryAdapter(adapter);
     }
 
     @Bean
