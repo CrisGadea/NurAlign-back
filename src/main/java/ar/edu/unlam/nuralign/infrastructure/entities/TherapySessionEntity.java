@@ -8,26 +8,26 @@ import lombok.*;
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    @Table(name="TherapySession")
+    @Table(name="therapy_session")
     public class TherapySessionEntity {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name="therapysession_Id")
+        @Column(name="therapy_session_Id")
         private Long id;
-        @Column(name="patientId")
+        @Column(name="patient_id")
         private Long patientId;
-        @Column(name="therapistId")
+        @Column(name="therapist_id")
         private Long therapistId;
-        @Column(name="effectiveDate")
+        @Column(name="effective_date")
         private String effectiveDate;
-        @Column(name="sessionTime")
+        @Column(name="session_time")
         private Integer sessionTime;
-        @Column(name="preSessionNotes")
+        @Column(name="pre_session_notes")
         private String preSessionNotes;
-        @Column(name="postSessionNotes")
+        @Column(name="post_session_notes")
         private String postSessionNotes;
-        @Column(name="sessionFeel")
+        @Column(name="session_feel")
         private String sessionFeel;
 
     }

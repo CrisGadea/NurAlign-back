@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -54,7 +53,7 @@ public class JpaTherapySessionRepositoryAdapter implements TherapySessionReposit
     }
 
     @Override
-    public TherapySession findBySessionId(Long sessionId) {
+    public TherapySession findById(Long sessionId) {
         return TherapySessionMapper.toModel(repository.findById(sessionId).get());
     }
 

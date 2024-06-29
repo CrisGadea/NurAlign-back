@@ -6,13 +6,13 @@ import ar.edu.unlam.nuralign.domain.models.TherapySession;
 
 public class FindTherapySessionByIdUseCaseImpl implements FindTherapySessionByIdUseCase {
 
-    private TherapySessionRepositoryPort repository;
+    private final TherapySessionRepositoryPort repository;
     public FindTherapySessionByIdUseCaseImpl(TherapySessionRepositoryPort repository)
     {
         this.repository = repository;
     }
     @Override
     public TherapySession FindTherapySessionById(Long Id) {
-        return repository.findBySessionId(Id);
+        return repository.findById(Id);
     }
 }

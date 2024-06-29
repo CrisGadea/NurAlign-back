@@ -32,6 +32,12 @@ public class TherapySessionController {
                 );
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<TherapySessionDto> getTherapySessionById(@PathVariable Long id)
+    {
+        return ResponseEntity.ok(TherapySessionMapper.toDto(therapySessionService.FindTherapySessionById(id)));
+    }
+
     @GetMapping("/patient/{patientId}")
         public ResponseEntity<List<TherapySession>> getAllTherapySessionByPatientId(@PathVariable Long patientId)
         {

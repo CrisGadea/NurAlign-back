@@ -22,6 +22,7 @@ public class JpaMedicationRepositoryAdapter implements MedicationRepositoryPort 
 
     @Override
     public Medication save(Medication medication) {
+        medication.setEnabledFlag('Y');
         return MedicationMapper.toModel(repository.save(MedicationMapper.toEntity(medication)));
     }
 
@@ -53,6 +54,7 @@ public class JpaMedicationRepositoryAdapter implements MedicationRepositoryPort 
             if (medication.getGrammage() != null) entityForUpdate.setGrammage(medication.getGrammage());
             if (medication.getFlag() != null) entityForUpdate.setFlag(medication.getFlag());
             if (medication.getName() != null) entityForUpdate.setName(medication.getName());
+            if (medication.getEnabledFlag() != null) entityForUpdate.setEnabledFlag(medication.getEnabledFlag());
             return Optional.ofNullable(MedicationMapper.toModel(repository.save(entityForUpdate)));
         } else {
             return Optional.empty();
