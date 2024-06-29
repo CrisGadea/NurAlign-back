@@ -51,7 +51,8 @@ public class ApplicationConfig {
                 new FindAllMoodTrackersUseCaseImpl(moodTrackerRepositoryPort),
                 new FindMoodTrackerByPatientIdAndEffectiveDateUseCaseImpl(moodTrackerRepositoryPort),
                 new UpdateMoodTrackerUseCaseImpl(moodTrackerRepositoryPort),
-                new FindAllMoodTrackersByPatientIdImpl(moodTrackerRepositoryPort)
+                new FindAllMoodTrackersByPatientIdImpl(moodTrackerRepositoryPort),
+                new FindAllMoodTrackerByPatientIdAndRangeDateUseCaseImpl(moodTrackerRepositoryPort)
         );
     }
 
@@ -76,7 +77,8 @@ public class ApplicationConfig {
                 new FindAllMedicationsUseCaseImpl(medicationRepositoryPort),
                 new FindMedicationsByPatientIdUseCaseImpl(medicationRepositoryPort),
                 new UpdateMedicationUseCaseImpl(medicationRepositoryPort),
-                new DeleteMedicationUseCaseImpl(medicationRepositoryPort)
+                new DeleteMedicationUseCaseImpl(medicationRepositoryPort),
+                new FindAllMedicationByPatientIdUseCaseImpl(medicationRepositoryPort)
         );
     }
 
@@ -87,7 +89,8 @@ public class ApplicationConfig {
                 new FindPatientUseCaseImpl(patientRepositoryPort),
                 new FindAllPatientsUseCaseImpl(patientRepositoryPort),
                 new DeletePatientUseCaseImpl(patientRepositoryPort),
-                new UpdatePatientUseCaseImpl(patientRepositoryPort)
+                new UpdatePatientUseCaseImpl(patientRepositoryPort),
+                new FindAllPatientsByTherapistIdUseCaseImpl(patientRepositoryPort)
         );
     }
 
@@ -99,7 +102,8 @@ public class ApplicationConfig {
                 new FindAllSleepTrackersUseCaseImpl(sleepTrackerRepositoryPort),
                 new FindAllSleepTrackersByPatientIdImpl(sleepTrackerRepositoryPort),
                 new FindSleepTrackerByPatientIdAndEffectiveDateImpl(sleepTrackerRepositoryPort),
-                new UpdateSleepTrackerUseCaseImpl(sleepTrackerRepositoryPort)
+                new UpdateSleepTrackerUseCaseImpl(sleepTrackerRepositoryPort),
+                new FindAllSleepTrackerByPatientIdAndRangeDateUseCaseImpl(sleepTrackerRepositoryPort)
         );
     }
 
@@ -119,7 +123,8 @@ public class ApplicationConfig {
                 new FindAllTherapySessionByPatientIdUseCaseImpl(therapySessionRepositoryPort),
                 new FindAllTherapySessionByTherapistIdUseCaseImpl(therapySessionRepositoryPort),
                 new UpdateTherapistSessionUseCaseImpl(therapySessionRepositoryPort),
-                new FindAllTherapySessionsByPatientIdAndTherapistIdUseCaseImpl(therapySessionRepositoryPort)
+                new FindAllTherapySessionsByPatientIdAndTherapistIdUseCaseImpl(therapySessionRepositoryPort),
+                new FindAllTherapySessionByPatientIdAndRangeDateUseCaseImpl(therapySessionRepositoryPort)
         );
 
     }

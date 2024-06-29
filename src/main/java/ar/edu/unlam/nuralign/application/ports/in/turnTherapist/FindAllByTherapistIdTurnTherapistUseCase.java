@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface FindAllByTherapistIdTurnTherapistUseCase {
 
-    List<TurnTherapist> FindallByTherapistIdTurnTherapistUseCase(Long id);
+    List<TurnTherapist> FindAllTurnTherapistByTherapistIdUseCase(Long id);
 }
