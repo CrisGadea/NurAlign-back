@@ -1,13 +1,11 @@
 package ar.edu.unlam.nuralign.domain.models;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 
 @Setter
 @Getter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class Therapist extends User{
 
     protected String phoneNumber;
@@ -19,6 +17,8 @@ public class Therapist extends User{
     private String registeredFlag;
 
     private Long patientId;
+
+    public Therapist() {}
 
     public Therapist(Long id, String name, String lastName, String email, String phoneNumber, String password,
                      Integer documentNumber, String medicalLicense, String registeredFlag) {

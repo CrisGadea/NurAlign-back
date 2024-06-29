@@ -2,6 +2,7 @@ package ar.edu.unlam.nuralign.application.services;
 
 import ar.edu.unlam.nuralign.application.ports.in.therapist.LogintherapistUseCase;
 import ar.edu.unlam.nuralign.domain.models.Therapist;
+import ar.edu.unlam.nuralign.infrastructure.dtos.LoginData;
 
 public class LoginTherapistService implements LogintherapistUseCase {
 
@@ -12,7 +13,7 @@ public class LoginTherapistService implements LogintherapistUseCase {
     }
 
     @Override
-    public Therapist login(Therapist user) {
+    public Therapist login(LoginData user) {
         return logintherapistUseCase.login(user);
     }
 
