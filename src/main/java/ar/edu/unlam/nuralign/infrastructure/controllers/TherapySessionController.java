@@ -85,8 +85,8 @@ public class TherapySessionController {
                                                                                       @RequestParam String fromDate,
                                                                                       @RequestParam String toDate)
     {
-      /*  LocalDate from = LocalDate.parse(fromDate);
-        LocalDate to = LocalDate.parse(toDate);*/
+       LocalDate from = LocalDate.parse(fromDate);
+        LocalDate to = LocalDate.parse(toDate);
         return ResponseEntity.ok(therapySessionService.FindAllTherapySessionByPatientIdAndRangeDate(patientId,fromDate,toDate).stream().map(TherapySessionMapper::toDto).toList());
     }
 

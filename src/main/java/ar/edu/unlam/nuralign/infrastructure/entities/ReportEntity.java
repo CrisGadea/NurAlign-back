@@ -38,5 +38,4 @@ public class ReportEntity {
     @Column(name="PatientName")
     private String PatientName;
 
-}
-*/
+}*/
