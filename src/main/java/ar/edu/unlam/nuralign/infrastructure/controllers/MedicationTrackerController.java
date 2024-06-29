@@ -48,7 +48,9 @@ public class MedicationTrackerController {
     @PostMapping
     public ResponseEntity<MedicationTrackerDto> createMedicationTrackerData(@RequestBody MedicationTrackerDto medicationTrackerDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                MedicationTrackerMapper.toDto(medicationTrackerService.createMedicationTracker(medicationTrackerDto))
+                MedicationTrackerMapper.toDto(medicationTrackerService.createMedicationTracker(
+                        MedicationTrackerMapper.toModel(medicationTrackerDto)
+                ))
         );
     }
 

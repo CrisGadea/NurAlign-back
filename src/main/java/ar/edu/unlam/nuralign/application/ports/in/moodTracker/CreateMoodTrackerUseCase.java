@@ -4,5 +4,5 @@ import ar.edu.unlam.nuralign.domain.models.MoodTracker;
 import ar.edu.unlam.nuralign.infrastructure.dtos.MoodTrackerDto;
 
 public interface CreateMoodTrackerUseCase {
-    MoodTracker createMoodTracker(MoodTrackerDto moodTracker);
+    MoodTracker createMoodTracker(MoodTracker moodTracker);
 }

@@ -61,7 +61,7 @@ public class MedicationTrackersService implements FindMedicationTrackerUseCase,
     }
 
     @Override
-    public MedicationTracker createMedicationTracker(MedicationTrackerDto medicationTracker) {
+    public MedicationTracker createMedicationTracker(MedicationTracker medicationTracker) {
         return createMedicationTrackerUseCase.createMedicationTracker(medicationTracker);
     }
 

@@ -59,7 +59,7 @@ public class MoodTrackerController {
     @PostMapping
     public ResponseEntity<MoodTrackerDto> createMoodTrackerData(@RequestBody MoodTrackerDto moodTrackerDto) {
         return status(CREATED).body(
-                MoodTrackerMapper.toDto(moodTrackerService.createMoodTracker(moodTrackerDto))
+                MoodTrackerMapper.toDto(moodTrackerService.createMoodTracker(MoodTrackerMapper.toModel(moodTrackerDto)))
         );
     }
 
