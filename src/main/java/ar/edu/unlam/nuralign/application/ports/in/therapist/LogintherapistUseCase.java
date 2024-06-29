@@ -5,5 +5,5 @@ import ar.edu.unlam.nuralign.infrastructure.dtos.LoginData;
 import ar.edu.unlam.nuralign.infrastructure.dtos.LoginResponse;
 
 public interface LogintherapistUseCase {
-    Therapist login(LoginData data);
+    Therapist login(Therapist data);
 }

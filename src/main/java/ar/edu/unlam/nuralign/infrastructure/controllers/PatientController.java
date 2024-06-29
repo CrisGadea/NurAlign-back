@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/patients")
@@ -21,15 +22,17 @@ public class PatientController {
     }
 
     @GetMapping("/{patientId}")
-    public ResponseEntity<Patient> findPatient(@PathVariable Long patientId) {
-        return patientService.findPatient(patientId)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<PatientDto> findPatient(@PathVariable Long patientId) {
+        Optional<Patient> patient = patientService.findPatient(patientId);
+        return patient.map(value -> ResponseEntity.ok(PatientMapper.mapToDto(value)))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping
-    public ResponseEntity<List<Patient>> findAllPatients() {
-        return ResponseEntity.ok(patientService.findAllPatients());
+    public ResponseEntity<List<PatientDto>> findAllPatients() {
+        return ResponseEntity.ok(patientService.findAllPatients().stream()
+                .map(PatientMapper::mapToDto)
+                .toList());
     }
 
     @PostMapping
@@ -38,10 +41,11 @@ public class PatientController {
     }
 
     @PutMapping("/{patientId}")
-    public ResponseEntity<Patient> updatePatient(@RequestBody Patient patient, @PathVariable Long patientId) {
-        return patientService.updatePatient(patient, patientId)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<PatientDto> updatePatient(@RequestBody PatientDto patient, @PathVariable Long patientId) {
+        return ResponseEntity.ok(PatientMapper.mapToDto(
+                patientService.updatePatient(PatientMapper.mapToDomain(patient), patientId).get())
+        );
+                //.orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{patientId}")

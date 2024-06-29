@@ -14,7 +14,7 @@ public class LoginTherapistUseCaseImpl implements LogintherapistUseCase {
     }
 
     @Override
-    public Therapist login(LoginData user) {
+    public Therapist login(Therapist user) {
         return repository.login(user.getEmail(), user.getPassword());
     }
 

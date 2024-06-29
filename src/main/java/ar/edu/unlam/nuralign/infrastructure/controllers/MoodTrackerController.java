@@ -2,11 +2,9 @@ package ar.edu.unlam.nuralign.infrastructure.controllers;
 
 import ar.edu.unlam.nuralign.application.services.MoodTrackerService;
 import ar.edu.unlam.nuralign.domain.models.MoodTracker;
-import ar.edu.unlam.nuralign.infrastructure.dtos.ApiResponse;
 import ar.edu.unlam.nuralign.infrastructure.dtos.MoodTrackerDto;
 import ar.edu.unlam.nuralign.infrastructure.exceptions.ResourceNotFoundException;
 import ar.edu.unlam.nuralign.infrastructure.mappers.MoodTrackerMapper;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,21 +45,18 @@ public class MoodTrackerController {
             @PathVariable Long patientId,
             @RequestParam("effectiveDate") String effectiveDate) {
         try {
-            Optional<MoodTracker> tracker = moodTrackerService.findMoodTrackerByPatientIdAndEffectiveDate(patientId, effectiveDate);
+            Optional<MoodTracker> tracker = moodTrackerService.findMoodTrackerByPatientIdAndEffectiveDate(
+                    patientId, effectiveDate);
             if (tracker.isPresent()) {
                 return ok(MoodTrackerMapper.toDto(tracker.get()));
             } else {
-                throw new ResourceNotFoundException("El paciente solicitado no tiene ningún tracker completo para esa fecha dada");
+                throw new ResourceNotFoundException("El paciente solicitado no tiene tracker completo para esa fecha");
             }
-        }  catch (ResourceNotFoundException e) {
-            return ResponseEntity.noContent().build();
         } catch (Exception e) {
-            //ApiResponse response = new ApiResponse("Error interno del servidor", 500, "error");
-            //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
             return ResponseEntity.noContent().build();
         }
 
-        }
+    }
 
     @PostMapping
     public ResponseEntity<MoodTrackerDto> createMoodTrackerData(@RequestBody MoodTrackerDto moodTrackerDto) {
@@ -86,6 +81,7 @@ public class MoodTrackerController {
     @GetMapping("/patients/{patientId}")
     public ResponseEntity<List<MoodTrackerDto>> getAllMoodTrackerDataByPatientId(@PathVariable Long patientId)
     {
-        return  ResponseEntity.ok(moodTrackerService.findAllMoodTrackersByPatientId(patientId).stream().map(MoodTrackerMapper::toDto).toList());
+        return  ResponseEntity.ok(moodTrackerService.findAllMoodTrackersByPatientId(patientId).stream()
+                .map(MoodTrackerMapper::toDto).toList());
     }
 }

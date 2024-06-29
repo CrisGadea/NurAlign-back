@@ -1,6 +1,7 @@
 package ar.edu.unlam.nuralign.infrastructure.mappers;
 
 import ar.edu.unlam.nuralign.domain.models.Therapist;
+import ar.edu.unlam.nuralign.infrastructure.dtos.LoginData;
 import ar.edu.unlam.nuralign.infrastructure.dtos.TherapistDto;
 import ar.edu.unlam.nuralign.infrastructure.entities.TherapistEntity;
 
@@ -85,6 +86,20 @@ public class TherapistMapper {
                 therapistDto.getDocumentNumber(),
                 therapistDto.getMedicalLicense(),
                 therapistDto.getRegisteredFlag());
+    }
+
+    public static Therapist mapToDomain(LoginData loginData) {
+        if (loginData == null) return null;
+        return new Therapist(
+                null,
+                null,
+                null,
+                loginData.getEmail(),
+                null,
+                loginData.getPassword(),
+                null,
+                null,
+                null);
     }
 
 }
