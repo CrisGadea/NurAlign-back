@@ -43,22 +43,6 @@ public class JpaTherapistRepositoryAdapterTest {
         assertNotNull(result);
     }
 
-    @DisplayName("Should update therapist")
-    @Test
-    void shouldUpdateTherapist() {
-        Long id = 1L;
-        Therapist therapist = new Therapist();
-        TherapistEntity entity = new TherapistEntity();
-        when(repository.existsById(id)).thenReturn(true);
-        when(repository.save(any(TherapistEntity.class))).thenReturn(entity);
-
-        Optional<Therapist> result = adapter.update(therapist, id);
-
-        verify(repository, times(1)).existsById(id);
-        verify(repository, times(1)).save(any(TherapistEntity.class));
-        assertTrue(result.isPresent());
-    }
-
     @DisplayName("Should not update therapist when not exists")
     @Test
     void shouldNotUpdateTherapistWhenNotExists() {

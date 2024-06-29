@@ -60,7 +60,7 @@ public class TherapistController {
                 .toList());
     }
 
-    @PutMapping("/{therapistId}")
+    @PatchMapping("/{therapistId}")
     public ResponseEntity<TherapistDto> updateTherapist(@RequestBody TherapistDto therapist,
                                                                @PathVariable Long therapistId) {
         return therapistService.updateTherapist(TherapistMapper.mapToDomain(therapist), therapistId).isPresent() ?
