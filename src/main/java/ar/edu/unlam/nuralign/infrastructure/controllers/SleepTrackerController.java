@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/sleepTracker")
@@ -67,13 +66,13 @@ public class SleepTrackerController {
         );
     }
     @GetMapping("patients/range/{patientId}")
-    public ResponseEntity<List<SleepTrackerDto>> findAllSleepTrackersByPatientRange(@PathVariable Long patientId,
+    public ResponseEntity<List<SleepTrackerDto>> findAllSleepTrackersByPatientIdAndRangeDate(@PathVariable Long patientId,
                                                                                     @RequestParam String fromDate,
                                                                                     @RequestParam String toDate)
     {
         LocalDate from = LocalDate.parse(fromDate);
         LocalDate to = LocalDate.parse(toDate);
-        return ResponseEntity.ok(sleepTrackerService.findAllSleepByPatientIdByRangeDate(patientId,from,to).stream().map(SleepTrackerMapper::toDto).toList());
+        return ResponseEntity.ok(sleepTrackerService.findAllSleepTrackerByPatientIdAndRangeDate(patientId,from,to).stream().map(SleepTrackerMapper::toDto).toList());
 
 
     }

@@ -1,7 +1,6 @@
 package ar.edu.unlam.nuralign.application.ports.out;
 
 import ar.edu.unlam.nuralign.domain.models.MoodTracker;
-import ar.edu.unlam.nuralign.infrastructure.entities.MoodTrackerEntity;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,5 +13,5 @@ public interface MoodTrackerRepositoryPort {
     List<MoodTracker> findAllByPatientId(Long patientId);
     MoodTracker findByPatientIdAndEffectiveDate(Long patientId, String effectiveDate);
     Optional<MoodTracker> update(MoodTracker moodTracker, Long patientId, String effectiveDate);
-    List<MoodTracker>findAllByPatientIdByRangeDate(Long patientId, LocalDate fromDate, LocalDate toDate);
+    List<MoodTracker> findAllMoodTrackerByPatientIdAndRangeDate(Long patientId, LocalDate fromDate, LocalDate toDate);
 }

@@ -8,28 +8,28 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class TherapySessionService implements CreateTherapySessionUseCase, FindAllTherapySessionByPatientIdUseCase,
-        FindAllTherapySessionByTherapistIdUseCase, FindAllTherapySessionsByPatientIdAndTherapistIdUseCase, UpdateTherapistSessionUseCase,FindAllTherapyByPatientIdByRangeDateUseCase{
+        FindAllTherapySessionByTherapistIdUseCase, FindAllTherapySessionsByPatientIdAndTherapistIdUseCase, UpdateTherapistSessionUseCase, FindAllTherapySessionByPatientIdAndRangeDateUseCase {
 
 private final CreateTherapySessionUseCase createTherapySessionUseCase;
 private final FindAllTherapySessionByPatientIdUseCase findTherapySessionByPatientIdUseCase;
 private final FindAllTherapySessionByTherapistIdUseCase findTherapySessionByTherapistIdUseCase;
 private final UpdateTherapistSessionUseCase updateTherapistSessionUseCase;
 private final FindAllTherapySessionsByPatientIdAndTherapistIdUseCase findAllTherapySessionsByPatientIdAndTherapistIdUseCase;
-private final FindAllTherapyByPatientIdByRangeDateUseCase findAllTherapyByPatientIdByRangeDateUseCase;
+private final FindAllTherapySessionByPatientIdAndRangeDateUseCase findAllTherapySessionByPatientIdAndRangeDateUseCase;
 
 
     public TherapySessionService(CreateTherapySessionUseCase createTherapySessionUseCase,
                                  FindAllTherapySessionByPatientIdUseCase findAllTherapySessionByPatientIdUseCase,
                                  FindAllTherapySessionByTherapistIdUseCase findAllTherapySessionByTherapistIdUseCase,
                                  UpdateTherapistSessionUseCase updateTherapistSessionUseCase,
-                                 FindAllTherapySessionsByPatientIdAndTherapistIdUseCase findAllTherapySessionsByPatientIdAndTherapistIdUseCase, FindAllTherapyByPatientIdByRangeDateUseCase findAllTherapyByPatientIdByRangeDateUseCase) {
+                                 FindAllTherapySessionsByPatientIdAndTherapistIdUseCase findAllTherapySessionsByPatientIdAndTherapistIdUseCase, FindAllTherapySessionByPatientIdAndRangeDateUseCase findAllTherapySessionByPatientIdAndRangeDateUseCase) {
 
         this.createTherapySessionUseCase = createTherapySessionUseCase;
         this.findTherapySessionByPatientIdUseCase=findAllTherapySessionByPatientIdUseCase;
         this.findTherapySessionByTherapistIdUseCase=findAllTherapySessionByTherapistIdUseCase;
         this.updateTherapistSessionUseCase=updateTherapistSessionUseCase;
         this.findAllTherapySessionsByPatientIdAndTherapistIdUseCase=findAllTherapySessionsByPatientIdAndTherapistIdUseCase;
-        this.findAllTherapyByPatientIdByRangeDateUseCase = findAllTherapyByPatientIdByRangeDateUseCase;
+        this.findAllTherapySessionByPatientIdAndRangeDateUseCase = findAllTherapySessionByPatientIdAndRangeDateUseCase;
     }
 
     @Override
@@ -58,8 +58,8 @@ private final FindAllTherapyByPatientIdByRangeDateUseCase findAllTherapyByPatien
         return updateTherapistSessionUseCase.update(therapySession,patientId,therapistId,effectiveDate);
     }
 
-        public List<TherapySession> FindAllTherapyByPatientIdByRangeDate(Long patientId, String fromDate, String toDate)
+        public List<TherapySession> FindAllTherapySessionByPatientIdAndRangeDate(Long patientId, String fromDate, String toDate)
         {
-            return findAllTherapyByPatientIdByRangeDateUseCase.FindAllTherapyByPatientIdByRangeDate(patientId, fromDate, toDate);
+            return findAllTherapySessionByPatientIdAndRangeDateUseCase.FindAllTherapySessionByPatientIdAndRangeDate(patientId, fromDate, toDate);
         }
 }

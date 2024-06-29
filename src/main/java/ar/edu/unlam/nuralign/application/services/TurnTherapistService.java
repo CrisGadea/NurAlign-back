@@ -3,9 +3,6 @@ package ar.edu.unlam.nuralign.application.services;
 import ar.edu.unlam.nuralign.application.ports.in.turnTherapist.CreateTurnTherapistUseCase;
 import ar.edu.unlam.nuralign.application.ports.in.turnTherapist.DeleteTurnTherapistByIdUseCase;
 import ar.edu.unlam.nuralign.application.ports.in.turnTherapist.FindAllByTherapistIdTurnTherapistUseCase;
-import ar.edu.unlam.nuralign.application.usecases.turnTherapist.CreateTurnTherapistImpl;
-import ar.edu.unlam.nuralign.application.usecases.turnTherapist.DeleteTurnTherapistImpl;
-import ar.edu.unlam.nuralign.application.usecases.turnTherapist.FindAllByTherapistTurnTherapistImpl;
 import ar.edu.unlam.nuralign.domain.models.TurnTherapist;
 
 import java.util.List;
@@ -25,7 +22,7 @@ public class TurnTherapistService {
 
     public List<TurnTherapist> FindAllByTherapistId(Long therapistId) {
 
-        return findAllByTherapistTurnTherapist.FindallByTherapistIdTurnTherapistUseCase(therapistId);
+        return findAllByTherapistTurnTherapist.FindAllTurnTherapistByTherapistIdUseCase(therapistId);
     }
 
     public TurnTherapist createTurnTherapist(TurnTherapist turnTherapist) {

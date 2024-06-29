@@ -1,7 +1,5 @@
 package ar.edu.unlam.nuralign.infrastructure.config;
 
-import ar.edu.unlam.nuralign.application.ports.in.medication.FindAllMedicationByPatientIdUseCase;
-import ar.edu.unlam.nuralign.application.ports.in.patient.FindAllPatientsByTherapistIdUseCase;
 import ar.edu.unlam.nuralign.application.ports.out.*;
 import ar.edu.unlam.nuralign.application.services.*;
 import ar.edu.unlam.nuralign.application.usecases.medication.*;
@@ -54,7 +52,7 @@ public class ApplicationConfig {
                 new FindMoodTrackerByPatientIdAndEffectiveDateUseCaseImpl(moodTrackerRepositoryPort),
                 new UpdateMoodTrackerUseCaseImpl(moodTrackerRepositoryPort),
                 new FindAllMoodTrackersByPatientIdImpl(moodTrackerRepositoryPort),
-                new FindAllMoodByPatientIdByRangeDateUseCaseImpl(moodTrackerRepositoryPort)
+                new FindAllMoodTrackerByPatientIdAndRangeDateUseCaseImpl(moodTrackerRepositoryPort)
         );
     }
 
@@ -105,7 +103,7 @@ public class ApplicationConfig {
                 new FindAllSleepTrackersByPatientIdImpl(sleepTrackerRepositoryPort),
                 new FindSleepTrackerByPatientIdAndEffectiveDateImpl(sleepTrackerRepositoryPort),
                 new UpdateSleepTrackerUseCaseImpl(sleepTrackerRepositoryPort),
-                new FindAllSleepByPatientIdByRangeDateUseCaseImpl(sleepTrackerRepositoryPort)
+                new FindAllSleepTrackerByPatientIdAndRangeDateUseCaseImpl(sleepTrackerRepositoryPort)
         );
     }
 
@@ -125,7 +123,7 @@ public class ApplicationConfig {
                 new FindAllTherapySessionByTherapistIdUseCaseImpl(therapySessionRepositoryPort),
                 new UpdateTherapistSessionUseCaseImpl(therapySessionRepositoryPort),
                 new FindAllTherapySessionsByPatientIdAndTherapistIdUseCaseImpl(therapySessionRepositoryPort),
-                new FindAllTherapyByPatientIdByRangeDateUseCaseImpl(therapySessionRepositoryPort)
+                new FindAllTherapySessionByPatientIdAndRangeDateUseCaseImpl(therapySessionRepositoryPort)
         );
 
     }

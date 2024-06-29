@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 import static org.springframework.http.HttpStatus.CREATED;
@@ -89,13 +88,13 @@ public class MoodTrackerController {
     }
 
     @GetMapping("patients/range/{patientId}")
-    public ResponseEntity<List<MoodTrackerDto>> GetAllMoodTrackerByIdAnRange(@PathVariable Long patientId,
+    public ResponseEntity<List<MoodTrackerDto>> GetAllMoodTrackerByPatientIdAnRangeDate(@PathVariable Long patientId,
                                                                              @RequestParam String fromDate,
                                                                              @RequestParam String toDate)
     {
         LocalDate from = LocalDate.parse(fromDate);
         LocalDate to = LocalDate.parse(toDate);
-        return ResponseEntity.ok(moodTrackerService.FindAllMoodByPatientIdByRangeDate(patientId, from, to).stream().map(MoodTrackerMapper::toDto).toList());
+        return ResponseEntity.ok(moodTrackerService.FindAllMoodTrackerByPatientIdAndRangeDate(patientId, from, to).stream().map(MoodTrackerMapper::toDto).toList());
     }
 
 }

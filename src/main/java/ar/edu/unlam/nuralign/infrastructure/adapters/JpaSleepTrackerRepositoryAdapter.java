@@ -94,7 +94,7 @@ public class JpaSleepTrackerRepositoryAdapter implements SleepTrackerRepositoryP
         return Optional.ofNullable(SleepTrackerMapper.toDomain(repository.save(sleepTrackerEntity)));
     }
 
-    public List<SleepTracker>findAllByPatientIdByRangeDate(Long patientId, LocalDate fromDate, LocalDate toDate)
+    public List<SleepTracker> findAllSleepTrackerByPatientIdAndRangeDate(Long patientId, LocalDate fromDate, LocalDate toDate)
     {
         return repository.findAllByPatientIdByRangeDate(patientId, fromDate, toDate).stream().map(SleepTrackerMapper::toDomain).toList();
     }
