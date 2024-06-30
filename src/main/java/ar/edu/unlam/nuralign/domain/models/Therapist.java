@@ -2,6 +2,8 @@ package ar.edu.unlam.nuralign.domain.models;
 
 import lombok.*;
 
+import java.time.LocalDate;
+
 
 @Setter
 @Getter
@@ -21,6 +23,8 @@ public class Therapist extends User{
     private Long patientId;
 
     private Boolean isSuscribed;
+
+    private String createdAt;
 
     public Therapist(Long id, String name, String lastName, String email, String phoneNumber, String password,
                      Integer documentNumber, String medicalLicense, String registeredFlag) {
@@ -50,5 +54,16 @@ public class Therapist extends User{
         this.phoneNumber = phoneNumber;
         this.patientId = patientId;
         this.isSuscribed = isSuscribed;
+    }
+
+    public Therapist(Long id, String name, String lastName, String email, String phoneNumber, String password,
+                     Integer documentNumber, String medicalLicense, String registeredFlag, Boolean isSuscribed, String createdAt) {
+        super(id, name, lastName, email, password);
+        this.documentNumber = documentNumber;
+        this.medicalLicense = medicalLicense;
+        this.registeredFlag = registeredFlag;
+        this.phoneNumber = phoneNumber;
+        this.isSuscribed = isSuscribed;
+        this.createdAt = createdAt;
     }
 }

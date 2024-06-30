@@ -35,6 +35,7 @@ public class JwtTokenProvider {
                 .claim("id", user.getId())
                 .claim("email", user.getEmail())
                 .claim("name", user.getName())
+                .claim("createdAt", user.getCreatedAt())
                 .setIssuedAt(new Date())
                 .setExpiration(Date.from(Instant.now().plus(1, ChronoUnit.HOURS)))
                 .signWith(Keys.hmacShaKeyFor(SECRET_KEY), SignatureAlgorithm.HS256)
