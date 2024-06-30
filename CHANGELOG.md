@@ -1,5 +1,34 @@
 # NurAlign Changelog
 
+## [4.1.1] - 2024-06-30
+### Changed
+- Change version of "changelog" and "pom.xml".
+- Fix data table in TherapySession and Therapist.
+
+### Added
+- New features for Subscriptions and Mercado Pago SDK.
+
+## [4.1.0] - 2024-06-30
+### Changed
+- Change version of "changelog" and "pom.xml".
+- Fix data problems in Trackers and therapistSession and turnTherapist.
+
+### Added
+- New features for Medication and trackers.
+- New uses cases for Medication and trackers.
+- New features for PatientTherapist and SessionTherapist of web and Mobile application.
+
+## [4.0.0] - 2024-06-29
+### Changed
+- Change version of "changelog" and "pom.xml".
+- Fix & Update MoodTracker errors
+- Fix & Update PatientTherapist and Sessiontherapist errors
+
+## [3.9.1] - 2024-06-29
+### Changed
+- Change version of "changelog" and "pom.xml".
+- Fix & Update MoodTracker errors
+
 ## [3.8.3] - 2024-06-28
 ### Changed
 - Change version of "changelog" and "pom.xml".
