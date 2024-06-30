@@ -34,7 +34,7 @@ public class MoodTrackerService implements CreateMoodTrackerUseCase, FindMoodTra
         }
 
         @Override
-        public MoodTracker createMoodTracker(MoodTrackerDto moodTracker){
+        public MoodTracker createMoodTracker(MoodTracker moodTracker){
             return createMoodTrackerUseCase.createMoodTracker(moodTracker);
         }
 

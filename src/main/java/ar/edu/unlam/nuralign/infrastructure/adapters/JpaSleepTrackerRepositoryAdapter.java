@@ -36,9 +36,6 @@ public class JpaSleepTrackerRepositoryAdapter implements SleepTrackerRepositoryP
     @Override
     public List<SleepTracker> findAll() {
         List<SleepTrackerEntity> entities = repository.findAll();
-        if (entities == null) {
-            return Collections.emptyList(); // Devuelve una lista vacía si findAll() devuelve null
-        }
         return entities.stream()
                 .map(SleepTrackerMapper::toDomain)
                 .collect(Collectors.toList());

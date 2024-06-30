@@ -33,6 +33,10 @@ public class JpaTherapistRepositoryAdapter implements TherapistRepositoryPort {
 
     @Override
     public Therapist save(Therapist therapist) {
+        if (therapist.getDocumentNumber() == null && therapist.getMedicalLicense() == null) {
+            therapist.setMedicalLicense("ABC123");
+            therapist.setDocumentNumber(12345678);
+        }
         this.checkPassword = new CheckPassword(therapist.getPassword());
         TherapistEntity therapistEntity = TherapistMapper.mapToEntity(therapist);
         if (therapist.getRegisteredFlag() == null) therapistEntity.setRegisteredFlag("Y");
@@ -43,9 +47,6 @@ public class JpaTherapistRepositoryAdapter implements TherapistRepositoryPort {
         else therapistEntity.setPassword("AJFINWIEGNWIGI5454yhrtdnERH$EH$G");
         TherapistEntity therapistEntitySaved = jpaTherapistRepository.save(therapistEntity);
         if (therapist.getRegisteredFlag().equals("N")) {
-//            if () {
-//                throw new LoginErrorException("Paciente no registrado");
-//            }
             PatientTherapistEntity patientTherapistEntity = new PatientTherapistEntity();
             patientTherapistEntity.setPatientId(therapist.getPatientId());
             patientTherapistEntity.setTherapistId(therapistEntitySaved.getId());
@@ -57,14 +58,47 @@ public class JpaTherapistRepositoryAdapter implements TherapistRepositoryPort {
     @Override
     public Optional<Therapist> update(Therapist therapist, Long id) {
         if (jpaTherapistRepository.existsById(id)) {
-            TherapistEntity therapistEntity = TherapistMapper.mapToEntity(therapist);
-            therapistEntity.setId(id);
-            therapistEntity.setUpdatedAt(LocalDateTime.now());
-            TherapistEntity updatedTherapistEntity = jpaTherapistRepository.save(therapistEntity);
+            Optional<TherapistEntity> entityToSave = jpaTherapistRepository.findById(id);
+            Optional<TherapistEntity> entityValidated = validateData(therapist, entityToSave);
+            TherapistEntity updatedTherapistEntity = jpaTherapistRepository.save(entityValidated.get());
             return Optional.of(TherapistMapper.mapToDomain(updatedTherapistEntity));
         } else {
             return Optional.empty();
         }
+    }
+
+    private Optional<TherapistEntity> validateData(Therapist therapist, Optional<TherapistEntity> entityToSave) {
+        if (entityToSave.isEmpty()) return Optional.empty();
+        if (therapist.getMedicalLicense() != null && !therapist.getMedicalLicense()
+                .equals(entityToSave.get().getMedicalLicense()))
+            entityToSave.get().setMedicalLicense(therapist.getMedicalLicense());
+        if (therapist.getName() != null && !therapist.getName()
+                .equals(entityToSave.get().getName())) entityToSave.get().setName(therapist.getName());
+        if (therapist.getLastName() != null && !therapist.getLastName()
+                .equals(entityToSave.get().getLastName()))
+            entityToSave.get().setLastName(therapist.getLastName());
+        if (therapist.getEmail() != null && !therapist.getEmail()
+                .equals(entityToSave.get().getEmail()))
+            entityToSave.get().setEmail(therapist.getEmail());
+        if (therapist.getPhoneNumber() != null && !therapist.getPhoneNumber()
+                .equals(entityToSave.get().getPhoneNumber()))
+            entityToSave.get().setPhoneNumber(therapist.getPhoneNumber());
+        if (therapist.getRegisteredFlag() != null && !therapist.getRegisteredFlag()
+                .equals(entityToSave.get().getRegisteredFlag()))
+            entityToSave.get().setRegisteredFlag(therapist.getRegisteredFlag());
+        if (therapist.getDocumentNumber() != null && !therapist.getDocumentNumber()
+                .equals(entityToSave.get().getDocumentNumber()))
+            entityToSave.get().setDocumentNumber(therapist.getDocumentNumber());
+        if (therapist.getIsSuscribed() != null && !therapist.getIsSuscribed()
+                .equals(entityToSave.get().getIsSuscribed()))
+            entityToSave.get().setIsSuscribed(therapist.getIsSuscribed());
+        if (therapist.getPassword() != null && !therapist.getPassword()
+                .equals(entityToSave.get().getPassword())){
+            this.checkPassword = new CheckPassword(therapist.getPassword());
+            entityToSave.get().setPassword(this.checkPassword.hashPassword());
+        }
+        entityToSave.get().setUpdatedAt(LocalDateTime.now());
+        return entityToSave;
     }
 
     @Override

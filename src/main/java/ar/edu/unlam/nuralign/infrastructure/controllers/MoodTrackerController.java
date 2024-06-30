@@ -42,30 +42,24 @@ public class MoodTrackerController {
     }
 
     @GetMapping("/patient/{patientId}")
-    public ResponseEntity<?> getMoodTrackerDataByPatientIdAndEffectiveDate(
+    public ResponseEntity<MoodTrackerDto> getMoodTrackerDataByPatientIdAndEffectiveDate(
             @PathVariable Long patientId,
             @RequestParam("effectiveDate") String effectiveDate) {
         try {
-            Optional<MoodTracker> tracker = moodTrackerService.findMoodTrackerByPatientIdAndEffectiveDate(patientId, effectiveDate);
-            if (tracker.isPresent()) {
-                return ok(MoodTrackerMapper.toDto(tracker.get()));
-            } else {
-                throw new ResourceNotFoundException("El paciente solicitado no tiene ningún tracker completo para esa fecha dada");
-            }
-        }  catch (ResourceNotFoundException e) {
-            return ResponseEntity.noContent().build();
+            Optional<MoodTracker> tracker = moodTrackerService.findMoodTrackerByPatientIdAndEffectiveDate(
+                    patientId, effectiveDate);
+            return tracker.map(moodTracker -> ok(MoodTrackerMapper.toDto(moodTracker)))
+                    .orElseGet(() -> noContent().build());
         } catch (Exception e) {
-            //ApiResponse response = new ApiResponse("Error interno del servidor", 500, "error");
-            //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        }
+    }
 
     @PostMapping
     public ResponseEntity<MoodTrackerDto> createMoodTrackerData(@RequestBody MoodTrackerDto moodTrackerDto) {
         return status(CREATED).body(
-                MoodTrackerMapper.toDto(moodTrackerService.createMoodTracker(moodTrackerDto))
+                MoodTrackerMapper.toDto(moodTrackerService.createMoodTracker(MoodTrackerMapper.toModel(moodTrackerDto)))
         );
     }
 
@@ -85,7 +79,8 @@ public class MoodTrackerController {
     @GetMapping("/patients/{patientId}")
     public ResponseEntity<List<MoodTrackerDto>> getAllMoodTrackerDataByPatientId(@PathVariable Long patientId)
     {
-        return  ResponseEntity.ok(moodTrackerService.findAllMoodTrackersByPatientId(patientId).stream().map(MoodTrackerMapper::toDto).toList());
+        return  ResponseEntity.ok(moodTrackerService.findAllMoodTrackersByPatientId(patientId).stream()
+                .map(MoodTrackerMapper::toDto).toList());
     }
 
     @GetMapping("patients/range/{patientId}")
