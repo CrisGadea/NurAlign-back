@@ -39,12 +39,11 @@ public class TherapySessionController {
     }
 
     @GetMapping("/patient/{patientId}")
-    public ResponseEntity<List<TherapySessionDto>> getAllTherapySessionByPatientId(@PathVariable Long patientId)
-    {
-        return ResponseEntity.ok(therapySessionService.FindAllTherapySessionByPatientId(patientId).stream()
-                .map(TherapySessionMapper::toDto)
-                .toList());
-    }
+        public ResponseEntity<List<TherapySession>> getAllTherapySessionByPatientId(@PathVariable Long patientId)
+        {
+    return ResponseEntity.ok(therapySessionService.FindAllTherapySessionByPatientId(patientId));
+
+        }
 
 
     @GetMapping("/therapist/{therapistId}")
@@ -79,5 +78,17 @@ public class TherapySessionController {
         return session == null ? ResponseEntity.notFound().build() :
                 ResponseEntity.ok(TherapySessionMapper.toDto(session));
     }
+
+
+    @GetMapping("patients/range/{patientId}")
+    public  ResponseEntity<List<TherapySessionDto>>findAllTherapySessionByPatientIdRangeDate(@PathVariable Long patientId,
+                                                                                      @RequestParam String fromDate,
+                                                                                      @RequestParam String toDate)
+    {
+       LocalDate from = LocalDate.parse(fromDate);
+        LocalDate to = LocalDate.parse(toDate);
+        return ResponseEntity.ok(therapySessionService.FindAllTherapySessionByPatientIdAndRangeDate(patientId,fromDate,toDate).stream().map(TherapySessionMapper::toDto).toList());
+    }
+
 
 }

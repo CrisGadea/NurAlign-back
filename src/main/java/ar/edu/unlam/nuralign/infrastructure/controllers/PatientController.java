@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/patients")
@@ -22,17 +21,15 @@ public class PatientController {
     }
 
     @GetMapping("/{patientId}")
-    public ResponseEntity<PatientDto> findPatient(@PathVariable Long patientId) {
-        Optional<Patient> patient = patientService.findPatient(patientId);
-        return patient.map(value -> ResponseEntity.ok(PatientMapper.mapToDto(value)))
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<Patient> findPatient(@PathVariable Long patientId) {
+        return patientService.findPatient(patientId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping
-    public ResponseEntity<List<PatientDto>> findAllPatients() {
-        return ResponseEntity.ok(patientService.findAllPatients().stream()
-                .map(PatientMapper::mapToDto)
-                .toList());
+    public ResponseEntity<List<Patient>> findAllPatients() {
+        return ResponseEntity.ok(patientService.findAllPatients());
     }
 
     @PostMapping
@@ -41,17 +38,22 @@ public class PatientController {
     }
 
     @PutMapping("/{patientId}")
-    public ResponseEntity<PatientDto> updatePatient(@RequestBody PatientDto patient, @PathVariable Long patientId) {
-        return ResponseEntity.ok(PatientMapper.mapToDto(
-                patientService.updatePatient(PatientMapper.mapToDomain(patient), patientId).get())
-        );
-                //.orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Patient> updatePatient(@RequestBody Patient patient, @PathVariable Long patientId) {
+        return patientService.updatePatient(patient, patientId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{patientId}")
     public ResponseEntity<Void> deletePatient(@PathVariable Long patientId) {
         return patientService.deletePatient(patientId) ? ResponseEntity.ok().build()
                 : ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/therapist/{therapistId}")
+    public ResponseEntity<List<PatientDto>>getAllPatientsByTherapistId(@PathVariable Long therapistId)
+    {
+        return ResponseEntity.ok(patientService.findAllPatientsByTherapistId(therapistId).stream().map(PatientMapper::mapToDto).toList());
     }
 
 }

@@ -2,12 +2,15 @@ package ar.edu.unlam.nuralign.infrastructure.controllers;
 
 import ar.edu.unlam.nuralign.application.services.MoodTrackerService;
 import ar.edu.unlam.nuralign.domain.models.MoodTracker;
+import ar.edu.unlam.nuralign.infrastructure.dtos.ApiResponse;
 import ar.edu.unlam.nuralign.infrastructure.dtos.MoodTrackerDto;
+import ar.edu.unlam.nuralign.infrastructure.exceptions.ResourceNotFoundException;
 import ar.edu.unlam.nuralign.infrastructure.mappers.MoodTrackerMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -79,4 +82,15 @@ public class MoodTrackerController {
         return  ResponseEntity.ok(moodTrackerService.findAllMoodTrackersByPatientId(patientId).stream()
                 .map(MoodTrackerMapper::toDto).toList());
     }
+
+    @GetMapping("patients/range/{patientId}")
+    public ResponseEntity<List<MoodTrackerDto>> GetAllMoodTrackerByPatientIdAnRangeDate(@PathVariable Long patientId,
+                                                                             @RequestParam String fromDate,
+                                                                             @RequestParam String toDate)
+    {
+        LocalDate from = LocalDate.parse(fromDate);
+        LocalDate to = LocalDate.parse(toDate);
+        return ResponseEntity.ok(moodTrackerService.FindAllMoodTrackerByPatientIdAndRangeDate(patientId, from, to).stream().map(MoodTrackerMapper::toDto).toList());
+    }
+
 }

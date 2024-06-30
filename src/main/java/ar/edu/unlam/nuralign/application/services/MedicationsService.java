@@ -3,11 +3,12 @@ package ar.edu.unlam.nuralign.application.services;
 import ar.edu.unlam.nuralign.application.ports.in.medication.*;
 import ar.edu.unlam.nuralign.domain.models.Medication;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 public class MedicationsService implements CreateMedicationUseCase, FindMedicationUseCase, FindAllMedicationsUseCase,
-        FindMedicationsByPatientIdUseCase, UpdateMedicationUseCase, DeleteMedicationUseCase{
+        FindMedicationsByPatientIdUseCase, UpdateMedicationUseCase, DeleteMedicationUseCase,FindAllMedicationByPatientIdUseCase{
 
     private final CreateMedicationUseCase createMedicationUseCase;
     private final FindMedicationUseCase findMedicationUseCase;
@@ -15,19 +16,21 @@ public class MedicationsService implements CreateMedicationUseCase, FindMedicati
     private final FindMedicationsByPatientIdUseCase findMedicationsByPatientIdUseCase;
     private final UpdateMedicationUseCase updateMedicationTrackerUseCase;
     private final DeleteMedicationUseCase deleteMedicationUseCase;
+    private final FindAllMedicationByPatientIdUseCase findAllMedicationByPatientIdUseCase;
 
     public MedicationsService(CreateMedicationUseCase createMedicationUseCase,
                               FindMedicationUseCase findMedicationUseCase,
                               FindAllMedicationsUseCase findAllMedicationsUseCase,
                               FindMedicationsByPatientIdUseCase findMedicationsByPatientIdUseCase,
                               UpdateMedicationUseCase updateMedicationTrackerUseCase,
-                              DeleteMedicationUseCase deleteMedicationUseCase) {
+                              DeleteMedicationUseCase deleteMedicationUseCase, FindAllMedicationByPatientIdUseCase findAllMedicationByPatientIdUseCase) {
         this.createMedicationUseCase = createMedicationUseCase;
         this.findMedicationUseCase = findMedicationUseCase;
         this.findAllMedicationsUseCase = findAllMedicationsUseCase;
         this.findMedicationsByPatientIdUseCase = findMedicationsByPatientIdUseCase;
         this.updateMedicationTrackerUseCase = updateMedicationTrackerUseCase;
         this.deleteMedicationUseCase = deleteMedicationUseCase;
+        this.findAllMedicationByPatientIdUseCase = findAllMedicationByPatientIdUseCase;
     }
 
     @Override
@@ -60,4 +63,8 @@ public class MedicationsService implements CreateMedicationUseCase, FindMedicati
         deleteMedicationUseCase.deleteMedication(medicationId);
     }
 
+    @Override
+    public List<Medication> findAllMedicationByPatientId(Long patientId, LocalDate fromDate, LocalDate toDate, Character takenFlag) {
+        return findAllMedicationByPatientIdUseCase.findAllMedicationByPatientId(patientId, fromDate, toDate, takenFlag);
+    }
 }

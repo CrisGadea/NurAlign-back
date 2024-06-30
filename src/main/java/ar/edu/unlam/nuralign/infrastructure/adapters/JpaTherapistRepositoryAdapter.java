@@ -38,10 +38,8 @@ public class JpaTherapistRepositoryAdapter implements TherapistRepositoryPort {
             therapist.setDocumentNumber(12345678);
         }
         this.checkPassword = new CheckPassword(therapist.getPassword());
-        if (therapist.getRegisteredFlag() == null) {
-            therapist.setRegisteredFlag("Y");
-        }
         TherapistEntity therapistEntity = TherapistMapper.mapToEntity(therapist);
+        if (therapist.getRegisteredFlag() == null) therapistEntity.setRegisteredFlag("Y");
         therapistEntity.setCreatedAt(LocalDateTime.now());
         therapistEntity.setUpdatedAt(LocalDateTime.now());
         therapistEntity.setIsSuscribed(false);

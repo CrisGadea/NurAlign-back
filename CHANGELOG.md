@@ -29,6 +29,11 @@
 - Change version of "changelog" and "pom.xml".
 - Fix & Update MoodTracker errors
 
+## [3.9.7] - 2024-06-28
+### Changed
+- Change version of "changelog" and "pom.xml".
+- Fix data table from trackers
+
 ## [3.8.3] - 2024-06-28
 ### Changed
 - Change version of "changelog" and "pom.xml".

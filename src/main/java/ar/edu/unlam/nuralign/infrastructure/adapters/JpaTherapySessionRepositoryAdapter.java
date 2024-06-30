@@ -92,4 +92,9 @@ public class JpaTherapySessionRepositoryAdapter implements TherapySessionReposit
         return TherapySessionMapper.toModel(repository.save(therapySessionEntity));
     }
 
+    public List<TherapySession> findAllTherapySessionByPatientIdAndRangeDate(Long patientId, String fromDate, String toDate)
+    {
+        return repository.findAllByPatientIdByRangeDate(patientId, fromDate, toDate).stream().map(TherapySessionMapper::toModel).toList();
+
+    }
 }

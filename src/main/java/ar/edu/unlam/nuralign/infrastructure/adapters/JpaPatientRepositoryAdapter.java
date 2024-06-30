@@ -63,4 +63,9 @@ public class JpaPatientRepositoryAdapter implements PatientRepositoryPort {
     public void deleteById(Long id) {
         repository.deleteById(id);
     }
+
+    @Override
+    public List<Patient> findAllByTherapistId(Long patientId) {
+        return repository.findAllByTherapistId(patientId).stream().map(PatientMapper::mapToDomain).toList();
+    }
 }

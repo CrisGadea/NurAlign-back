@@ -7,6 +7,7 @@ import ar.edu.unlam.nuralign.infrastructure.mappers.MedicationMapper;
 import ar.edu.unlam.nuralign.infrastructure.repositories.JpaMedicationRepository;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,5 +64,10 @@ public class JpaMedicationRepositoryAdapter implements MedicationRepositoryPort 
     @Override
     public void deleteMedication(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public List<Medication> findAllMedicationByPatientId(Long patientId, LocalDate fromDate, LocalDate toDate, Character takenFlag) {
+        return repository.findAllMedicationByPatientId(patientId,fromDate,toDate,takenFlag).stream().map(MedicationMapper::toModel).toList();
     }
 }

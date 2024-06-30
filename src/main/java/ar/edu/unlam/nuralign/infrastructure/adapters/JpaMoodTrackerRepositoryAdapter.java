@@ -67,4 +67,9 @@ public class JpaMoodTrackerRepositoryAdapter implements MoodTrackerRepositoryPor
 
         return Optional.of(MoodTrackerMapper.toModel(repository.save(entityToSave)));
     }
+
+    public List<MoodTracker> findAllMoodTrackerByPatientIdAndRangeDate(Long patientId, LocalDate fromDate, LocalDate toDate)
+    {
+        return repository.findAllByPatientIdByRangeDate(patientId, fromDate, toDate).stream().map(MoodTrackerMapper::toModel).toList();
+    }
 }

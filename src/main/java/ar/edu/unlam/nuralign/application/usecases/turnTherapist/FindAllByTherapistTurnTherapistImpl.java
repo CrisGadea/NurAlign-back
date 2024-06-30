@@ -13,7 +13,7 @@ public class FindAllByTherapistTurnTherapistImpl implements FindAllByTherapistId
         this.reposiroty = reposiroty;
     }
     @Override
-    public List<TurnTherapist> FindallByTherapistIdTurnTherapistUseCase(Long id) {
+    public List<TurnTherapist> FindAllTurnTherapistByTherapistIdUseCase(Long id) {
         return reposiroty.findAllByIdTurnTherapist(id);
     }
 }

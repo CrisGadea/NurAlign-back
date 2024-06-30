@@ -4,6 +4,6 @@ import ar.edu.unlam.nuralign.domain.models.TurnTherapist;
 
 import java.util.List;
 
-public interface FindByIdTurnTherapistUseCase {
+public interface FindAllTurnTherapistByIdUseCase {
 List<TurnTherapist> findByIdTurnTherapist(Long idTurnTherapist);
 }
