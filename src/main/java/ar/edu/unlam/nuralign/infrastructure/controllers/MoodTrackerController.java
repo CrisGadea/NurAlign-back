@@ -3,7 +3,6 @@ package ar.edu.unlam.nuralign.infrastructure.controllers;
 import ar.edu.unlam.nuralign.application.services.MoodTrackerService;
 import ar.edu.unlam.nuralign.domain.models.MoodTracker;
 import ar.edu.unlam.nuralign.infrastructure.dtos.MoodTrackerDto;
-import ar.edu.unlam.nuralign.infrastructure.exceptions.ResourceNotFoundException;
 import ar.edu.unlam.nuralign.infrastructure.mappers.MoodTrackerMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

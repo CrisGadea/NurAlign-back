@@ -1,6 +1,5 @@
 package ar.edu.unlam.nuralign.infrastructure.dtos;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
