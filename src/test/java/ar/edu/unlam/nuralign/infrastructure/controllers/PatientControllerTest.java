@@ -44,10 +44,10 @@ public class PatientControllerTest {
             mockedMapper.when(() -> PatientMapper.mapToDto(patient)).thenReturn(patientDto);
             when(patientService.findPatient(patientId)).thenReturn(Optional.of(patient));
 
-            ResponseEntity<PatientDto> response = patientController.findPatient(patientId);
+            ResponseEntity<Patient> response = patientController.findPatient(patientId);
 
             assertEquals(HttpStatus.OK, response.getStatusCode());
-            assertEquals(patientDto, response.getBody());
+            assertEquals(patient, response.getBody());
             verify(patientService, times(1)).findPatient(patientId);
         }
     }
@@ -61,7 +61,7 @@ public class PatientControllerTest {
             mockedMapper.when(() -> PatientMapper.mapToDto(any(Patient.class))).thenReturn(new PatientDto());
             when(patientService.findAllPatients()).thenReturn(patients);
 
-            ResponseEntity<List<PatientDto>> response = patientController.findAllPatients();
+            ResponseEntity<List<Patient>> response = patientController.findAllPatients();
 
             assertEquals(HttpStatus.OK, response.getStatusCode());
             assertEquals(patientDtos.size(), response.getBody().size());
@@ -98,10 +98,10 @@ public class PatientControllerTest {
             mockedMapper.when(() -> PatientMapper.mapToDto(patient)).thenReturn(patientDto);
             when(patientService.updatePatient(any(Patient.class), eq(patientId))).thenReturn(Optional.of(patient));
 
-            ResponseEntity<PatientDto> response = patientController.updatePatient(patientDto, patientId);
+            ResponseEntity<Patient> response = patientController.updatePatient(patient, patientId);
 
             assertEquals(HttpStatus.OK, response.getStatusCode());
-            assertEquals(patientDto, response.getBody());
+            assertEquals(patient, response.getBody());
             verify(patientService, times(1)).updatePatient(patient, patientId);
         }
     }

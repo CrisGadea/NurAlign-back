@@ -81,7 +81,7 @@ public class TherapySessionControllerTest {
             mockedMapper.when(() -> TherapySessionMapper.toDto(any(TherapySession.class))).thenReturn(TherapySessionDto.builder().build());
             when(therapySessionService.FindAllTherapySessionByPatientId(patientId)).thenReturn(therapySessions);
 
-            ResponseEntity<List<TherapySessionDto>> response = therapySessionController.getAllTherapySessionByPatientId(patientId);
+            ResponseEntity<List<TherapySession>> response = therapySessionController.getAllTherapySessionByPatientId(patientId);
 
             assertEquals(HttpStatus.OK, response.getStatusCode());
             assertEquals(therapySessionDtos.size(), response.getBody().size());

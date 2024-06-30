@@ -72,10 +72,10 @@ public class TherapistControllerTest {
             mockedMapper.when(() -> TherapistMapper.mapToDto(therapist)).thenReturn(therapistDto);
             when(therapistService.findTherapist(therapistId)).thenReturn(Optional.of(therapist));
 
-            ResponseEntity<TherapistDto> response = therapistController.findTherapist(therapistId);
+            ResponseEntity<Therapist> response = therapistController.findTherapist(therapistId);
 
             assertEquals(HttpStatus.OK, response.getStatusCode());
-            assertEquals(therapistDto, response.getBody());
+            assertEquals(therapist, response.getBody());
             //verify(therapistService, times(1)).findTherapist(therapistId);
         }
     }
@@ -89,7 +89,7 @@ public class TherapistControllerTest {
             mockedMapper.when(() -> TherapistMapper.mapToDto(any(Therapist.class))).thenReturn(new TherapistDto());
             when(therapistService.findAllTherapists()).thenReturn(therapists);
 
-            ResponseEntity<List<TherapistDto>> response = therapistController.findAllTherapists();
+            ResponseEntity<List<Therapist>> response = therapistController.findAllTherapists();
 
             assertEquals(HttpStatus.OK, response.getStatusCode());
             assertEquals(therapistDtos.size(), response.getBody().size());
@@ -108,10 +108,10 @@ public class TherapistControllerTest {
             mockedMapper.when(() -> TherapistMapper.mapToDto(therapist)).thenReturn(therapistDto);
             when(therapistService.updateTherapist(any(Therapist.class), eq(therapistId))).thenReturn(Optional.of(therapist));
 
-            ResponseEntity<TherapistDto> response = therapistController.updateTherapist(therapistDto, therapistId);
+            ResponseEntity<Therapist> response = therapistController.updateTherapist(therapist, therapistId);
 
             assertEquals(HttpStatus.OK, response.getStatusCode());
-            assertEquals(therapistDto, response.getBody());
+            assertEquals(therapist, response.getBody());
            // verify(therapistService, times(1)).updateTherapist(therapist, therapistId);
         }
     }
@@ -136,14 +136,14 @@ public class TherapistControllerTest {
 
         try (MockedStatic<TherapistMapper> mockedMapper = mockStatic(TherapistMapper.class)) {
             mockedMapper.when(() -> TherapistMapper.mapToDomain(loginData)).thenReturn(therapist);
-            when(loginService.login(any(Therapist.class))).thenReturn(therapist);
+            when(loginService.login(any(LoginData.class))).thenReturn(therapist);
             when(jwtTokenProvider.generateToken(any(Therapist.class))).thenReturn(token);
 
             ResponseEntity<LoginResponse> response = therapistController.login(loginData);
 
             assertEquals(HttpStatus.OK, response.getStatusCode());
             assertEquals(expectedResponse, response.getBody());
-            verify(loginService, times(1)).login(therapist);
+            verify(loginService, times(1)).login(loginData);
             verify(jwtTokenProvider, times(1)).generateToken(therapist);
         }
     }

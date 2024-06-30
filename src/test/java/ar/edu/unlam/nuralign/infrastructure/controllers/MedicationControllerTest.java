@@ -97,7 +97,7 @@ public class MedicationControllerTest {
             mockedMapper.when(() -> MedicationMapper.toDto(medication)).thenReturn(medicationDto);
             when(medicationService.createMedication(any(Medication.class))).thenReturn(medication);
 
-            ResponseEntity<MedicationDto> response = medicationController.createMedication(medicationDto);
+            ResponseEntity<MedicationDto> response = medicationController.createMedication(medication);
 
             assertEquals(HttpStatus.CREATED, response.getStatusCode());
             assertEquals(medicationDto, response.getBody());
