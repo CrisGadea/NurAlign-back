@@ -15,15 +15,19 @@ public interface JpaTherapySessionRepository extends JpaRepository<TherapySessio
 
     List<TherapySessionEntity> findAllByTherapistId(Long id);
 
+    @Query("SELECT t from TherapySessionEntity t  WHERE t.therapistId = :therapistId AND t.patientId =" +
+            " :patientId AND t.effectiveDate = :effectiveDate")
     TherapySessionEntity findByTherapistIdAndPatientIdAndEffectiveDate(
-            Long therapistId, Long patientId, String effectiveDate
+            @Param("therapistId")Long therapistId,  @Param("patientId")Long patientId,
+            @Param("effectiveDate")String effectiveDate
     );
 
     List<TherapySessionEntity> findAllByPatientIdAndTherapistId(
             Long patientId, Long therapistId
     );
 
-    @Query("SELECT t from TherapySessionEntity t  WHERE t.patientId = :patientId AND t.effectiveDate BETWEEN :fromDate AND :toDate ORDER BY t.effectiveDate ASC")
+    @Query("SELECT t from TherapySessionEntity t  WHERE t.patientId = :patientId AND t.effectiveDate BETWEEN :fromDate" +
+            " AND :toDate ORDER BY t.effectiveDate ASC")
     List<TherapySessionEntity> findAllByPatientIdByRangeDate(@Param ("patientId")Long patientId,
                                                                   @Param("fromDate") String fromDate,
                                                                   @Param("toDate") String toDate);

@@ -2,7 +2,6 @@ package ar.edu.unlam.nuralign.application.ports.out;
 
 import ar.edu.unlam.nuralign.domain.models.TherapySession;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface TherapySessionRepositoryPort {
@@ -12,6 +11,6 @@ public interface TherapySessionRepositoryPort {
     TherapySession findById(Long sessionId);
     List<TherapySession> findAllByPatientIdAndTherapistId(Long patientId, Long therapistId);
     List<TherapySession> findAll();
-    TherapySession update(TherapySession therapySession,Long patientId, Long therapistId, LocalDate effectiveDate);
+    TherapySession update(TherapySession therapySession,Long id);
     List<TherapySession> findAllTherapySessionByPatientIdAndRangeDate(Long patientId, String fromDate, String toDate);
 }

@@ -107,13 +107,13 @@ public class TherapySessionServiceTest {
     public void testUpdateTherapySession() {
         Long patientId = 1L;
         Long therapistId = 1L;
-        LocalDate effectiveDate = LocalDate.now();
+        String effectiveDate = "2024-06-29";
         TherapySession therapySession = new TherapySession();
-        when(updateTherapistSessionUseCase.update(therapySession, patientId, therapistId, effectiveDate)).thenReturn(therapySession);
+        when(updateTherapistSessionUseCase.update(therapySession, patientId)).thenReturn(therapySession);
 
-        TherapySession result = therapySessionService.update(therapySession, patientId, therapistId, effectiveDate);
+        TherapySession result = therapySessionService.update(therapySession, patientId);
 
         assertEquals(therapySession, result);
-        verify(updateTherapistSessionUseCase, times(1)).update(therapySession, patientId, therapistId, effectiveDate);
+        verify(updateTherapistSessionUseCase, times(1)).update(therapySession, patientId);
     }
 }
