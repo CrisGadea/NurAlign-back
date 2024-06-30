@@ -12,7 +12,7 @@ public class UpdateTherapistSessionUseCaseImpl implements UpdateTherapistSession
     }
 
     @Override
-    public TherapySession update(TherapySession therapySession, Long patientId, Long therapistId, String effectiveDate) {
-        return therapySessionRepositoryPort.update(therapySession, patientId, therapistId, effectiveDate);
+    public TherapySession update(TherapySession therapySession, Long id) {
+        return therapySessionRepositoryPort.update(therapySession, id);
     }
 }

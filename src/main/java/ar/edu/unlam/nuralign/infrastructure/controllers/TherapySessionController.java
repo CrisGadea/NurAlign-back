@@ -62,16 +62,14 @@ public class TherapySessionController {
     }
 
 
-    @PatchMapping("/patient/{patientId}")
+    @PatchMapping("/{id}")
     public ResponseEntity<TherapySessionDto> updateTherapySession(
-            @PathVariable Long patientId,
-            @RequestBody TherapySessionDto therapySession,
-            @RequestParam Long therapistId,
-            @RequestParam String effectiveDate)
+            @PathVariable Long id,
+            @RequestBody TherapySessionDto therapySession)
     {
         TherapySession session = therapySessionService.update(
                 TherapySessionMapper.toModel(therapySession),
-                patientId, therapistId,effectiveDate
+                id
         );
         return session == null ? ResponseEntity.notFound().build() :
                 ResponseEntity.ok(TherapySessionMapper.toDto(session));

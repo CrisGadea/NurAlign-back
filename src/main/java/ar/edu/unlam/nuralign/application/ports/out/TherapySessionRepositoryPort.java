@@ -11,6 +11,6 @@ public interface TherapySessionRepositoryPort {
     TherapySession findById(Long sessionId);
     List<TherapySession> findAllByPatientIdAndTherapistId(Long patientId, Long therapistId);
     List<TherapySession> findAll();
-    TherapySession update(TherapySession therapySession,Long patientId, Long therapistId, String effectiveDate);
+    TherapySession update(TherapySession therapySession,Long id);
     List<TherapySession> findAllTherapySessionByPatientIdAndRangeDate(Long patientId, String fromDate, String toDate);
 }

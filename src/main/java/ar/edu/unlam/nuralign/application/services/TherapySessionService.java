@@ -4,7 +4,6 @@ import ar.edu.unlam.nuralign.application.ports.in.therapySession.*;
 import ar.edu.unlam.nuralign.domain.models.TherapySession;
 
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class TherapySessionService implements CreateTherapySessionUseCase, FindAllTherapySessionByPatientIdUseCase,
@@ -63,8 +62,8 @@ private final FindAllTherapySessionByPatientIdAndRangeDateUseCase findAllTherapy
     }
 
     @Override
-    public TherapySession update(TherapySession therapySession, Long patientId, Long therapistId, String effectiveDate) {
-        return updateTherapistSessionUseCase.update(therapySession,patientId,therapistId,effectiveDate);
+    public TherapySession update(TherapySession therapySession, Long id) {
+        return updateTherapistSessionUseCase.update(therapySession,id);
     }
 
         public List<TherapySession> FindAllTherapySessionByPatientIdAndRangeDate(Long patientId, String fromDate, String toDate)

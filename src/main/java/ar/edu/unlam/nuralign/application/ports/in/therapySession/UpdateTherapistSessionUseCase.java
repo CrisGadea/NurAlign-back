@@ -3,5 +3,5 @@ package ar.edu.unlam.nuralign.application.ports.in.therapySession;
 import ar.edu.unlam.nuralign.domain.models.TherapySession;
 
 public interface UpdateTherapistSessionUseCase {
-    TherapySession update(TherapySession therapySession, Long patientId, Long therapistId, String effectiveDate);
+    TherapySession update(TherapySession therapySession, Long id);
 }
