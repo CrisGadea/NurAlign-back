@@ -11,7 +11,7 @@
 	<groupId>ar.edu.unlam</groupId>
 	<artifactId>nuralign</artifactId>
 	<!-- Change version of RELEASE -->
-	<version>4.2.0-RELEASE</version>
+	<version>4.3.0-RELEASE</version>
 	<name>nuralign</name>
 	<description>nuralign</description>
 	<properties>

@@ -9,6 +9,8 @@ import ar.edu.unlam.nuralign.application.usecases.patient.*;
 import ar.edu.unlam.nuralign.application.usecases.patientTherapist.AssignPatientToTherapistUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.patientTherapist.DeletePatientTherapistAssignationUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.patientTherapist.FindAllPatientTherapistAssignationsUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.report.CreateReportUseCaseImpl;
+import ar.edu.unlam.nuralign.application.usecases.report.FindAllReportsByTherapistIdUseCaseImpl;
 import ar.edu.unlam.nuralign.application.usecases.sleepTracker.*;
 import ar.edu.unlam.nuralign.application.usecases.therapist.*;
 import ar.edu.unlam.nuralign.application.usecases.therapySession.*;
@@ -171,6 +173,28 @@ public JpaTurnTherapistRepositoryAdapter turnTherapistRepositoryAdapter(JpaTurnT
 
 }
 
+    @Bean
+    public ReportService ReportService(ReportRepositoryPort reportRepositoryPort)
+    {
+        return new ReportService(
+             new CreateReportUseCaseImpl(reportRepositoryPort),
+                new FindAllReportsByTherapistIdUseCaseImpl(reportRepositoryPort)
+        );
+
+    }
+
+
+    @Bean
+    public ReportRepositoryPort reportRepositoryPort(JpaReportRepositoryAdapter jpaReportRepositoryAdapter)
+    {
+        return jpaReportRepositoryAdapter;
+    }
+    @Bean
+    public JpaReportRepositoryAdapter reportRepositoryAdapter(JpaReportRepository adapter)
+    {
+        return new JpaReportRepositoryAdapter(adapter);
+
+    }
 
 
 
