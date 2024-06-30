@@ -1,4 +1,4 @@
-/*package ar.edu.unlam.nuralign.infrastructure.entities;
+package ar.edu.unlam.nuralign.infrastructure.entities;
 
 
 import jakarta.persistence.*;
@@ -6,36 +6,45 @@ import lombok.*;
 
 import java.time.LocalDate;
 
+
 @Setter
 @Getter
-@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name="report")
+@Entity
 public class ReportEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "report_Id")
-    private Long Id;
+    @Column(name = "report_id")
+    private Long id;
+
     @Column(name = "therapist_id")
-    @JoinColumn(name = "therapist_id")
     private Long therapistId;
-    @Column(name = "initialDate")
+
+    @Column(name = "initial_date")
     private LocalDate initialDate;
-    @Column (name = "endDate")
-    LocalDate endDate;
+
+    @Column(name = "end_date")
+    private LocalDate endDate;
+
     @Column(name = "effective_date")
     private LocalDate effectiveDate;
-    @Column(name="mooodFlag")
-   private Boolean mooodFlag;
-    @Column(name="sleepFlag")
-    private Boolean sleepFlag;
-    @Column(name="therapyFlag")
-    private Boolean therapyFlag;
-    @Column(name="MedicationFlag")
-    private Boolean MedicationFlag;
-    @Column(name="PatientName")
-    private String PatientName;
 
-}*/
+    @Column(name = "mood_flag")
+    private Boolean moodFlag;
+
+    @Column(name = "sleep_flag")
+    private Boolean sleepFlag;
+
+    @Column(name = "therapy_flag")
+    private Boolean therapyFlag;
+
+    @Column(name = "medication_flag")
+    private Boolean medicationFlag;
+
+    @Column(name = "patient_name")
+    private String patientName;
+}

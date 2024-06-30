@@ -1,4 +1,4 @@
-/*package ar.edu.unlam.nuralign.domain.models;
+package ar.edu.unlam.nuralign.domain.models;
 
 import lombok.*;
 
@@ -20,15 +20,14 @@ public class Report {
 
     private LocalDate effectiveDate;
 
-    private Boolean mooodFlag;
+    private Boolean moodFlag;
 
     private Boolean sleepFlag;
 
     private Boolean therapyFlag;
 
-    private Boolean MedicationFlag;
+    private Boolean medicationFlag;
 
-    private String PatientName;
+    private String patientName;
 
 }
-*/
