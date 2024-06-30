@@ -1,5 +1,10 @@
 # NurAlign Changelog
 
+## [4.2.0] - 2024-06-30
+### Changed
+- Change version of "changelog" and "pom.xml".
+- Fix data problems in Trackers and therapistSession and turnTherapist.
+
 ## [4.1.1] - 2024-06-30
 ### Changed
 - Change version of "changelog" and "pom.xml".
