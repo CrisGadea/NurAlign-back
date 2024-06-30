@@ -68,10 +68,13 @@ public class JpaTherapistRepositoryAdapter implements TherapistRepositoryPort {
             if (therapist.getEmail() != null) entityToSave.get().setEmail(therapist.getEmail());
             if (therapist.getPhoneNumber() != null) entityToSave.get().setPhoneNumber(therapist.getPhoneNumber());
             if (therapist.getRegisteredFlag() != null) entityToSave.get().setRegisteredFlag(therapist.getRegisteredFlag());
+            if (therapist.getDocumentNumber() != null) entityToSave.get().setDocumentNumber(therapist.getDocumentNumber());
+            if (therapist.getIsSuscribed() != null) entityToSave.get().setIsSuscribed(therapist.getIsSuscribed());
             if (therapist.getPassword() != null) {
                 this.checkPassword = new CheckPassword(therapist.getPassword());
                 entityToSave.get().setPassword(this.checkPassword.hashPassword());
             }
+            entityToSave.get().setUpdatedAt(LocalDateTime.now());
             TherapistEntity updatedTherapistEntity = jpaTherapistRepository.save(entityToSave.get());
             return Optional.of(TherapistMapper.mapToDomain(updatedTherapistEntity));
         } else {

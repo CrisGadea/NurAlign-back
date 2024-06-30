@@ -5,6 +5,7 @@ import ar.edu.unlam.nuralign.domain.models.MoodTracker;
 import ar.edu.unlam.nuralign.infrastructure.dtos.MoodTrackerDto;
 import ar.edu.unlam.nuralign.infrastructure.exceptions.ResourceNotFoundException;
 import ar.edu.unlam.nuralign.infrastructure.mappers.MoodTrackerMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,19 +40,16 @@ public class MoodTrackerController {
     }
 
     @GetMapping("/patient/{patientId}")
-    public ResponseEntity<?> getMoodTrackerDataByPatientIdAndEffectiveDate(
+    public ResponseEntity<MoodTrackerDto> getMoodTrackerDataByPatientIdAndEffectiveDate(
             @PathVariable Long patientId,
             @RequestParam("effectiveDate") String effectiveDate) {
         try {
             Optional<MoodTracker> tracker = moodTrackerService.findMoodTrackerByPatientIdAndEffectiveDate(
                     patientId, effectiveDate);
-            if (tracker.isPresent()) {
-                return ok(MoodTrackerMapper.toDto(tracker.get()));
-            } else {
-                throw new ResourceNotFoundException("El paciente solicitado no tiene tracker completo para esa fecha");
-            }
+            return tracker.map(moodTracker -> ok(MoodTrackerMapper.toDto(moodTracker)))
+                    .orElseGet(() -> noContent().build());
         } catch (Exception e) {
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
     }
