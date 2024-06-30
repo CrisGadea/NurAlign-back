@@ -1,5 +1,6 @@
 package ar.edu.unlam.nuralign.domain.models;
 
+import jakarta.persistence.Column;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -29,5 +30,7 @@ public class Report {
     private Boolean medicationFlag;
 
     private String patientName;
+
+    private Long patientId;
 
 }

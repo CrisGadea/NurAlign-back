@@ -45,6 +45,9 @@ public class ReportEntity {
     @Column(name = "medication_flag")
     private Boolean medicationFlag;
 
+
     @Column(name = "patient_name")
     private String patientName;
+    @Column(name = "patient_Id")
+    private Long patientId;
 }

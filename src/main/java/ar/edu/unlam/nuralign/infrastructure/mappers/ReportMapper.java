@@ -18,6 +18,7 @@ public class ReportMapper {
                 .therapyFlag(reportDto.getTherapyFlag())
                 .medicationFlag(reportDto.getMedicationFlag())  // Corregido a medicationFlag
                 .patientName(reportDto.getPatientName())
+                .patientId(reportDto.getPatientId())
                 .build();
     }
 
@@ -33,6 +34,7 @@ public class ReportMapper {
                 .therapyFlag(report.getTherapyFlag())
                 .medicationFlag(report.getMedicationFlag())  // Corregido a medicationFlag
                 .patientName(report.getPatientName())
+                .patientId(report.getPatientId())
                 .build();
     }
 
@@ -48,6 +50,7 @@ public class ReportMapper {
                 .therapyFlag(report.getTherapyFlag())
                 .medicationFlag(report.getMedicationFlag())
                 .patientName(report.getPatientName())
+                .patientId(report.getPatientId())
                 .build();
     }
 
@@ -63,6 +66,7 @@ public class ReportMapper {
                 .therapyFlag(reportEntity.getTherapyFlag())
                 .medicationFlag(reportEntity.getMedicationFlag())
                 .patientName(reportEntity.getPatientName())
+                .patientId(reportEntity.getPatientId())
                 .build();
     }
 }

@@ -28,4 +28,6 @@ public class ReportDto {
     private Boolean medicationFlag;
 
     private String patientName;
+
+    private Long patientId;
 }
