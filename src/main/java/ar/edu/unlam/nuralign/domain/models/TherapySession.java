@@ -17,7 +17,7 @@ public class TherapySession {
 
     private Long therapistId;
 
-    private LocalDate effectiveDate;
+    private String effectiveDate;
 
     private Integer sessionTime;
 

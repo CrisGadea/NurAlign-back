@@ -129,13 +129,13 @@ public class TherapySessionControllerTest {
         try (MockedStatic<TherapySessionMapper> mockedMapper = mockStatic(TherapySessionMapper.class)) {
             mockedMapper.when(() -> TherapySessionMapper.toModel(therapySessionDto)).thenReturn(therapySession);
             mockedMapper.when(() -> TherapySessionMapper.toDto(therapySession)).thenReturn(therapySessionDto);
-            when(therapySessionService.update(any(TherapySession.class), eq(patientId), eq(therapistId), any(LocalDate.class))).thenReturn(therapySession);
+            when(therapySessionService.update(any(TherapySession.class), eq(patientId), eq(therapistId), any(String.class))).thenReturn(therapySession);
 
             ResponseEntity<TherapySessionDto> response = therapySessionController.updateTherapySession(patientId, therapySessionDto, therapistId, effectiveDate);
 
             assertEquals(HttpStatus.OK, response.getStatusCode());
             assertEquals(therapySessionDto, response.getBody());
-            verify(therapySessionService, times(1)).update(therapySession, patientId, therapistId, LocalDate.parse(effectiveDate));
+            verify(therapySessionService, times(1)).update(therapySession, patientId, therapistId, effectiveDate);
         }
     }
 }

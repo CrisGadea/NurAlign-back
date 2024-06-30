@@ -63,7 +63,7 @@ private final FindAllTherapySessionByPatientIdAndRangeDateUseCase findAllTherapy
     }
 
     @Override
-    public TherapySession update(TherapySession therapySession, Long patientId, Long therapistId, LocalDate effectiveDate) {
+    public TherapySession update(TherapySession therapySession, Long patientId, Long therapistId, String effectiveDate) {
         return updateTherapistSessionUseCase.update(therapySession,patientId,therapistId,effectiveDate);
     }
 

@@ -71,9 +71,7 @@ public class TherapySessionController {
     {
         TherapySession session = therapySessionService.update(
                 TherapySessionMapper.toModel(therapySession),
-                patientId,
-                therapistId,
-                LocalDate.parse(effectiveDate)
+                patientId, therapistId,effectiveDate
         );
         return session == null ? ResponseEntity.notFound().build() :
                 ResponseEntity.ok(TherapySessionMapper.toDto(session));

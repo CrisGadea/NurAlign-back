@@ -70,14 +70,23 @@ public class JpaTherapySessionRepositoryAdapter implements TherapySessionReposit
     }
 
     @Override
-    public TherapySession update(TherapySession therapySession, Long patientId, Long therapistId, LocalDate effectiveDate) {
-        TherapySessionEntity therapySessionEntity = repository.findByTherapistIdAndPatientIdAndEffectiveDate(
-                patientId, therapistId, String.valueOf(effectiveDate));
+    public TherapySession update(TherapySession therapySession, Long patientId, Long therapistId, String effectiveDate) {
+        TherapySessionEntity therapySessionEntity;
+        if (therapySession.getId() != null){
+            therapySessionEntity = repository.findById(therapySession.getId()).get();
+        } else {
+            therapySessionEntity = repository.findByTherapistIdAndPatientIdAndEffectiveDate(
+                    patientId, therapistId, effectiveDate);
+        }
+
+        if (therapySessionEntity == null) {
+            return null;
+        }
         if (therapySession.getSessionFeel() != null) {
             therapySessionEntity.setSessionFeel(therapySession.getSessionFeel());
         }
         if (therapySession.getEffectiveDate() != null) {
-            therapySessionEntity.setEffectiveDate(String.valueOf(therapySession.getEffectiveDate()));
+            therapySessionEntity.setEffectiveDate(therapySession.getEffectiveDate());
         }
         if (therapySession.getPostSessionNotes() != null) {
             therapySessionEntity.setPostSessionNotes(therapySession.getPostSessionNotes());

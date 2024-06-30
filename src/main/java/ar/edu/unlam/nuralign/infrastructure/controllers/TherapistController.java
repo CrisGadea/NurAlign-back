@@ -57,7 +57,7 @@ public class TherapistController {
         return ResponseEntity.ok(therapistService.findAllTherapists());
     }
 
-    @PutMapping("/{therapistId}")
+    @PatchMapping("/{therapistId}")
     public ResponseEntity<Therapist> updateTherapist(@RequestBody Therapist therapist,
                                                                @PathVariable Long therapistId) {
         return therapistService.updateTherapist(therapist, therapistId)

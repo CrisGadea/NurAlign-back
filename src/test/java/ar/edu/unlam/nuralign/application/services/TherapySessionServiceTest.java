@@ -107,7 +107,7 @@ public class TherapySessionServiceTest {
     public void testUpdateTherapySession() {
         Long patientId = 1L;
         Long therapistId = 1L;
-        LocalDate effectiveDate = LocalDate.now();
+        String effectiveDate = "2024-06-29";
         TherapySession therapySession = new TherapySession();
         when(updateTherapistSessionUseCase.update(therapySession, patientId, therapistId, effectiveDate)).thenReturn(therapySession);
 
