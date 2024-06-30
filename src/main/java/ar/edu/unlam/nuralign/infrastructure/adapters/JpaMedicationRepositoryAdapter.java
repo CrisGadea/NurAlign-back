@@ -67,7 +67,7 @@ public class JpaMedicationRepositoryAdapter implements MedicationRepositoryPort 
     }
 
     @Override
-    public List<Medication> findAllMedicationByPatientId(Long patientId, LocalDate fromDate, LocalDate toDate, Character takenFlag) {
-        return repository.findAllMedicationByPatientId(patientId,fromDate,toDate,takenFlag).stream().map(MedicationMapper::toModel).toList();
+    public List<Medication> findAllMedicationByPatientId(Long patientId, LocalDate fromDate, LocalDate toDate) {
+        return repository.findAllMedicationByPatientId(patientId,fromDate,toDate).stream().map(MedicationMapper::toModel).toList();
     }
 }

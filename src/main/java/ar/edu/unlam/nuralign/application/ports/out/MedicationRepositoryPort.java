@@ -13,5 +13,5 @@ public interface MedicationRepositoryPort {
     List<Medication> findAllByPatientId(Long patientId);
     Optional<Medication> updateMedication(Medication medication, Long patientId);
     void deleteMedication(Long id);
-    List<Medication> findAllMedicationByPatientId(Long patientId, LocalDate fromDate, LocalDate toDate, Character takenFlag);
+    List<Medication> findAllMedicationByPatientId(Long patientId, LocalDate fromDate, LocalDate toDate);
 }

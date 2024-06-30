@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/medicationTracker")
+@CrossOrigin(origins = "*")
 public class MedicationTrackerController {
     private final MedicationTrackersService medicationTrackerService;
 
@@ -63,5 +64,18 @@ public class MedicationTrackerController {
                 MedicationTrackerMapper.toModel(medicationTrackerDto), patientId, effectiveDate).get())
         );
     }
+
+    @GetMapping("/medication/{patientId}")
+    public ResponseEntity<List<MedicationTrackerDto>> findAllByMedicationIdAndRangeDate(@PathVariable Long patientId,
+                                                                         @RequestParam String fromDate,
+                                                                         @RequestParam String toDate)
+    {
+        LocalDate from = LocalDate.parse(fromDate);
+        LocalDate to = LocalDate.parse(toDate);
+
+        return ResponseEntity.ok(medicationTrackerService.findAllByMedicationIdAndRangeDate(patientId,from,to).stream().map(MedicationTrackerMapper::toDto).toList());
+    }
+
+
 
 }
