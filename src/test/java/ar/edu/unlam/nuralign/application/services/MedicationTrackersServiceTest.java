@@ -84,13 +84,12 @@ public class MedicationTrackersServiceTest {
     @DisplayName("Should create medication tracker")
     @Test
     void shouldCreateMedicationTracker() {
-        MedicationTrackerDto dto = new MedicationTrackerDto();
         MedicationTracker tracker = new MedicationTracker();
-        when(createMedicationTrackerUseCase.createMedicationTracker(dto)).thenReturn(tracker);
+        when(createMedicationTrackerUseCase.createMedicationTracker(tracker)).thenReturn(tracker);
 
-        MedicationTracker result = service.createMedicationTracker(dto);
+        MedicationTracker result = service.createMedicationTracker(tracker);
 
-        verify(createMedicationTrackerUseCase, times(1)).createMedicationTracker(dto);
+        verify(createMedicationTrackerUseCase, times(1)).createMedicationTracker(tracker);
         assertNotNull(result);
     }
 

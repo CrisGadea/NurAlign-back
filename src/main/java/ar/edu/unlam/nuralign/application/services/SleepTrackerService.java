@@ -36,7 +36,7 @@ public class SleepTrackerService implements CreateSleepTrackerUseCase,
     }
 
     @Override
-    public SleepTracker createSleepTracker(ar.edu.unlam.nuralign.domain.models.SleepTracker sleepTracker) {
+    public SleepTracker createSleepTracker(SleepTracker sleepTracker) {
         return createSleepTrackerUseCase.createSleepTracker(sleepTracker);
     }
 

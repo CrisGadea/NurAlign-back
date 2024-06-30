@@ -48,7 +48,7 @@ public class TherapySessionMapper {
                 .id(therapySessionEntity.getId())
                 .patientId(therapySessionEntity.getPatientId())
                 .therapistId(therapySessionEntity.getTherapistId())
-                .effectiveDate(LocalDate.parse(therapySessionEntity.getEffectiveDate()))
+                .effectiveDate(therapySessionEntity.getEffectiveDate() != null ? LocalDate.parse(therapySessionEntity.getEffectiveDate()) : null)
                 .sessionTime(therapySessionEntity.getSessionTime())
                 .preSessionNotes(therapySessionEntity.getPreSessionNotes())
                 .postSessionNotes(therapySessionEntity.getPostSessionNotes())

@@ -16,8 +16,8 @@ public class CreateMoodTrackerUseCaseImpl implements CreateMoodTrackerUseCase {
     }
 
     @Override
-    public MoodTracker createMoodTracker(MoodTrackerDto moodTracker){
-        return moodTrackerRepositoryPort.save(toModel(moodTracker));
+    public MoodTracker createMoodTracker(MoodTracker moodTracker){
+        return moodTrackerRepositoryPort.save(moodTracker);
     }
 
 }

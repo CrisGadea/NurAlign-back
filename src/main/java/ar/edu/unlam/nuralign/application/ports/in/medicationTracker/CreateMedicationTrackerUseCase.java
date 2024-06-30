@@ -4,5 +4,5 @@ import ar.edu.unlam.nuralign.domain.models.MedicationTracker;
 import ar.edu.unlam.nuralign.infrastructure.dtos.MedicationTrackerDto;
 
 public interface CreateMedicationTrackerUseCase {
-    MedicationTracker createMedicationTracker(MedicationTrackerDto medicationTracker);
+    MedicationTracker createMedicationTracker(MedicationTracker medicationTracker);
 }

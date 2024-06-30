@@ -45,11 +45,11 @@ public class MoodTrackerServiceTest {
     void shouldCreateMoodTracker() {
         MoodTrackerDto moodTrackerDto = MoodTrackerDto.builder().build();
         MoodTracker moodTracker = new MoodTracker();
-        when(createMoodTrackerUseCase.createMoodTracker(moodTrackerDto)).thenReturn(moodTracker);
+        when(createMoodTrackerUseCase.createMoodTracker(moodTracker)).thenReturn(moodTracker);
 
-        MoodTracker result = moodTrackerService.createMoodTracker(moodTrackerDto);
+        MoodTracker result = moodTrackerService.createMoodTracker(moodTracker);
 
-        verify(createMoodTrackerUseCase, times(1)).createMoodTracker(moodTrackerDto);
+        verify(createMoodTrackerUseCase, times(1)).createMoodTracker(moodTracker);
         assertNotNull(result);
     }
 
