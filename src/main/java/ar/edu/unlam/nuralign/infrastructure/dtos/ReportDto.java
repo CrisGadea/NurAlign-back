@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class ReportDto {
 
+    private Long id;
     private Long therapistId;
 
     private LocalDate initialDate;
