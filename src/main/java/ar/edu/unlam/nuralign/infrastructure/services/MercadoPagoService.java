@@ -119,9 +119,9 @@ public class MercadoPagoService {
         preference.put("items", new Map[]{item});
 
         Map<String, String> backUrls = new HashMap<>();
-        backUrls.put("success", "http://localhost:4200/dashboard");
-        backUrls.put("failure", "http://localhost:4200/payment-failure");
-        backUrls.put("pending", "http://localhost:4200/payment-pending");
+        backUrls.put("success", "nuralign.com/dashboard");
+        backUrls.put("failure", "nuralign.com/payment-failure");
+        backUrls.put("pending", "nuralign.com/payment-pending");
 
         preference.put("back_urls", backUrls);
         preference.put("auto_return", "approved");
