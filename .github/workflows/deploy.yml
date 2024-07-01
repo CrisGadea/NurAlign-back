@@ -38,7 +38,7 @@ jobs:
       MYSQL_USER: ${{ secrets.MYSQL_USER }}
       MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
       MP_PUBLIC_KEY: ${{ secrets.MP_PUBLIC_KEY }}
-      MP_ACCESS_TOKEN: ${{ secrets.MP_ACCESS_TOKEN }}
+      MP_ACCESS_TOKEN: ${{ secrets.MP_TOKEN }}
 
     steps:
       - name: Agregar variables de entorno
@@ -47,7 +47,7 @@ jobs:
           echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> $GITHUB_ENV
           echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> $GITHUB_ENV
           echo "MP_PUBLIC_KEY=${{ secrets.MP_PUBLIC_KEY }}" >> $GITHUB_ENV
-          echo "MP_ACCESS_TOKEN=${{ secrets.MP_ACCESS_TOKEN }}" >> $GITHUB_ENV
+          echo "MP_ACCESS_TOKEN=${{ secrets.MP_TOKEN }}" >> $GITHUB_ENV
 
       - name: Checkout code
         uses: actions/checkout@v2
@@ -85,7 +85,7 @@ jobs:
             echo "MYSQL_USERNAME=${{ secrets.MYSQL_USERNAME }}" >> /etc/environment
             echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> /etc/environment
             echo "MP_PUBLIC_KEY=${{ secrets.MP_PUBLIC_KEY }}" >> /etc/environment
-            echo "MP_ACCESS_TOKEN=${{ secrets.MP_ACCESS_TOKEN }}" >> /etc/environment
+            echo "MP_ACCESS_TOKEN=${{ secrets.MP_TOKEN }}" >> /etc/environment
           '
           # Reiniciar el servicio para que use el nuevo JAR
           ssh -o StrictHostKeyChecking=no root@77.37.69.38 'systemctl start nuralign'
