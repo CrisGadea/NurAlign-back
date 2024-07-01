@@ -1,5 +1,16 @@
 # NurAlign Changelog
 
+## [4.4.0] - 2024-06-30
+### Changed
+- Change version of "changelog" and "pom.xml".
+- Added Mercado Pago checkout payment
+
+## [4.3.0] - 2024-06-30
+### Changed
+- Change version of "changelog" and "pom.xml".
+- Create new logic in reports
+
+
 ## [4.2.0] - 2024-06-30
 ### Changed
 - Change version of "changelog" and "pom.xml".

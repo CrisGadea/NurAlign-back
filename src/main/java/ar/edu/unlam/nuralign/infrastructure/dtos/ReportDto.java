@@ -1,14 +1,12 @@
-/*package ar.edu.unlam.nuralign.infrastructure.dtos;
+package ar.edu.unlam.nuralign.infrastructure.dtos;
 
 import jakarta.persistence.Column;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReportDto {
@@ -21,14 +19,15 @@ public class ReportDto {
 
     private LocalDate effectiveDate;
 
-    private Boolean mooodFlag;
+    private Boolean moodFlag;
 
     private Boolean sleepFlag;
 
     private Boolean therapyFlag;
 
-    private Boolean MedicationFlag;
+    private Boolean medicationFlag;
 
-    private String PatientName;
+    private String patientName;
+
+    private Long patientId;
 }
-*/
