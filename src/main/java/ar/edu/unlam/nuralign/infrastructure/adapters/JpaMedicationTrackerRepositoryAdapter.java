@@ -69,4 +69,9 @@ public class JpaMedicationTrackerRepositoryAdapter implements MedicationTrackerR
         return Optional.of(MedicationTrackerMapper.toModel(jpaMedicationTrackerRepository.save(entityToUpdate)));
     }
 
+    public List<MedicationTracker>findAllByMedicationIdAndRangeDate(Long patientId, LocalDate fromDate, LocalDate toDate)
+    {
+    return jpaMedicationTrackerRepository.findAllByMedicationIdAndRangeDate(patientId, fromDate, toDate).stream().map(MedicationTrackerMapper::toModel).toList();
+    }
+
 }

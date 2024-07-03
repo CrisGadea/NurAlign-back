@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface FindAllMedicationByPatientIdUseCase {
 
-    List <Medication> findAllMedicationByPatientId(Long patientId, LocalDate fromDate, LocalDate toDate,Character takenFlag);
+    List <Medication> findAllMedicationByPatientId(Long patientId, LocalDate fromDate, LocalDate toDate);
 }

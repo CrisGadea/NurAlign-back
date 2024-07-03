@@ -73,7 +73,8 @@ public class ApplicationConfig {
                 new FindAllMedicationTrackersUseCaseImpl(medicationTrackerRepositoryPort),
                 new CreateMedicationTrackerUseCaseImpl(medicationTrackerRepositoryPort),
                 new FindMedicationTrackerByPatientIdAndEffectiveDateUseCaseImpl(medicationTrackerRepositoryPort),
-                new UpdateMedicationTrackerUseCaseImpl(medicationTrackerRepositoryPort)
+                new UpdateMedicationTrackerUseCaseImpl(medicationTrackerRepositoryPort),
+                new FindAllByMedicationIdAndRangeDateUseCaseImpl(medicationTrackerRepositoryPort)
         );
     }
 

@@ -12,10 +12,11 @@ public interface JpaMedicationRepository extends JpaRepository<MedicationEntity,
     List<MedicationEntity> findAllByPatientId(Long patientId);
     @Query("SELECT m FROM MedicationEntity m WHERE m.patientId = ?1 AND m.id = ?2")
     MedicationEntity findByPatientIdAndMedicationId(Long patientId, Long medicationID);
-    @Query("SELECT m FROM MedicationEntity m join MedicationTrackerEntity mt ON m.patientId=mt.patientId WHERE m.patientId = :patientId AND mt.effectiveDate BETWEEN :fromDate AND :toDate AND mt.takenFlag = :takenFlag ORDER BY mt.effectiveDate ASC")
+    @Query("SELECT m FROM MedicationEntity m join MedicationTrackerEntity mt ON m.patientId=mt.patientId WHERE m.patientId = :patientId AND mt.effectiveDate BETWEEN :fromDate AND :toDate  ORDER BY mt.effectiveDate ASC")
     List<MedicationEntity> findAllMedicationByPatientId( @Param("patientId") Long patientId,
                                                          @Param("fromDate") LocalDate fromDate,
-                                                         @Param("toDate") LocalDate toDate,
-                                                         @Param("takenFlag") Character takenFlag);
+                                                         @Param("toDate") LocalDate toDate);
+
+
 
 }

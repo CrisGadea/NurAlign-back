@@ -14,4 +14,5 @@ public interface MedicationTrackerRepositoryPort {
     MedicationTracker findByEffectiveDate(LocalDate effectiveDate);
     MedicationTracker findByPatientIdAndEffectiveDate(Long patientId, LocalDate effectiveDate);
     Optional<MedicationTracker> update(MedicationTracker medication, Long patientId, LocalDate effectiveDate);
+    List<MedicationTracker>findAllByMedicationIdAndRangeDate(Long patientId, LocalDate fromDate, LocalDate toDate);
 }
