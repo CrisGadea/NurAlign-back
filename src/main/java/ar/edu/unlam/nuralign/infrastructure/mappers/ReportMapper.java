@@ -25,6 +25,7 @@ public class ReportMapper {
     // Model to DTO
     public static ReportDto toDto(Report report) {
         return ReportDto.builder()
+                .id(report.getId())
                 .therapistId(report.getTherapistId())
                 .effectiveDate(report.getEffectiveDate())
                 .initialDate(report.getInitialDate())
@@ -57,6 +58,7 @@ public class ReportMapper {
     // Entity to Model
     public static Report EntitytoModel(ReportEntity reportEntity) {
         return Report.builder()
+                .id(reportEntity.getId())
                 .therapistId(reportEntity.getTherapistId())
                 .effectiveDate(reportEntity.getEffectiveDate())
                 .initialDate(reportEntity.getInitialDate())

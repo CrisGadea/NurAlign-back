@@ -13,6 +13,7 @@ import java.time.LocalDate;
 public class Report {
 
 
+    private Long id;
     private Long therapistId;
 
     private LocalDate initialDate;

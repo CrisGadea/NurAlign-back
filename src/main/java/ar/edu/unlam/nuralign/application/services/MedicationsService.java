@@ -64,7 +64,7 @@ public class MedicationsService implements CreateMedicationUseCase, FindMedicati
     }
 
     @Override
-    public List<Medication> findAllMedicationByPatientId(Long patientId, LocalDate fromDate, LocalDate toDate, Character takenFlag) {
-        return findAllMedicationByPatientIdUseCase.findAllMedicationByPatientId(patientId, fromDate, toDate, takenFlag);
+    public List<Medication> findAllMedicationByPatientId(Long patientId, LocalDate fromDate, LocalDate toDate) {
+        return findAllMedicationByPatientIdUseCase.findAllMedicationByPatientId(patientId, fromDate, toDate);
     }
 }

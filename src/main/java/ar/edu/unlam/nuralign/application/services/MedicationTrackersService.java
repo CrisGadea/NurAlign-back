@@ -2,7 +2,7 @@ package ar.edu.unlam.nuralign.application.services;
 
 import ar.edu.unlam.nuralign.application.ports.in.medicationTracker.*;
 import ar.edu.unlam.nuralign.domain.models.MedicationTracker;
-import ar.edu.unlam.nuralign.infrastructure.dtos.MedicationTrackerDto;
+
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,7 +14,8 @@ public class MedicationTrackersService implements FindMedicationTrackerUseCase,
         FindAllMedicationTrackersUseCase,
         CreateMedicationTrackerUseCase,
         FindMedicationTrackerByPatientIdAndEffectiveDateUseCase,
-        UpdateMedicationTrackerUseCase {
+        UpdateMedicationTrackerUseCase,
+FindAllByMedicationIdAndRangeDateUseCase{
 
     private final FindMedicationTrackerUseCase findMedicationTrackerUseCase;
     private final FindMedicationTrackerByEffectiveDateUseCase findMedicationTrackerByEffectiveDateUseCase;
@@ -23,6 +24,7 @@ public class MedicationTrackersService implements FindMedicationTrackerUseCase,
     private final CreateMedicationTrackerUseCase createMedicationTrackerUseCase;
     private final FindMedicationTrackerByPatientIdAndEffectiveDateUseCase findMedicationTrackerByPatientIdAndEffectiveDateUseCase;
     private final UpdateMedicationTrackerUseCase updateMedicationTrackerUseCase;
+    private  final FindAllByMedicationIdAndRangeDateUseCase findAllByMedicationIdAndRangeDateUseCase;
 
     public MedicationTrackersService(FindMedicationTrackerUseCase findMedicationTrackerUseCase,
                                      FindMedicationTrackerByEffectiveDateUseCase findMedicationTrackerByEffectiveDateUseCase,
@@ -30,7 +32,7 @@ public class MedicationTrackersService implements FindMedicationTrackerUseCase,
                                      FindAllMedicationTrackersUseCase findAllMedicationTrackersUseCase,
                                      CreateMedicationTrackerUseCase createMedicationTrackerUseCase,
                                      FindMedicationTrackerByPatientIdAndEffectiveDateUseCase findMedicationTrackerByPatientIdAndEffectiveDateUseCase,
-                                     UpdateMedicationTrackerUseCase updateMedicationTrackerUseCase) {
+                                     UpdateMedicationTrackerUseCase updateMedicationTrackerUseCase, FindAllByMedicationIdAndRangeDateUseCase findAllByMedicationIdAndRangeDateUseCase) {
         this.findMedicationTrackerUseCase = findMedicationTrackerUseCase;
         this.findMedicationTrackerByEffectiveDateUseCase = findMedicationTrackerByEffectiveDateUseCase;
         this.findAllMedicationTrackersByPatientIdUseCase = findAllMedicationTrackersByPatientIdUseCase;
@@ -38,6 +40,7 @@ public class MedicationTrackersService implements FindMedicationTrackerUseCase,
         this.createMedicationTrackerUseCase = createMedicationTrackerUseCase;
         this.findMedicationTrackerByPatientIdAndEffectiveDateUseCase = findMedicationTrackerByPatientIdAndEffectiveDateUseCase;
         this.updateMedicationTrackerUseCase = updateMedicationTrackerUseCase;
+        this.findAllByMedicationIdAndRangeDateUseCase = findAllByMedicationIdAndRangeDateUseCase;
     }
 
     @Override
@@ -75,4 +78,8 @@ public class MedicationTrackersService implements FindMedicationTrackerUseCase,
         return updateMedicationTrackerUseCase.update(medicationTracker, patientId, effectiveDate);
     }
 
+    @Override
+    public List<MedicationTracker> findAllByMedicationIdAndRangeDate(Long patientId, LocalDate fromDate, LocalDate toDate) {
+        return findAllByMedicationIdAndRangeDateUseCase.findAllByMedicationIdAndRangeDate(patientId,fromDate,toDate);
+    }
 }

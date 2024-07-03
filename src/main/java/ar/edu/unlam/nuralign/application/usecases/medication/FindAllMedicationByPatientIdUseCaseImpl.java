@@ -15,7 +15,7 @@ public class FindAllMedicationByPatientIdUseCaseImpl implements FindAllMedicatio
     }
 
     @Override
-    public List<Medication> findAllMedicationByPatientId(Long patientId, LocalDate fromDate, LocalDate toDate, Character takenFlag) {
-        return medicationRepositoryPort.findAllMedicationByPatientId( patientId, fromDate, toDate, takenFlag);
+    public List<Medication> findAllMedicationByPatientId(Long patientId, LocalDate fromDate, LocalDate toDate) {
+        return medicationRepositoryPort.findAllMedicationByPatientId( patientId, fromDate, toDate);
     }
 }
