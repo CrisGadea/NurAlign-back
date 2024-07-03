@@ -37,6 +37,8 @@ jobs:
       MYSQL_URL: ${{ secrets.MYSQL_URL }}
       MYSQL_USER: ${{ secrets.MYSQL_USER }}
       MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+      MP_PUBLIC_KEY: ${{ secrets.MP_PUBLIC_KEY }}
+      MP_ACCESS_TOKEN: ${{ secrets.MP_TOKEN }}
 
     steps:
       - name: Agregar variables de entorno
@@ -44,6 +46,8 @@ jobs:
           echo "MYSQL_URL=${{ secrets.MYSQL_URL }}" >> $GITHUB_ENV
           echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> $GITHUB_ENV
           echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> $GITHUB_ENV
+          echo "MP_PUBLIC_KEY=${{ secrets.MP_PUBLIC_KEY }}" >> $GITHUB_ENV
+          echo "MP_TOKEN=${{ secrets.MP_TOKEN }}" >> $GITHUB_ENV
 
       - name: Checkout code
         uses: actions/checkout@v2
@@ -75,5 +79,13 @@ jobs:
           ssh -o StrictHostKeyChecking=no root@77.37.69.38 'systemctl stop nuralign'
           # Actualizar el enlace simbólico para que apunte al nuevo JAR
           ssh -o StrictHostKeyChecking=no root@77.37.69.38 'ln -sf /root/NurAlign-back/$(basename ${{ env.JAR_FILE }}) /root/NurAlign-back/nuralign-latest.jar'
+          # Exportar variables de entorno en la VPS
+          ssh -o StrictHostKeyChecking=no root@77.37.69.38 '
+            echo "MYSQL_URL=${{ secrets.MYSQL_URL }}" >> /etc/environment
+            echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> /etc/environment
+            echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> /etc/environment
+            echo "MP_PUBLIC_KEY=${{ secrets.MP_PUBLIC_KEY }}" >> /etc/environment
+            echo "MP_TOKEN=${{ secrets.MP_TOKEN }}" >> /etc/environment
+          '
           # Reiniciar el servicio para que use el nuevo JAR
           ssh -o StrictHostKeyChecking=no root@77.37.69.38 'systemctl start nuralign'

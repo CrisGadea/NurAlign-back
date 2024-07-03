@@ -11,6 +11,16 @@
 - Update MedicationTracker
 
 
+## [4.5.0] - 2024-07-01
+### Changed
+- Change version of "changelog" and "pom.xml".
+- Added new Github Workflow
+
+## [4.4.0] - 2024-06-30
+### Changed
+- Change version of "changelog" and "pom.xml".
+- Added Mercado Pago checkout payment
+
 ## [4.3.0] - 2024-06-30
 ### Changed
 - Change version of "changelog" and "pom.xml".

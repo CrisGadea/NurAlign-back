@@ -21,9 +21,15 @@ import ar.edu.unlam.nuralign.infrastructure.adapters.*;
 import ar.edu.unlam.nuralign.infrastructure.repositories.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class ApplicationConfig {
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
     @Bean
     public PatientTherapistService patientTherapistService(PatientTherapistRepositoryPort patientTherapistRepositoryPort) {
@@ -131,6 +137,7 @@ public class ApplicationConfig {
         );
 
     }
+
 
     @Bean
     public TherapySessionRepositoryPort therapySessionRepositoryPort( JpaTherapySessionRepositoryAdapter jpaTherapySessionRepositoryAdapter)

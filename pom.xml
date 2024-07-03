@@ -11,7 +11,7 @@
 	<groupId>ar.edu.unlam</groupId>
 	<artifactId>nuralign</artifactId>
 	<!-- Change version of RELEASE -->
-	<version>4.3.2-RELEASE</version>
+	<version>4.5.0-RELEASE</version>
 	<name>nuralign</name>
 	<description>nuralign</description>
 	<properties>
@@ -70,19 +70,7 @@
 			<artifactId>bcrypt</artifactId>
 			<version>0.10.2</version>
 		</dependency>
-		<dependency>
-			<groupId>com.mercadopago</groupId>
-			<artifactId>sdk-java</artifactId>
-			<version>2.1.24</version>
-		</dependency>
 	</dependencies>
-	<repositories>
-		<repository>
-			<id>mercadopago-repo</id>
-			<url>https://repo.mercadopago.com/maven</url>
-		</repository>
-	</repositories>
-
 	<build>
 		<plugins>
 			<plugin>

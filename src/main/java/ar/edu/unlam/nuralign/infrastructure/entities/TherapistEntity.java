@@ -62,4 +62,18 @@ public class TherapistEntity {
         this.isSuscribed = isSuscribed;
     }
 
+    public TherapistEntity(String name, String lastName, String email,  String phoneNumber, String password,
+                           Integer documentNumber, String medicalLicense, String registeredFlag, Boolean isSuscribed, LocalDateTime createdAt) {
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.medicalLicense = medicalLicense;
+        this.documentNumber = documentNumber;
+        this.registeredFlag = registeredFlag;
+        this.isSuscribed = isSuscribed;
+        this.createdAt = createdAt;
+    }
+
 }
